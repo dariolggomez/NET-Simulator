@@ -1,4 +1,5 @@
 from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from visuals.ui_mainWindow import Ui_MainWindow
@@ -23,6 +24,11 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('NET-Simulator')
         self.labelTitle('NET-Simulator')
         self.labelDescription('Herramienta para la Simulación de los Nodos NET')
+
+        ## WINDOW SIZE ==> DEFAULT SIZE
+        startSize = QSize(1280, 900)
+        self.resize(startSize)
+        self.setMinimumSize(startSize)
 
     
     def removeTitleBar(self):
