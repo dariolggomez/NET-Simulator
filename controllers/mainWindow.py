@@ -30,6 +30,10 @@ class MainWindow(QMainWindow):
         self.resize(startSize)
         self.setMinimumSize(startSize)
 
+        ## ==> TOGGLE MENU SIZE
+        self.ui.btn_toggle_menu.clicked.connect(lambda: self.toggleMenu(220, True))
+            
+
     
     def removeTitleBar(self):
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -136,3 +140,24 @@ class MainWindow(QMainWindow):
     # LABEL DESCRIPTION
     def labelDescription(self, text):
         self.ui.label_top_info_1.setText(text)
+
+    def toggleMenu(self, maxWidth, enable):
+        if enable:
+            # GET WIDTH
+            width = self.ui.frame_left_menu.width()
+            maxExtend = maxWidth
+            standard = 70
+
+            # SET MAX WIDTH
+            if width == 70:
+                widthExtended = maxExtend
+            else:
+                widthExtended = standard
+
+            # ANIMATION
+            self.animation = QPropertyAnimation(self.ui.frame_left_menu, b"minimumWidth")
+            self.animation.setDuration(300)
+            self.animation.setStartValue(width)
+            self.animation.setEndValue(widthExtended)
+            self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+            self.animation.start()
