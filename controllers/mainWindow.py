@@ -20,9 +20,9 @@ class MainWindow(QMainWindow):
         self.uiDefinitions()
 
         ## SET ==> WINDOW TITLE
-        self.setWindowTitle('HEATS-BOARD')
-        self.labelTitle('HEATS-BOARD')
-        self.labelDescription('Herramienta para la Visualización Centralizada de Información')
+        self.setWindowTitle('NET-Simulator')
+        self.labelTitle('NET-Simulator')
+        self.labelDescription('Herramienta para la Simulación de los Nodos NET')
 
     
     def removeTitleBar(self):
@@ -123,3 +123,10 @@ class MainWindow(QMainWindow):
     def mousePressEvent(self, event):
         self.dragPos = event.globalPos()
 
+    # LABEL TITLE
+    def labelTitle(self, text):
+        self.ui.label_title_bar_top.setText(text)
+
+    # LABEL DESCRIPTION
+    def labelDescription(self, text):
+        self.ui.label_top_info_1.setText(text)
