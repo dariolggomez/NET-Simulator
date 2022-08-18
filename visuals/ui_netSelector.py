@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'netSelectorioFgqR.ui'
+## Form generated from reading UI file 'netSelectorwlbDOo.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -14,12 +14,12 @@ from PySide2.QtWidgets import *
 
 import files_rc
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(702, 557)
-        Form.setStyleSheet(u"background: transparent;\n"
+class Ui_NetSelector(object):
+    def setupUi(self, NetSelector):
+        if not NetSelector.objectName():
+            NetSelector.setObjectName(u"NetSelector")
+        NetSelector.resize(702, 557)
+        NetSelector.setStyleSheet(u"background: transparent;\n"
 "color: rgb(210, 210, 210); \n"
 "QToolTip {\n"
 "	color: #ffffff;\n"
@@ -27,11 +27,11 @@ class Ui_Form(object):
 "	border: 1px solid rgb(40, 40, 40);\n"
 "	border-radius: 2px;\n"
 "}")
-        self.verticalLayout = QVBoxLayout(Form)
+        self.verticalLayout = QVBoxLayout(NetSelector)
         self.verticalLayout.setSpacing(8)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(10, 10, 10, 10)
-        self.frame_bg = QFrame(Form)
+        self.frame_bg = QFrame(NetSelector)
         self.frame_bg.setObjectName(u"frame_bg")
         self.frame_bg.setStyleSheet(u"background: transparent;\n"
 "color: rgb(210, 210, 210);\n"
@@ -768,33 +768,33 @@ class Ui_Form(object):
         self.verticalLayout.addWidget(self.frame_bg)
 
 
-        self.retranslateUi(Form)
+        self.retranslateUi(NetSelector)
 
-        QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(NetSelector)
     # setupUi
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.label_title_bar_top.setText(QCoreApplication.translate("Form", u"SIMULADOR-NET", None))
+    def retranslateUi(self, NetSelector):
+        NetSelector.setWindowTitle(QCoreApplication.translate("NetSelector", u"Form", None))
+        self.label_title_bar_top.setText(QCoreApplication.translate("NetSelector", u"SIMULADOR-NET", None))
 #if QT_CONFIG(tooltip)
-        self.btn_minimize.setToolTip(QCoreApplication.translate("Form", u"Minimize", None))
+        self.btn_minimize.setToolTip(QCoreApplication.translate("NetSelector", u"Minimize", None))
 #endif // QT_CONFIG(tooltip)
         self.btn_minimize.setText("")
 #if QT_CONFIG(tooltip)
-        self.btn_maximize_restore.setToolTip(QCoreApplication.translate("Form", u"Maximize", None))
+        self.btn_maximize_restore.setToolTip(QCoreApplication.translate("NetSelector", u"Maximize", None))
 #endif // QT_CONFIG(tooltip)
         self.btn_maximize_restore.setText("")
 #if QT_CONFIG(tooltip)
-        self.btn_close.setToolTip(QCoreApplication.translate("Form", u"Close", None))
+        self.btn_close.setToolTip(QCoreApplication.translate("NetSelector", u"Close", None))
 #endif // QT_CONFIG(tooltip)
         self.btn_close.setText("")
-        self.label_top_info_1.setText(QCoreApplication.translate("Form", u"Selecci\u00f3n de Nodo", None))
+        self.label_top_info_1.setText(QCoreApplication.translate("NetSelector", u"Selecci\u00f3n de Nodo", None))
         self.label_top_info_2.setText("")
-        self.label_main_info.setText(QCoreApplication.translate("Form", u"Nodos NET", None))
-        self.eliminate_node_btn.setText(QCoreApplication.translate("Form", u"Eliminar", None))
-        self.create_node_btn.setText(QCoreApplication.translate("Form", u"Crear", None))
-        self.use_node_btn.setText(QCoreApplication.translate("Form", u"Utilizar", None))
+        self.label_main_info.setText(QCoreApplication.translate("NetSelector", u"Nodos NET", None))
+        self.eliminate_node_btn.setText(QCoreApplication.translate("NetSelector", u"Eliminar", None))
+        self.create_node_btn.setText(QCoreApplication.translate("NetSelector", u"Crear", None))
+        self.use_node_btn.setText(QCoreApplication.translate("NetSelector", u"Utilizar", None))
         self.label_credits.setText("")
-        self.label_version.setText(QCoreApplication.translate("Form", u"v1.0.0", None))
+        self.label_version.setText(QCoreApplication.translate("NetSelector", u"v1.0.0", None))
     # retranslateUi
 
