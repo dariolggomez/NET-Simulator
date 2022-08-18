@@ -117,15 +117,15 @@ class MainWindow(QMainWindow):
             self.ui.btn_maximize_restore.setIcon(QtGui.QIcon(u":/16x16/icons/16x16/cil-window-maximize.png"))
 
     def moveWindow(self, event):
-                # IF MAXIMIZED CHANGE TO NORMAL
-                if self.returnStatus() == 1:
-                    self.maximize_restore()
+        # IF MAXIMIZED CHANGE TO NORMAL
+        if self.returnStatus() == 1:
+            self.maximize_restore()
 
-                # MOVE WINDOW
-                if event.buttons() == Qt.LeftButton:
-                    self.move(self.pos() + event.globalPos() - self.dragPos)
-                    self.dragPos = event.globalPos()
-                    event.accept()
+        # MOVE WINDOW
+        if event.buttons() == Qt.LeftButton:
+            self.move(self.pos() + event.globalPos() - self.dragPos)
+            self.dragPos = event.globalPos()
+            event.accept()
 
     def returnStatus(self):
         return GLOBAL_STATE

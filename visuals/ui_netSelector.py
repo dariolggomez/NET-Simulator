@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'netSelectorwlbDOo.ui'
+## Form generated from reading UI file 'netSelectorIakAaD.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -27,10 +27,10 @@ class Ui_NetSelector(object):
 "	border: 1px solid rgb(40, 40, 40);\n"
 "	border-radius: 2px;\n"
 "}")
-        self.verticalLayout = QVBoxLayout(NetSelector)
-        self.verticalLayout.setSpacing(8)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(10, 10, 10, 10)
+        self.central_widget_layout = QVBoxLayout(NetSelector)
+        self.central_widget_layout.setSpacing(8)
+        self.central_widget_layout.setObjectName(u"central_widget_layout")
+        self.central_widget_layout.setContentsMargins(10, 10, 10, 10)
         self.frame_bg = QFrame(NetSelector)
         self.frame_bg.setObjectName(u"frame_bg")
         self.frame_bg.setStyleSheet(u"background: transparent;\n"
@@ -765,7 +765,7 @@ class Ui_NetSelector(object):
         self.verticalLayout_2.addWidget(self.main_content)
 
 
-        self.verticalLayout.addWidget(self.frame_bg)
+        self.central_widget_layout.addWidget(self.frame_bg)
 
 
         self.retranslateUi(NetSelector)

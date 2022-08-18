@@ -23,7 +23,7 @@ QToolTip {
 	border-radius: 2px;
 }</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="central_widget_layout">
    <property name="spacing">
     <number>8</number>
    </property>
