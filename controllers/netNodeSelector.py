@@ -11,3 +11,7 @@ class NetSelectorController(QWidget):
         #Initialization
         self.ui = Ui_NetSelector()
         self.ui.setupUi(self)
+        
+        #Borderless Window
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
