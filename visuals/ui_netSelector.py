@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'netSelectorCkWgUe.ui'
+## Form generated from reading UI file 'netSelectorwpnvCS.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -289,9 +289,10 @@ class Ui_NetSelector(object):
         self.frame_icon_top_bar.setObjectName(u"frame_icon_top_bar")
         self.frame_icon_top_bar.setMaximumSize(QSize(30, 30))
         self.frame_icon_top_bar.setStyleSheet(u"background: transparent;\n"
-"background-image: url(:/16x16/icons/16x16/cil-screen-desktop.png);\n"
+"background-image: url(:/16x16/icons/16x16/cil-layers.png);\n"
 "background-position: center;\n"
 "background-repeat: no-repeat;\n"
+"\n"
 "")
         self.frame_icon_top_bar.setFrameShape(QFrame.StyledPanel)
         self.frame_icon_top_bar.setFrameShadow(QFrame.Raised)
@@ -465,7 +466,7 @@ class Ui_NetSelector(object):
         self.frame_main_info = QFrame(self.frame_content)
         self.frame_main_info.setObjectName(u"frame_main_info")
         self.frame_main_info.setMaximumSize(QSize(16777215, 50))
-        self.frame_main_info.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
+        self.frame_main_info.setStyleSheet(u"background-color: rgb(33, 37, 43);\n"
 "border-radius: 5px")
         self.frame_main_info.setFrameShape(QFrame.StyledPanel)
         self.frame_main_info.setFrameShadow(QFrame.Raised)

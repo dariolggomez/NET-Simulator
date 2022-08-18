@@ -380,9 +380,10 @@ QSlider::handle:vertical:pressed {
                   </property>
                   <property name="styleSheet">
                    <string notr="true">background: transparent;
-background-image: url(:/16x16/icons/16x16/cil-screen-desktop.png);
+background-image: url(:/16x16/icons/16x16/cil-layers.png);
 background-position: center;
 background-repeat: no-repeat;
+
 </string>
                   </property>
                   <property name="frameShape">
@@ -741,7 +742,7 @@ QPushButton:pressed {
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(39, 44, 54);
+                <string notr="true">background-color: rgb(33, 37, 43);
 border-radius: 5px</string>
                </property>
                <property name="frameShape">
