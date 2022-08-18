@@ -3,6 +3,7 @@ from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from visuals.ui_netSelector import Ui_NetSelector
+from services import net_service
 
 GLOBAL_STATE = 0
 
@@ -20,6 +21,9 @@ class NetSelectorController(QMainWindow):
 
         #Load Ui Definitions
         self.uiDefinitions()
+
+        #Load Node Table
+        self.loadNetNodeTable()
 
     def uiDefinitions(self):
         def doubleClickMaximizeRestore(event):
@@ -90,3 +94,17 @@ class NetSelectorController(QMainWindow):
 
     def returnStatus(self):
         return GLOBAL_STATE
+
+    def loadNetNodeTable(self):
+        rows = []
+        for netNode in net_service.read_all():
+            rows.append((netNode.id, netNode.nodename, netNode.city, netNode.date_created.date()))
+        self.ui.netNodeTableWidget.setColumnCount(4)
+        self.ui.netNodeTableWidget.setHorizontalHeaderLabels(("ID","Nodo","Ciudad","Fecha de Creación"))
+        self.ui.netNodeTableWidget.horizontalHeader().setVisible(True)
+        self.ui.netNodeTableWidget.setRowCount(len(rows))
+        for row, cols in enumerate(rows):
+            for col, text in enumerate(cols):
+                table_item = QTableWidgetItem(str(text))
+                table_item.setData(QtCore.Qt.UserRole+1, net_service.read_byID(rows[row][0]))
+                self.ui.netNodeTableWidget.setItem(row, col, table_item)
