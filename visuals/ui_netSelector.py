@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'netSelectorpSzimr.ui'
+## Form generated from reading UI file 'netSelectorCkWgUe.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -19,18 +19,24 @@ class Ui_NetSelector(object):
         if not NetSelector.objectName():
             NetSelector.setObjectName(u"NetSelector")
         NetSelector.resize(800, 600)
+        NetSelector.setStyleSheet(u"QMainWindow {background: transparent; }\n"
+"QToolTip {\n"
+"	color: #ffffff;\n"
+"	background-color: rgba(27, 29, 35, 160);\n"
+"	border: 1px solid rgb(40, 40, 40);\n"
+"	border-radius: 2px;\n"
+"}")
         self.centralwidget = QWidget(NetSelector)
         self.centralwidget.setObjectName(u"centralwidget")
+        self.centralwidget.setStyleSheet(u"background: transparent;\n"
+"color: rgb(210, 210, 210);")
         self.central_widget_layout = QVBoxLayout(self.centralwidget)
         self.central_widget_layout.setSpacing(0)
         self.central_widget_layout.setObjectName(u"central_widget_layout")
         self.central_widget_layout.setContentsMargins(10, 10, 10, 10)
         self.frame_bg = QFrame(self.centralwidget)
         self.frame_bg.setObjectName(u"frame_bg")
-        self.frame_bg.setStyleSheet(u"background: transparent;\n"
-"color: rgb(210, 210, 210);\n"
-"\n"
-"/* LINE EDIT */\n"
+        self.frame_bg.setStyleSheet(u"/* LINE EDIT */\n"
 "QLineEdit {\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	border-radius: 5px;\n"
@@ -67,11 +73,11 @@ class Ui_NetSelector(object):
 "    subcontrol-origin: margin;\n"
 "}\n"
 "QScrollBar::sub-line:horizontal {\n"
-"    border:"
-                        " none;\n"
+"    border: none;\n"
 "    background: rgb(55, 63, 77);\n"
 "    width: 20px;\n"
-"	border-top-left-radius: 7px;\n"
+""
+                        "	border-top-left-radius: 7px;\n"
 "    border-bottom-left-radius: 7px;\n"
 "    subcontrol-position: left;\n"
 "    subcontrol-origin: margin;\n"
@@ -105,10 +111,10 @@ class Ui_NetSelector(object):
 "     subcontrol-position: bottom;\n"
 "     subcontrol-origin: margin;\n"
 " }\n"
-" QScrollBar::"
-                        "sub-line:vertical {\n"
+" QScrollBar::sub-line:vertical {\n"
 "	border: none;\n"
-"    background: rgb(55, 63, 77);\n"
+"    background: rgb(55, 63"
+                        ", 77);\n"
 "     height: 20px;\n"
 "	border-top-left-radius: 7px;\n"
 "    border-top-right-radius: 7px;\n"
@@ -142,11 +148,11 @@ class Ui_NetSelector(object):
 "\n"
 "/* RADIO BUTTON */\n"
 "QRadioButton::indicator {\n"
-"    border: 3px solid rgb"
-                        "(52, 59, 72);\n"
+"    border: 3px solid rgb(52, 59, 72);\n"
 "	width: 15px;\n"
 "	height: 15px;\n"
-"	border-radius: 10px;\n"
+"	border-radius"
+                        ": 10px;\n"
 "    background: rgb(44, 49, 60);\n"
 "}\n"
 "QRadioButton::indicator:hover {\n"
@@ -179,11 +185,11 @@ class Ui_NetSelector(object):
 "	border-bottom-right-radius: 3px;	\n"
 "	background-image: url(:/16x16/icons/16x16/cil-arrow-bottom.png);\n"
 "	background-position: center;\n"
-"	background-repeat: "
-                        "no-reperat;\n"
+"	background-repeat: no-reperat;\n"
 " }\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color: rgb("
+                        "85, 170, 255);	\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
 "	selection-background-color: rgb(39, 44, 54);\n"
@@ -221,10 +227,10 @@ class Ui_NetSelector(object):
 "	background-color: rgb(52, 59, 72);\n"
 "}\n"
 "QSlider::groove:vertical:hover {\n"
-""
-                        "	background-color: rgb(55, 62, 76);\n"
+"	background-color: rgb(55, 62, 76);\n"
 "}\n"
-"QSlider::handle:vertical {\n"
+"QSlider::handle:verti"
+                        "cal {\n"
 "    background-color: rgb(85, 170, 255);\n"
 "	border: none;\n"
 "    height: 18px;\n"
