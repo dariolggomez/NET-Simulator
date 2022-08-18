@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'netSelectorIakAaD.ui'
+## Form generated from reading UI file 'netSelectorpSzimr.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -18,20 +18,14 @@ class Ui_NetSelector(object):
     def setupUi(self, NetSelector):
         if not NetSelector.objectName():
             NetSelector.setObjectName(u"NetSelector")
-        NetSelector.resize(702, 557)
-        NetSelector.setStyleSheet(u"background: transparent;\n"
-"color: rgb(210, 210, 210); \n"
-"QToolTip {\n"
-"	color: #ffffff;\n"
-"	background-color: rgba(27, 29, 35, 160);\n"
-"	border: 1px solid rgb(40, 40, 40);\n"
-"	border-radius: 2px;\n"
-"}")
-        self.central_widget_layout = QVBoxLayout(NetSelector)
-        self.central_widget_layout.setSpacing(8)
+        NetSelector.resize(800, 600)
+        self.centralwidget = QWidget(NetSelector)
+        self.centralwidget.setObjectName(u"centralwidget")
+        self.central_widget_layout = QVBoxLayout(self.centralwidget)
+        self.central_widget_layout.setSpacing(0)
         self.central_widget_layout.setObjectName(u"central_widget_layout")
         self.central_widget_layout.setContentsMargins(10, 10, 10, 10)
-        self.frame_bg = QFrame(NetSelector)
+        self.frame_bg = QFrame(self.centralwidget)
         self.frame_bg.setObjectName(u"frame_bg")
         self.frame_bg.setStyleSheet(u"background: transparent;\n"
 "color: rgb(210, 210, 210);\n"
@@ -767,6 +761,7 @@ class Ui_NetSelector(object):
 
         self.central_widget_layout.addWidget(self.frame_bg)
 
+        NetSelector.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(NetSelector)
 
@@ -774,7 +769,7 @@ class Ui_NetSelector(object):
     # setupUi
 
     def retranslateUi(self, NetSelector):
-        NetSelector.setWindowTitle(QCoreApplication.translate("NetSelector", u"Form", None))
+        NetSelector.setWindowTitle(QCoreApplication.translate("NetSelector", u"MainWindow", None))
         self.label_title_bar_top.setText(QCoreApplication.translate("NetSelector", u"SIMULADOR-NET", None))
 #if QT_CONFIG(tooltip)
         self.btn_minimize.setToolTip(QCoreApplication.translate("NetSelector", u"Minimize", None))

@@ -4,7 +4,9 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from visuals.ui_netSelector import Ui_NetSelector
 
-class NetSelectorController(QWidget):
+GLOBAL_STATE = 0
+
+class NetSelectorController(QMainWindow):
     def __init__(self):
         super().__init__()
         
@@ -15,6 +17,9 @@ class NetSelectorController(QWidget):
         #Borderless Window
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
+        #Load Ui Definitions
+        self.uiDefinitions()
 
     def uiDefinitions(self):
         def doubleClickMaximizeRestore(event):
@@ -30,7 +35,7 @@ class NetSelectorController(QWidget):
         self.shadow.setXOffset(0)
         self.shadow.setYOffset(0)
         self.shadow.setColor(QColor(0, 0, 0, 150))
-        self.ui.frame_bg(self.shadow)
+        self.ui.frame_bg.setGraphicsEffect(self.shadow)
 
         ## ==> RESIZE WINDOW
         self.sizegrip = QSizeGrip(self.ui.frame_size_grip)
@@ -82,3 +87,6 @@ class NetSelectorController(QWidget):
 
     def mousePressEvent(self, event):
         self.dragPos = event.globalPos()
+
+    def returnStatus(self):
+        return GLOBAL_STATE
