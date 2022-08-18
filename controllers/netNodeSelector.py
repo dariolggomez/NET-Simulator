@@ -19,6 +19,11 @@ class NetSelectorController(QMainWindow):
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
+        ## WINDOW SIZE ==> DEFAULT SIZE
+        startSize = QSize(1100, 900)
+        self.resize(startSize)
+        self.setMinimumSize(startSize)
+
         #Load Ui Definitions
         self.uiDefinitions()
 
