@@ -20,7 +20,7 @@ class NetSelectorController(QMainWindow):
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
         ## WINDOW SIZE ==> DEFAULT SIZE
-        startSize = QSize(1100, 900)
+        startSize = QSize(1000, 800)
         self.resize(startSize)
         self.setMinimumSize(startSize)
 
