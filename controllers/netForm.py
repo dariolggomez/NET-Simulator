@@ -21,12 +21,10 @@ class NetFormController(QDialog):
 
     def createNetNode(self, caller):
         nodename = self.ui.nodenameLineEdit.text()
-        city = self.ui.cityLineEdit.text()
+        city = self.ui.cityComboBox.currentText()
 
-        request = {"nodename": nodename,
-                   "city": city}
-        rules = {"nodename": "required|min:3",
-                 "city": "required|min:2"}
+        request = {"nodename": nodename}
+        rules = {"nodename": "required|min:3"}
         result, _, errors = validate(request, rules, return_info=True)
         if(result):
             if(not net_service.checkNodenameExists(nodename)):
@@ -49,15 +47,4 @@ class NetFormController(QDialog):
                         msg = QMessageBox()
                         msg.setText("El nombre debe tener al menos 3 caracteres")
                         msg.exec_()
-            else:
-                if("city" in errors):
-                    if("Required" in errors["city"]):
-                        msg = QMessageBox()
-                        msg.setText("Ciudad requerida.")
-                        msg.exec_()
-                    else:
-                        if("Min" in errors["city"]):
-                            msg = QMessageBox()
-                            msg.setText("La ciudad debe tener al menos 2 caracteres")
-                            msg.exec_()
 

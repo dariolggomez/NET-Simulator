@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'netFormyCviEC.ui'
+## Form generated from reading UI file 'netFormdvxwJd.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -18,14 +18,13 @@ class Ui_formNet(object):
         if not formNet.objectName():
             formNet.setObjectName(u"formNet")
         formNet.resize(504, 475)
-        formNet.setStyleSheet(u"background-color: rgb(44, 49, 60);")
+        formNet.setStyleSheet(u"background-color: rgb(44, 49, 60);\n"
+"color: rgb(85, 170, 255);")
         self.verticalLayout = QVBoxLayout(formNet)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.bg = QFrame(formNet)
         self.bg.setObjectName(u"bg")
         self.bg.setStyleSheet(u"/* LINE EDIT */\n"
-"background-color: rgb(44, 49, 60);\n"
-"color: rgb(85, 170, 255);\n"
 "QLineEdit {\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	border-radius: 5px;\n"
@@ -62,11 +61,11 @@ class Ui_formNet(object):
 "    subcontrol-origin: margin;\n"
 "}\n"
 "QScrollBar::sub-line:horizontal {\n"
-"    bor"
-                        "der: none;\n"
+"    border: none;\n"
 "    background: rgb(55, 63, 77);\n"
 "    width: 20px;\n"
-"	border-top-left-radius: 7px;\n"
+""
+                        "	border-top-left-radius: 7px;\n"
 "    border-bottom-left-radius: 7px;\n"
 "    subcontrol-position: left;\n"
 "    subcontrol-origin: margin;\n"
@@ -100,10 +99,10 @@ class Ui_formNet(object):
 "     subcontrol-position: bottom;\n"
 "     subcontrol-origin: margin;\n"
 " }\n"
-" QScrollB"
-                        "ar::sub-line:vertical {\n"
+" QScrollBar::sub-line:vertical {\n"
 "	border: none;\n"
-"    background: rgb(55, 63, 77);\n"
+"    background: rgb(55, 63"
+                        ", 77);\n"
 "     height: 20px;\n"
 "	border-top-left-radius: 7px;\n"
 "    border-top-right-radius: 7px;\n"
@@ -137,11 +136,11 @@ class Ui_formNet(object):
 "\n"
 "/* RADIO BUTTON */\n"
 "QRadioButton::indicator {\n"
-"    border: 3px solid"
-                        " rgb(52, 59, 72);\n"
+"    border: 3px solid rgb(52, 59, 72);\n"
 "	width: 15px;\n"
 "	height: 15px;\n"
-"	border-radius: 10px;\n"
+"	border-radius"
+                        ": 10px;\n"
 "    background: rgb(44, 49, 60);\n"
 "}\n"
 "QRadioButton::indicator:hover {\n"
@@ -174,11 +173,11 @@ class Ui_formNet(object):
 "	border-bottom-right-radius: 3px;	\n"
 "	background-image: url(:/16x16/icons/16x16/cil-arrow-bottom.png);\n"
 "	background-position: center;\n"
-"	background-repe"
-                        "at: no-reperat;\n"
+"	background-repeat: no-reperat;\n"
 " }\n"
 "QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
+"	color: rgb("
+                        "85, 170, 255);	\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	padding: 10px;\n"
 "	selection-background-color: rgb(39, 44, 54);\n"
@@ -215,11 +214,11 @@ class Ui_formNet(object):
 "    margin: 0px;\n"
 "	background-color: rgb(52, 59, 72);\n"
 "}\n"
-"QSlider::groove:vertical:hover "
-                        "{\n"
+"QSlider::groove:vertical:hover {\n"
 "	background-color: rgb(55, 62, 76);\n"
 "}\n"
-"QSlider::handle:vertical {\n"
+"QSlider::handle:verti"
+                        "cal {\n"
 "    background-color: rgb(85, 170, 255);\n"
 "	border: none;\n"
 "    height: 18px;\n"
@@ -313,23 +312,25 @@ class Ui_formNet(object):
 
         self.verticalLayout_3.addWidget(self.label)
 
-        self.cityLineEdit = QLineEdit(self.frame)
-        self.cityLineEdit.setObjectName(u"cityLineEdit")
-        self.cityLineEdit.setFont(font1)
-        self.cityLineEdit.setStyleSheet(u"QLineEdit {\n"
-"	background-color: rgb(27, 29, 35);\n"
-"	border-radius: 5px;\n"
-"	border: 2px solid rgb(27, 29, 35);\n"
-"	padding-left: 10px;\n"
-"}\n"
-"QLineEdit:hover {\n"
-"	border: 2px solid rgb(64, 71, 88);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"	border: 2px solid rgb(91, 101, 124);\n"
-"}")
+        self.cityComboBox = QComboBox(self.frame)
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.addItem("")
+        self.cityComboBox.setObjectName(u"cityComboBox")
 
-        self.verticalLayout_3.addWidget(self.cityLineEdit)
+        self.verticalLayout_3.addWidget(self.cityComboBox)
 
 
         self.verticalLayout_6.addWidget(self.frame)
@@ -414,8 +415,24 @@ class Ui_formNet(object):
     def retranslateUi(self, formNet):
         formNet.setWindowTitle(QCoreApplication.translate("formNet", u"Dialog", None))
         self.label_4.setText(QCoreApplication.translate("formNet", u"Crear Nodo", None))
-        self.label_3.setText(QCoreApplication.translate("formNet", u"Nombre de Nodo", None))
-        self.label.setText(QCoreApplication.translate("formNet", u"Ciudad", None))
+        self.label_3.setText(QCoreApplication.translate("formNet", u"Nombre", None))
+        self.label.setText(QCoreApplication.translate("formNet", u"Municipio", None))
+        self.cityComboBox.setItemText(0, QCoreApplication.translate("formNet", u"Cerro", None))
+        self.cityComboBox.setItemText(1, QCoreApplication.translate("formNet", u"Playa", None))
+        self.cityComboBox.setItemText(2, QCoreApplication.translate("formNet", u"Plaza de la Revoluci\u00f3n", None))
+        self.cityComboBox.setItemText(3, QCoreApplication.translate("formNet", u"Centro Habana", None))
+        self.cityComboBox.setItemText(4, QCoreApplication.translate("formNet", u"La Habana Vieja", None))
+        self.cityComboBox.setItemText(5, QCoreApplication.translate("formNet", u"Regla", None))
+        self.cityComboBox.setItemText(6, QCoreApplication.translate("formNet", u"La Habana del Este", None))
+        self.cityComboBox.setItemText(7, QCoreApplication.translate("formNet", u"Guanabacoa", None))
+        self.cityComboBox.setItemText(8, QCoreApplication.translate("formNet", u"San Miguel del Padr\u00f3n", None))
+        self.cityComboBox.setItemText(9, QCoreApplication.translate("formNet", u"Diez de Octubre", None))
+        self.cityComboBox.setItemText(10, QCoreApplication.translate("formNet", u"Marianao", None))
+        self.cityComboBox.setItemText(11, QCoreApplication.translate("formNet", u"La Lisa", None))
+        self.cityComboBox.setItemText(12, QCoreApplication.translate("formNet", u"Boyeros", None))
+        self.cityComboBox.setItemText(13, QCoreApplication.translate("formNet", u"Arroyo Naranjo", None))
+        self.cityComboBox.setItemText(14, QCoreApplication.translate("formNet", u"Cotorro", None))
+
         self.acceptBtn.setText(QCoreApplication.translate("formNet", u"Aceptar", None))
         self.cancelBtn.setText(QCoreApplication.translate("formNet", u"Cancelar", None))
     # retranslateUi

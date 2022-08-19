@@ -14,15 +14,14 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(44, 49, 60);</string>
+   <string notr="true">background-color: rgb(44, 49, 60);
+color: rgb(85, 170, 255);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QFrame" name="bg">
      <property name="styleSheet">
       <string notr="true">/* LINE EDIT */
-background-color: rgb(44, 49, 60);
-color: rgb(85, 170, 255);
 QLineEdit {
 	background-color: rgb(27, 29, 35);
 	border-radius: 5px;
@@ -298,7 +297,7 @@ border-radius: 5px;
                </font>
               </property>
               <property name="text">
-               <string>Nombre de Nodo</string>
+               <string>Nombre</string>
               </property>
              </widget>
             </item>
@@ -359,31 +358,87 @@ border-radius: 5px;
                <string notr="true">color: rgb(85, 170, 255);</string>
               </property>
               <property name="text">
-               <string>Ciudad</string>
+               <string>Municipio</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="cityLineEdit">
-              <property name="font">
-               <font>
-                <pointsize>9</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLineEdit {
-	background-color: rgb(27, 29, 35);
-	border-radius: 5px;
-	border: 2px solid rgb(27, 29, 35);
-	padding-left: 10px;
-}
-QLineEdit:hover {
-	border: 2px solid rgb(64, 71, 88);
-}
-QLineEdit:focus {
-	border: 2px solid rgb(91, 101, 124);
-}</string>
-              </property>
+             <widget class="QComboBox" name="cityComboBox">
+              <item>
+               <property name="text">
+                <string>Cerro</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Playa</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Plaza de la Revolución</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Centro Habana</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>La Habana Vieja</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Regla</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>La Habana del Este</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Guanabacoa</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>San Miguel del Padrón</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Diez de Octubre</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Marianao</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>La Lisa</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Boyeros</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Arroyo Naranjo</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Cotorro</string>
+               </property>
+              </item>
              </widget>
             </item>
            </layout>
