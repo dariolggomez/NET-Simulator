@@ -4,6 +4,7 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from visuals.ui_netSelector import Ui_NetSelector
 from services import net_service
+from controllers.netForm import NetFormController
 
 GLOBAL_STATE = 0
 
@@ -29,6 +30,9 @@ class NetSelectorController(QMainWindow):
 
         #Load Node Table
         self.loadNetNodeTable()
+
+        #Connections
+        self.ui.create_node_btn.clicked.connect(self.showCreateNetNodeDialog)
 
     def uiDefinitions(self):
         def doubleClickMaximizeRestore(event):
@@ -113,3 +117,7 @@ class NetSelectorController(QMainWindow):
                 table_item = QTableWidgetItem(str(text))
                 table_item.setData(QtCore.Qt.UserRole+1, net_service.read_byID(rows[row][0]))
                 self.ui.netNodeTableWidget.setItem(row, col, table_item)
+
+    def showCreateNetNodeDialog(self):
+        self.netForm = NetFormController(self)
+        self.netForm.show()
