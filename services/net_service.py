@@ -1,5 +1,6 @@
 from .engine import Session, engine
 from models.netNode_model import NetNode
+from sqlalchemy import exists
 
 local_session = Session(bind = engine)
 
@@ -28,3 +29,7 @@ def update_netNode(netNode):
 def delete_netNode(netNode):
     local_session.delete(netNode)
     local_session.commit()
+
+def checkNodenameExists(nodename):
+    ret = local_session.query(exists().where(NetNode.nodename == nodename)).scalar()
+    return ret

@@ -10,6 +10,6 @@ class NetNode(NetNodeBase):
     city = Column(String(80), nullable = False, unique = False)
     date_created = Column(DateTime(), default = datetime.now)
 
-    def __ini__(self, nodename, city):
+    def __init__(self, nodename, city):
         self.nodename = nodename
         self.city = city
