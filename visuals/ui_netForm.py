@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'netFormxTyzcI.ui'
+## Form generated from reading UI file 'netFormyCviEC.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -251,7 +251,7 @@ class Ui_formNet(object):
         self.label_4 = QLabel(self.contentFrame)
         self.label_4.setObjectName(u"label_4")
         font = QFont()
-        font.setPointSize(10)
+        font.setPointSize(11)
         font.setBold(True)
         font.setWeight(75)
         self.label_4.setFont(font)
@@ -269,11 +269,15 @@ class Ui_formNet(object):
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.label_3 = QLabel(self.frame_3)
         self.label_3.setObjectName(u"label_3")
+        font1 = QFont()
+        font1.setPointSize(9)
+        self.label_3.setFont(font1)
 
         self.verticalLayout_5.addWidget(self.label_3)
 
         self.nodenameLineEdit = QLineEdit(self.frame_3)
         self.nodenameLineEdit.setObjectName(u"nodenameLineEdit")
+        self.nodenameLineEdit.setFont(font1)
         self.nodenameLineEdit.setStyleSheet(u"QLineEdit {\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	border-radius: 5px;\n"
@@ -304,12 +308,14 @@ class Ui_formNet(object):
         self.label = QLabel(self.frame)
         self.label.setObjectName(u"label")
         self.label.setMaximumSize(QSize(16777215, 25))
+        self.label.setFont(font1)
         self.label.setStyleSheet(u"color: rgb(85, 170, 255);")
 
         self.verticalLayout_3.addWidget(self.label)
 
         self.cityLineEdit = QLineEdit(self.frame)
         self.cityLineEdit.setObjectName(u"cityLineEdit")
+        self.cityLineEdit.setFont(font1)
         self.cityLineEdit.setStyleSheet(u"QLineEdit {\n"
 "	background-color: rgb(27, 29, 35);\n"
 "	border-radius: 5px;\n"
@@ -353,7 +359,8 @@ class Ui_formNet(object):
 
         self.acceptBtn = QPushButton(self.btnsFrame)
         self.acceptBtn.setObjectName(u"acceptBtn")
-        self.acceptBtn.setMinimumSize(QSize(60, 25))
+        self.acceptBtn.setMinimumSize(QSize(80, 30))
+        self.acceptBtn.setFont(font1)
         self.acceptBtn.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
@@ -372,7 +379,8 @@ class Ui_formNet(object):
 
         self.cancelBtn = QPushButton(self.btnsFrame)
         self.cancelBtn.setObjectName(u"cancelBtn")
-        self.cancelBtn.setMinimumSize(QSize(60, 25))
+        self.cancelBtn.setMinimumSize(QSize(80, 30))
+        self.cancelBtn.setFont(font1)
         self.cancelBtn.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"

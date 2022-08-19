@@ -33,6 +33,7 @@ class NetSelectorController(QMainWindow):
 
         #Connections
         self.ui.create_node_btn.clicked.connect(self.showCreateNetNodeDialog)
+        self.ui.eliminate_node_btn.clicked.connect(self.eliminateNetTableCurrentRow)
 
     def uiDefinitions(self):
         def doubleClickMaximizeRestore(event):
@@ -121,3 +122,21 @@ class NetSelectorController(QMainWindow):
     def showCreateNetNodeDialog(self):
         self.netForm = NetFormController(self)
         self.netForm.show()
+
+    def eliminateNetTableCurrentRow(self):
+        item = self.ui.netNodeTableWidget.currentItem()
+        if(item is not None):
+            netNode = item.data(Qt.UserRole+1)
+            msg = QMessageBox()
+            msg.setWindowTitle("Eliminación de nodo") 
+            msg.addButton("Aceptar", QMessageBox.ButtonRole.AcceptRole)
+            msg.addButton("Cancelar", QMessageBox.ButtonRole.RejectRole)
+            msg.setText(f"¿Está seguro de que desea eliminar el nodo {netNode.nodename}?")
+            ret = msg.exec_()
+            if(ret == 0):
+                net_service.delete_netNode(netNode)
+                self.loadNetNodeTable()
+        else:
+            msg = QMessageBox()
+            msg.setText("Debe seleccionar un nodo.")
+            msg.exec_()

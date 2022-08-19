@@ -266,7 +266,7 @@ QSlider::handle:vertical:pressed {
           <widget class="QLabel" name="label_4">
            <property name="font">
             <font>
-             <pointsize>10</pointsize>
+             <pointsize>11</pointsize>
              <weight>75</weight>
              <bold>true</bold>
             </font>
@@ -292,6 +292,11 @@ border-radius: 5px;
            <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
              <widget class="QLabel" name="label_3">
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="text">
                <string>Nombre de Nodo</string>
               </property>
@@ -299,6 +304,11 @@ border-radius: 5px;
             </item>
             <item>
              <widget class="QLineEdit" name="nodenameLineEdit">
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QLineEdit {
 	background-color: rgb(27, 29, 35);
@@ -340,6 +350,11 @@ border-radius: 5px;
                 <height>25</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(85, 170, 255);</string>
               </property>
@@ -350,6 +365,11 @@ border-radius: 5px;
             </item>
             <item>
              <widget class="QLineEdit" name="cityLineEdit">
+              <property name="font">
+               <font>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QLineEdit {
 	background-color: rgb(27, 29, 35);
@@ -440,9 +460,14 @@ border-radius: 5px;
           <widget class="QPushButton" name="acceptBtn">
            <property name="minimumSize">
             <size>
-             <width>60</width>
-             <height>25</height>
+             <width>80</width>
+             <height>30</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
            </property>
            <property name="styleSheet">
             <string notr="true">QPushButton {
@@ -468,9 +493,14 @@ QPushButton:pressed {
           <widget class="QPushButton" name="cancelBtn">
            <property name="minimumSize">
             <size>
-             <width>60</width>
-             <height>25</height>
+             <width>80</width>
+             <height>30</height>
             </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
            </property>
            <property name="styleSheet">
             <string notr="true">QPushButton {
