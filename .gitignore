@@ -1,5 +1,9 @@
-__pycache__
+__pycache__/
+__pycache__\
+
 **/__pycache__/
+**\__pycache__\
+
 controllers/__pycache__/
 controllers\__pycache__\
 
