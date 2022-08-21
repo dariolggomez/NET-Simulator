@@ -35,6 +35,7 @@ class MainWindow(QMainWindow):
 
         #Load Ui Settings
         self.ui.net_node_in_use.setText(currentNetNode.getNodename())
+        self.ui.net_node_city.setText(currentNetNode.getCity())
             
 
     

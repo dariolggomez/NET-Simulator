@@ -1119,6 +1119,9 @@ color: rgb(85, 170, 255);</string>
                        </property>
                        <item>
                         <widget class="QFrame" name="content_information">
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(33, 37, 43);</string>
+                         </property>
                          <property name="frameShape">
                           <enum>QFrame::NoFrame</enum>
                          </property>
@@ -1126,23 +1129,20 @@ color: rgb(85, 170, 255);</string>
                           <enum>QFrame::Raised</enum>
                          </property>
                          <layout class="QHBoxLayout" name="horizontalLayout_11">
-                          <property name="leftMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="topMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="rightMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="bottomMargin">
-                           <number>0</number>
+                          <property name="spacing">
+                           <number>12</number>
                           </property>
                           <item>
                            <widget class="QLabel" name="net_node_in_use">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
                             <property name="maximumSize">
                              <size>
-                              <width>130</width>
+                              <width>167777</width>
                               <height>16777215</height>
                              </size>
                             </property>
@@ -1156,10 +1156,19 @@ color: rgb(85, 170, 255);</string>
                             <property name="text">
                              <string>Nodo en uso</string>
                             </property>
+                            <property name="wordWrap">
+                             <bool>true</bool>
+                            </property>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QLabel" name="current_net_node">
+                           <widget class="QLabel" name="city_label">
+                            <property name="maximumSize">
+                             <size>
+                              <width>100</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
                             <property name="font">
                              <font>
                               <pointsize>11</pointsize>
@@ -1169,9 +1178,49 @@ color: rgb(85, 170, 255);</string>
                              <string notr="true"/>
                             </property>
                             <property name="text">
-                             <string/>
+                             <string>Municipio:</string>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="net_node_city">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                             <size>
+                              <width>50</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <pointsize>11</pointsize>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="wordWrap">
+                             <bool>true</bool>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <spacer name="horizontalSpacer_6">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>360</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
                           </item>
                          </layout>
                         </widget>

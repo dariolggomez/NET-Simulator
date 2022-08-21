@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowBNryzc.ui'
+## Form generated from reading UI file 'mainWindowheidht.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -632,30 +632,52 @@ class Ui_MainWindow(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.content_information = QFrame(self.page_home_content)
         self.content_information.setObjectName(u"content_information")
+        self.content_information.setStyleSheet(u"background-color: rgb(33, 37, 43);")
         self.content_information.setFrameShape(QFrame.NoFrame)
         self.content_information.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_11 = QHBoxLayout(self.content_information)
+        self.horizontalLayout_11.setSpacing(12)
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
         self.net_node_in_use = QLabel(self.content_information)
         self.net_node_in_use.setObjectName(u"net_node_in_use")
-        self.net_node_in_use.setMaximumSize(QSize(130, 16777215))
+        sizePolicy6 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.net_node_in_use.sizePolicy().hasHeightForWidth())
+        self.net_node_in_use.setSizePolicy(sizePolicy6)
+        self.net_node_in_use.setMaximumSize(QSize(167777, 16777215))
         font4 = QFont()
         font4.setPointSize(11)
         font4.setBold(False)
         font4.setWeight(50)
         self.net_node_in_use.setFont(font4)
+        self.net_node_in_use.setWordWrap(True)
 
         self.horizontalLayout_11.addWidget(self.net_node_in_use)
 
-        self.current_net_node = QLabel(self.content_information)
-        self.current_net_node.setObjectName(u"current_net_node")
+        self.city_label = QLabel(self.content_information)
+        self.city_label.setObjectName(u"city_label")
+        self.city_label.setMaximumSize(QSize(100, 16777215))
         font5 = QFont()
         font5.setPointSize(11)
-        self.current_net_node.setFont(font5)
-        self.current_net_node.setStyleSheet(u"")
+        self.city_label.setFont(font5)
+        self.city_label.setStyleSheet(u"")
 
-        self.horizontalLayout_11.addWidget(self.current_net_node)
+        self.horizontalLayout_11.addWidget(self.city_label)
+
+        self.net_node_city = QLabel(self.content_information)
+        self.net_node_city.setObjectName(u"net_node_city")
+        sizePolicy4.setHeightForWidth(self.net_node_city.sizePolicy().hasHeightForWidth())
+        self.net_node_city.setSizePolicy(sizePolicy4)
+        self.net_node_city.setMinimumSize(QSize(50, 0))
+        self.net_node_city.setFont(font5)
+        self.net_node_city.setWordWrap(True)
+
+        self.horizontalLayout_11.addWidget(self.net_node_city)
+
+        self.horizontalSpacer_6 = QSpacerItem(360, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_11.addItem(self.horizontalSpacer_6)
 
 
         self.verticalLayout.addWidget(self.content_information)
@@ -1192,11 +1214,11 @@ class Ui_MainWindow(object):
 
         self.frame_console = QFrame(self.frame_content_right)
         self.frame_console.setObjectName(u"frame_console")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.frame_console.sizePolicy().hasHeightForWidth())
-        self.frame_console.setSizePolicy(sizePolicy6)
+        sizePolicy7 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.frame_console.sizePolicy().hasHeightForWidth())
+        self.frame_console.setSizePolicy(sizePolicy7)
         self.frame_console.setMinimumSize(QSize(0, 130))
         self.frame_console.setMaximumSize(QSize(16777215, 150))
         self.frame_console.setStyleSheet(u"color: rgb(85, 170, 255);")
@@ -1208,11 +1230,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_25.setContentsMargins(12, 0, 12, 6)
         self.console = QPlainTextEdit(self.frame_console)
         self.console.setObjectName(u"console")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Ignored)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.console.sizePolicy().hasHeightForWidth())
-        self.console.setSizePolicy(sizePolicy7)
+        sizePolicy8 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Ignored)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.console.sizePolicy().hasHeightForWidth())
+        self.console.setSizePolicy(sizePolicy8)
         self.console.setMinimumSize(QSize(0, 0))
         font10 = QFont()
         font10.setPointSize(10)
@@ -1338,7 +1360,8 @@ class Ui_MainWindow(object):
         self.label_top_info_2.setText(QCoreApplication.translate("MainWindow", u"| HOME", None))
         self.label_user_icon.setText(QCoreApplication.translate("MainWindow", u"AL", None))
         self.net_node_in_use.setText(QCoreApplication.translate("MainWindow", u"Nodo en uso", None))
-        self.current_net_node.setText("")
+        self.city_label.setText(QCoreApplication.translate("MainWindow", u"Municipio:", None))
+        self.net_node_city.setText("")
         self.labelHeaderUser.setText(QCoreApplication.translate("MainWindow", u"Usuarios", None))
         self.editBtn.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.createBtn.setText(QCoreApplication.translate("MainWindow", u"Crear", None))
