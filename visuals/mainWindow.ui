@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>614</height>
+    <width>1090</width>
+    <height>791</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1119,8 +1119,15 @@ color: rgb(85, 170, 255);</string>
                        </property>
                        <item>
                         <widget class="QFrame" name="content_information">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>50</height>
+                          </size>
+                         </property>
                          <property name="styleSheet">
-                          <string notr="true">background-color: rgb(33, 37, 43);</string>
+                          <string notr="true">background-color: rgb(33, 37, 43);
+border-radius: 5px</string>
                          </property>
                          <property name="frameShape">
                           <enum>QFrame::NoFrame</enum>
@@ -1129,13 +1136,10 @@ color: rgb(85, 170, 255);</string>
                           <enum>QFrame::Raised</enum>
                          </property>
                          <layout class="QHBoxLayout" name="horizontalLayout_11">
-                          <property name="spacing">
-                           <number>12</number>
-                          </property>
                           <item>
                            <widget class="QLabel" name="net_node_in_use">
                             <property name="sizePolicy">
-                             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
                               <horstretch>0</horstretch>
                               <verstretch>0</verstretch>
                              </sizepolicy>
@@ -1156,10 +1160,29 @@ color: rgb(85, 170, 255);</string>
                             <property name="text">
                              <string>Nodo en uso</string>
                             </property>
+                            <property name="alignment">
+                             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                            </property>
                             <property name="wordWrap">
                              <bool>true</bool>
                             </property>
                            </widget>
+                          </item>
+                          <item>
+                           <spacer name="horizontalSpacer_6">
+                            <property name="orientation">
+                             <enum>Qt::Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                             <enum>QSizePolicy::Preferred</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>360</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
                           </item>
                           <item>
                            <widget class="QLabel" name="city_label">
@@ -1192,8 +1215,14 @@ color: rgb(85, 170, 255);</string>
                             </property>
                             <property name="minimumSize">
                              <size>
-                              <width>50</width>
+                              <width>150</width>
                               <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>200</width>
+                              <height>16777215</height>
                              </size>
                             </property>
                             <property name="font">
@@ -1201,26 +1230,19 @@ color: rgb(85, 170, 255);</string>
                               <pointsize>11</pointsize>
                              </font>
                             </property>
+                            <property name="layoutDirection">
+                             <enum>Qt::RightToLeft</enum>
+                            </property>
                             <property name="text">
-                             <string/>
+                             <string>Text</string>
+                            </property>
+                            <property name="alignment">
+                             <set>Qt::AlignCenter</set>
                             </property>
                             <property name="wordWrap">
                              <bool>true</bool>
                             </property>
                            </widget>
-                          </item>
-                          <item>
-                           <spacer name="horizontalSpacer_6">
-                            <property name="orientation">
-                             <enum>Qt::Horizontal</enum>
-                            </property>
-                            <property name="sizeHint" stdset="0">
-                             <size>
-                              <width>360</width>
-                              <height>20</height>
-                             </size>
-                            </property>
-                           </spacer>
                           </item>
                          </layout>
                         </widget>
