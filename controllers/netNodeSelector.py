@@ -5,6 +5,7 @@ from PySide2.QtGui import *
 from visuals.ui_netSelector import Ui_NetSelector
 from services import net_service
 from controllers.netForm import NetFormController
+from controllers.mainWindow import MainWindow
 
 GLOBAL_STATE = 0
 
@@ -34,6 +35,7 @@ class NetSelectorController(QMainWindow):
         #Connections
         self.ui.create_node_btn.clicked.connect(self.showCreateNetNodeDialog)
         self.ui.eliminate_node_btn.clicked.connect(self.eliminateNetTableCurrentRow)
+        self.ui.use_node_btn.clicked.connect(self.useNetNode)
 
     def uiDefinitions(self):
         def doubleClickMaximizeRestore(event):
@@ -138,5 +140,20 @@ class NetSelectorController(QMainWindow):
                 self.loadNetNodeTable()
         else:
             msg = QMessageBox()
+            msg.setText("Debe seleccionar un nodo.")
+            msg.exec_()
+
+    def useNetNode(self):
+        item = self.ui.netNodeTableWidget.currentItem()
+        if(item is not None):
+            netNode = item.data(Qt.UserRole+1)
+            mainWindow = MainWindow(netNode)
+            mainWindow.show()
+            mainWindow.activateWindow()
+            mainWindow.raise_()
+            self.close()
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle("Información")
             msg.setText("Debe seleccionar un nodo.")
             msg.exec_()

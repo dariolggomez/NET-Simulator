@@ -8,7 +8,7 @@ GLOBAL_STATE = 0
 GLOBAL_FULLSCREEN = 0
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, currentNetNode):
         super().__init__()
         #Initialization
         self.ui = Ui_MainWindow()
