@@ -32,6 +32,9 @@ class MainWindow(QMainWindow):
 
         ## ==> TOGGLE MENU SIZE
         self.ui.btn_toggle_menu.clicked.connect(lambda: self.toggleMenu(220, True))
+
+        #Load Ui Settings
+        self.ui.net_node_in_use.setText(currentNetNode.getNodename())
             
 
     

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowBcAYeC.ui'
+## Form generated from reading UI file 'mainWindowBNryzc.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -623,82 +623,49 @@ class Ui_MainWindow(object):
         self.verticalLayout_10 = QVBoxLayout(self.page_home)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
-        self.frame_4 = QFrame(self.page_home)
-        self.frame_4.setObjectName(u"frame_4")
-        self.frame_4.setFrameShape(QFrame.StyledPanel)
-        self.frame_4.setFrameShadow(QFrame.Raised)
-        self.gridLayout_3 = QGridLayout(self.frame_4)
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.frame_5 = QFrame(self.frame_4)
-        self.frame_5.setObjectName(u"frame_5")
-        self.frame_5.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
-"border-color: rgb(47, 47, 47);\n"
-"border-radius: 5px")
-        self.frame_5.setFrameShape(QFrame.StyledPanel)
-        self.frame_5.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_17 = QVBoxLayout(self.frame_5)
-        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
-        self.chartLayout1 = QVBoxLayout()
-        self.chartLayout1.setObjectName(u"chartLayout1")
+        self.page_home_content = QFrame(self.page_home)
+        self.page_home_content.setObjectName(u"page_home_content")
+        self.page_home_content.setFrameShape(QFrame.StyledPanel)
+        self.page_home_content.setFrameShadow(QFrame.Raised)
+        self.verticalLayout = QVBoxLayout(self.page_home_content)
+        self.verticalLayout.setSpacing(8)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.content_information = QFrame(self.page_home_content)
+        self.content_information.setObjectName(u"content_information")
+        self.content_information.setFrameShape(QFrame.NoFrame)
+        self.content_information.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_11 = QHBoxLayout(self.content_information)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
+        self.net_node_in_use = QLabel(self.content_information)
+        self.net_node_in_use.setObjectName(u"net_node_in_use")
+        self.net_node_in_use.setMaximumSize(QSize(130, 16777215))
+        font4 = QFont()
+        font4.setPointSize(11)
+        font4.setBold(False)
+        font4.setWeight(50)
+        self.net_node_in_use.setFont(font4)
 
-        self.verticalLayout_17.addLayout(self.chartLayout1)
+        self.horizontalLayout_11.addWidget(self.net_node_in_use)
 
+        self.current_net_node = QLabel(self.content_information)
+        self.current_net_node.setObjectName(u"current_net_node")
+        font5 = QFont()
+        font5.setPointSize(11)
+        self.current_net_node.setFont(font5)
+        self.current_net_node.setStyleSheet(u"")
 
-        self.gridLayout_3.addWidget(self.frame_5, 0, 0, 1, 1)
-
-        self.frame_6 = QFrame(self.frame_4)
-        self.frame_6.setObjectName(u"frame_6")
-        self.frame_6.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
-"border-color: rgb(47, 47, 47);\n"
-"border-radius: 5px 5px")
-        self.frame_6.setFrameShape(QFrame.StyledPanel)
-        self.frame_6.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_18 = QVBoxLayout(self.frame_6)
-        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
-        self.chartLayout2 = QVBoxLayout()
-        self.chartLayout2.setObjectName(u"chartLayout2")
-
-        self.verticalLayout_18.addLayout(self.chartLayout2)
+        self.horizontalLayout_11.addWidget(self.current_net_node)
 
 
-        self.gridLayout_3.addWidget(self.frame_6, 0, 1, 1, 1)
+        self.verticalLayout.addWidget(self.content_information)
 
-        self.frame_7 = QFrame(self.frame_4)
-        self.frame_7.setObjectName(u"frame_7")
-        self.frame_7.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
-"border-color: rgb(47, 47, 47);\n"
-"border-radius: 5px 5px")
-        self.frame_7.setFrameShape(QFrame.StyledPanel)
-        self.frame_7.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_19 = QVBoxLayout(self.frame_7)
-        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
-        self.chartLayout3 = QVBoxLayout()
-        self.chartLayout3.setObjectName(u"chartLayout3")
+        self.verticalSpacer_4 = QSpacerItem(20, 303, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_19.addLayout(self.chartLayout3)
+        self.verticalLayout.addItem(self.verticalSpacer_4)
 
 
-        self.gridLayout_3.addWidget(self.frame_7, 1, 0, 1, 1)
-
-        self.frame_8 = QFrame(self.frame_4)
-        self.frame_8.setObjectName(u"frame_8")
-        self.frame_8.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
-"border-color: rgb(47, 47, 47);\n"
-"border-radius: 5px 5px")
-        self.frame_8.setFrameShape(QFrame.StyledPanel)
-        self.frame_8.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_20 = QVBoxLayout(self.frame_8)
-        self.verticalLayout_20.setObjectName(u"verticalLayout_20")
-        self.chartLayout4 = QVBoxLayout()
-        self.chartLayout4.setObjectName(u"chartLayout4")
-
-        self.verticalLayout_20.addLayout(self.chartLayout4)
-
-
-        self.gridLayout_3.addWidget(self.frame_8, 1, 1, 1, 1)
-
-
-        self.verticalLayout_10.addWidget(self.frame_4)
+        self.verticalLayout_10.addWidget(self.page_home_content)
 
         self.stackedWidget.addWidget(self.page_home)
         self.page_users = QWidget()
@@ -877,9 +844,9 @@ class Ui_MainWindow(object):
         self.editBtn = QPushButton(self.frame_10)
         self.editBtn.setObjectName(u"editBtn")
         self.editBtn.setMinimumSize(QSize(80, 30))
-        font4 = QFont()
-        font4.setPointSize(9)
-        self.editBtn.setFont(font4)
+        font6 = QFont()
+        font6.setPointSize(9)
+        self.editBtn.setFont(font6)
         self.editBtn.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
@@ -899,7 +866,7 @@ class Ui_MainWindow(object):
         self.createBtn = QPushButton(self.frame_10)
         self.createBtn.setObjectName(u"createBtn")
         self.createBtn.setMinimumSize(QSize(80, 30))
-        self.createBtn.setFont(font4)
+        self.createBtn.setFont(font6)
         self.createBtn.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
@@ -920,7 +887,7 @@ class Ui_MainWindow(object):
         self.eliminateBtn.setObjectName(u"eliminateBtn")
         self.eliminateBtn.setEnabled(True)
         self.eliminateBtn.setMinimumSize(QSize(80, 30))
-        self.eliminateBtn.setFont(font4)
+        self.eliminateBtn.setFont(font6)
         self.eliminateBtn.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
@@ -1001,10 +968,10 @@ class Ui_MainWindow(object):
         self.btn_settings_fullscreen = QPushButton(self.frame_content_wid_1)
         self.btn_settings_fullscreen.setObjectName(u"btn_settings_fullscreen")
         self.btn_settings_fullscreen.setMinimumSize(QSize(200, 30))
-        font5 = QFont()
-        font5.setFamily(u"Segoe UI")
-        font5.setPointSize(9)
-        self.btn_settings_fullscreen.setFont(font5)
+        font7 = QFont()
+        font7.setFamily(u"Segoe UI")
+        font7.setPointSize(9)
+        self.btn_settings_fullscreen.setFont(font7)
         self.btn_settings_fullscreen.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
@@ -1069,12 +1036,12 @@ class Ui_MainWindow(object):
         self.labelHeaderUser_2 = QLabel(self.frame_network_1)
         self.labelHeaderUser_2.setObjectName(u"labelHeaderUser_2")
         self.labelHeaderUser_2.setMaximumSize(QSize(16777215, 30))
-        font6 = QFont()
-        font6.setFamily(u"Segoe UI")
-        font6.setPointSize(12)
-        font6.setBold(True)
-        font6.setWeight(75)
-        self.labelHeaderUser_2.setFont(font6)
+        font8 = QFont()
+        font8.setFamily(u"Segoe UI")
+        font8.setPointSize(12)
+        font8.setBold(True)
+        font8.setWeight(75)
+        self.labelHeaderUser_2.setFont(font8)
         self.labelHeaderUser_2.setStyleSheet(u"")
 
         self.verticalLayout_24.addWidget(self.labelHeaderUser_2)
@@ -1094,12 +1061,12 @@ class Ui_MainWindow(object):
         self.labelHeaderUser_3 = QLabel(self.frame_12)
         self.labelHeaderUser_3.setObjectName(u"labelHeaderUser_3")
         self.labelHeaderUser_3.setMaximumSize(QSize(16777215, 25))
-        font7 = QFont()
-        font7.setFamily(u"Segoe UI")
-        font7.setPointSize(9)
-        font7.setBold(True)
-        font7.setWeight(75)
-        self.labelHeaderUser_3.setFont(font7)
+        font9 = QFont()
+        font9.setFamily(u"Segoe UI")
+        font9.setPointSize(9)
+        font9.setBold(True)
+        font9.setWeight(75)
+        self.labelHeaderUser_3.setFont(font9)
         self.labelHeaderUser_3.setStyleSheet(u"")
 
         self.verticalLayout_21.addWidget(self.labelHeaderUser_3)
@@ -1137,7 +1104,7 @@ class Ui_MainWindow(object):
         self.labelHeaderUser_4 = QLabel(self.frame_13)
         self.labelHeaderUser_4.setObjectName(u"labelHeaderUser_4")
         self.labelHeaderUser_4.setMaximumSize(QSize(16777215, 25))
-        self.labelHeaderUser_4.setFont(font7)
+        self.labelHeaderUser_4.setFont(font9)
         self.labelHeaderUser_4.setStyleSheet(u"")
 
         self.verticalLayout_23.addWidget(self.labelHeaderUser_4)
@@ -1193,7 +1160,7 @@ class Ui_MainWindow(object):
         self.connectBtn.setObjectName(u"connectBtn")
         self.connectBtn.setEnabled(True)
         self.connectBtn.setMinimumSize(QSize(80, 30))
-        self.connectBtn.setFont(font4)
+        self.connectBtn.setFont(font6)
         self.connectBtn.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(52, 59, 72);\n"
 "	border-radius: 5px;	\n"
@@ -1247,9 +1214,9 @@ class Ui_MainWindow(object):
         sizePolicy7.setHeightForWidth(self.console.sizePolicy().hasHeightForWidth())
         self.console.setSizePolicy(sizePolicy7)
         self.console.setMinimumSize(QSize(0, 0))
-        font8 = QFont()
-        font8.setPointSize(10)
-        self.console.setFont(font8)
+        font10 = QFont()
+        font10.setPointSize(10)
+        self.console.setFont(font10)
         self.console.setFocusPolicy(Qt.NoFocus)
         self.console.setStyleSheet(u"QPlainTextEdit {\n"
 "	background-color: rgb(27, 29, 35);\n"
@@ -1338,7 +1305,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1370,6 +1337,8 @@ class Ui_MainWindow(object):
         self.label_top_info_1.setText("")
         self.label_top_info_2.setText(QCoreApplication.translate("MainWindow", u"| HOME", None))
         self.label_user_icon.setText(QCoreApplication.translate("MainWindow", u"AL", None))
+        self.net_node_in_use.setText(QCoreApplication.translate("MainWindow", u"Nodo en uso", None))
+        self.current_net_node.setText("")
         self.labelHeaderUser.setText(QCoreApplication.translate("MainWindow", u"Usuarios", None))
         self.editBtn.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.createBtn.setText(QCoreApplication.translate("MainWindow", u"Crear", None))

@@ -13,3 +13,15 @@ class NetNode(NetNodeBase):
     def __init__(self, nodename, city):
         self.nodename = nodename
         self.city = city
+    
+    def getNodename(self):
+        return self.nodename
+    
+    def getId(self):
+        return self.id
+    
+    def getCity(self):
+        return self.city
+    
+    def getDateCreated(self):
+        return self.date_created()
