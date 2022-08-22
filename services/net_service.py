@@ -13,17 +13,17 @@ def read_all():
     return netNodes
 
 def read_byID(id):
-    netNode = local_session.query(NetNode).filter(NetNode.id == id).first()
+    netNode = local_session.query(NetNode).filter(NetNode.getId() == id).first()
     return netNode
 
 def read_byNodename(nodename):
-    netNode = local_session.query(NetNode).filter(NetNode.nodename == nodename).first()
+    netNode = local_session.query(NetNode).filter(NetNode.getNodename() == nodename).first()
     return netNode
 
 def update_netNode(netNode):
-    netNode_to_update = read_byID(netNode.id)
-    netNode_to_update.nodename = netNode.nodename
-    netNode_to_update.city = netNode.city
+    netNode_to_update = read_byID(netNode.getId())
+    netNode_to_update.setNodename(netNode.getNodename())
+    netNode_to_update.setCity(netNode.getCity())
     local_session.commit()
 
 def delete_netNode(netNode):
@@ -31,5 +31,5 @@ def delete_netNode(netNode):
     local_session.commit()
 
 def checkNodenameExists(nodename):
-    ret = local_session.query(exists().where(NetNode.nodename == nodename)).scalar()
+    ret = local_session.query(exists().where(NetNode.getNodename() == nodename)).scalar()
     return ret

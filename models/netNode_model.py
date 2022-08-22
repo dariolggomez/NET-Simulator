@@ -5,23 +5,29 @@ from datetime import datetime
 NetNodeBase = declarative_base()
 class NetNode(NetNodeBase):
     __tablename__ = 'netNodes'
-    id = Column(Integer(), Sequence('rtNode_id_sequence'), primary_key = True)
-    nodename = Column(String(25), nullable = False, unique = True)
-    city = Column(String(80), nullable = False, unique = False)
-    date_created = Column(DateTime(), default = datetime.now)
+    __id = Column(Integer(), Sequence('rtNode_id_sequence'), primary_key = True)
+    __nodename = Column(String(25), nullable = False, unique = True)
+    __city = Column(String(80), nullable = False, unique = False)
+    __date_created = Column(DateTime(), default = datetime.now)
 
     def __init__(self, nodename, city):
-        self.nodename = nodename
-        self.city = city
+        self.__nodename = nodename
+        self.__city = city
     
     def getNodename(self):
-        return self.nodename
+        return self.__nodename
     
     def getId(self):
-        return self.id
+        return self.__id
     
     def getCity(self):
-        return self.city
+        return self.__city
     
     def getDateCreated(self):
-        return self.date_created()
+        return self.__date_created()
+
+    def setNodename(self, nodename):
+        self.__nodename = nodename
+
+    def setCity(self, city):
+        self.__city = city
