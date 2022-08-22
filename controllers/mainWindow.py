@@ -36,8 +36,8 @@ class MainWindow(QMainWindow):
         self.ui.btn_toggle_menu.clicked.connect(lambda: self.toggleMenu(220, True))
 
         #Load Ui Settings
-        self.ui.net_node_in_use.setText(currentNetNode.getNodename())
-        self.ui.net_node_city.setText(currentNetNode.getCity())
+        self.ui.net_node_in_use.setText(currentNetNode.nodename)
+        self.ui.net_node_city.setText(currentNetNode.city)
 
         #Add custom menu buttons
         self.ui.stackedWidget.setMinimumWidth(20)
