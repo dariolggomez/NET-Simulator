@@ -3,11 +3,13 @@ from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from visuals.ui_mainWindow import Ui_MainWindow
+from styles.ui_styles import Style
 
 GLOBAL_STATE = 0
 GLOBAL_FULLSCREEN = 0
 
 class MainWindow(QMainWindow):
+    count = 1
     def __init__(self, currentNetNode):
         super().__init__()
         #Initialization
@@ -36,6 +38,13 @@ class MainWindow(QMainWindow):
         #Load Ui Settings
         self.ui.net_node_in_use.setText(currentNetNode.getNodename())
         self.ui.net_node_city.setText(currentNetNode.getCity())
+
+        #Add custom menu buttons
+        self.ui.stackedWidget.setMinimumWidth(20)
+        self.addNewMenu("Inicio", "btn_home", "url(:/16x16/icons/16x16/cil-home.png)", True)
+
+        #Select standard menu
+        self.selectStandardMenu("btn_home")
             
 
     
@@ -165,3 +174,69 @@ class MainWindow(QMainWindow):
             self.animation.setEndValue(widthExtended)
             self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
             self.animation.start()
+
+    def Button(self):
+        # GET BT CLICKED
+        btnWidget = self.sender()
+
+        # PAGE HOME
+        if btnWidget.objectName() == "btn_home":
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+            self.resetStyle("btn_home")
+            self.labelPage("Inicio")
+            btnWidget.setStyleSheet(self.selectMenu(btnWidget.styleSheet()))
+
+    ## ==> SELECT/DESELECT MENU
+    ########################################################################
+    ## ==> SELECT
+    def selectMenu(self, getStyle):
+        select = getStyle + ("QPushButton { border-right: 7px solid rgb(44, 49, 60); }")
+        return select
+    
+    ## ==> RESET SELECTION
+    def resetStyle(self, widget):
+        for w in self.ui.frame_left_menu.findChildren(QPushButton):
+            if w.objectName() != widget:
+                w.setStyleSheet(self.deselectMenu(w.styleSheet()))
+
+    ## ==> START SELECTION
+    def selectStandardMenu(self, widget):
+        for w in self.ui.frame_left_menu.findChildren(QPushButton):
+            if w.objectName() == widget:
+                w.setStyleSheet(self.selectMenu(w.styleSheet()))
+
+    ## ==> DESELECT
+    def deselectMenu(self, getStyle):
+        deselect = getStyle.replace("QPushButton { border-right: 7px solid rgb(44, 49, 60); }", "")
+        return deselect
+
+    ## ==> CHANGE PAGE LABEL TEXT
+    def labelPage(self, text):
+        newText = '| ' + text.upper()
+        self.ui.label_top_info_2.setText(newText)
+
+    
+    ## ==> DYNAMIC MENUS
+    ########################################################################
+    def addNewMenu(self, name, objName, icon, isTopMenu):
+        font = QFont()
+        font.setFamily(u"Segoe UI")
+        button = QPushButton(str(self.count),self)
+        button.setObjectName(objName)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(button.sizePolicy().hasHeightForWidth())
+        button.setSizePolicy(sizePolicy3)
+        button.setMinimumSize(QSize(0, 70))
+        button.setLayoutDirection(Qt.LeftToRight)
+        button.setFont(font)
+        button.setStyleSheet(Style.style_bt_standard.replace('ICON_REPLACE', icon))
+        button.setText(name)
+        button.setToolTip(name)
+        button.clicked.connect(self.Button)
+
+        if isTopMenu:
+            self.ui.layout_menus.addWidget(button)
+        else:
+            self.ui.layout_menu_bottom.addWidget(button)
