@@ -4,6 +4,7 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from visuals.ui_mainWindow import Ui_MainWindow
 from styles.ui_styles import Style
+from controllers import netNodeSelector
 
 GLOBAL_STATE = 0
 GLOBAL_FULLSCREEN = 0
@@ -42,12 +43,14 @@ class MainWindow(QMainWindow):
         #Add custom menu buttons
         self.ui.stackedWidget.setMinimumWidth(20)
         self.addNewMenu("Inicio", "btn_home", "url(:/16x16/icons/16x16/cil-home.png)", True)
+        self.addNewMenu("Desconectar Nodo", "btn_disconnect", "url(:/16x16/icons/16x16/cil-account-logout.png)", False)
 
         #Select standard menu
         self.selectStandardMenu("btn_home")
-            
 
-    
+        #Events Connections
+
+
     def removeTitleBar(self):
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
@@ -185,6 +188,13 @@ class MainWindow(QMainWindow):
             self.resetStyle("btn_home")
             self.labelPage("Inicio")
             btnWidget.setStyleSheet(self.selectMenu(btnWidget.styleSheet()))
+
+        # Disconnect Node
+        if btnWidget.objectName() == "btn_disconnect":
+            nodeSelector = netNodeSelector.NetSelectorController()
+            nodeSelector.show()
+            self.close()
+
 
     ## ==> SELECT/DESELECT MENU
     ########################################################################
