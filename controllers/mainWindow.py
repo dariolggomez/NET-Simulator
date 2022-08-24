@@ -200,7 +200,7 @@ class MainWindow(QMainWindow):
     ########################################################################
     ## ==> SELECT
     def selectMenu(self, getStyle):
-        select = getStyle + ("QPushButton { border-right: 7px solid rgb(44, 49, 60); }")
+        select = getStyle + ("QPushButton { border-right: 7px solid rgb(30, 30, 30); }")
         return select
     
     ## ==> RESET SELECTION
