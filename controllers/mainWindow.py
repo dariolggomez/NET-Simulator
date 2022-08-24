@@ -43,10 +43,11 @@ class MainWindow(QMainWindow):
         #Add custom menu buttons
         self.ui.stackedWidget.setMinimumWidth(20)
         self.addNewMenu("Inicio", "btn_home", "url(:/16x16/icons/16x16/cil-home.png)", True)
+        self.addNewMenu("Nodos RT", "btn_rt_nodes", "url(:/16x16/icons/16x16/cil-layers.png)", True)
         self.addNewMenu("Desconectar Nodo", "btn_disconnect", "url(:/16x16/icons/16x16/cil-account-logout.png)", False)
-
         #Select standard menu
         self.selectStandardMenu("btn_home")
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
 
         #Events Connections
 
@@ -203,6 +204,13 @@ class MainWindow(QMainWindow):
             nodeSelector.show()
             self.close()
 
+        # Rt Nodes Management
+        if btnWidget.objectName() == "btn_rt_nodes":
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_rt_nodes)
+            self.resetStyle("btn_rt_nodes")
+            self.labelPage("Nodos RT")
+            btnWidget.setStyleSheet(self.selectMenu(btnWidget.styleSheet()))
+
 
     ## ==> SELECT/DESELECT MENU
     ########################################################################
@@ -225,7 +233,7 @@ class MainWindow(QMainWindow):
 
     ## ==> DESELECT
     def deselectMenu(self, getStyle):
-        deselect = getStyle.replace("QPushButton { border-right: 7px solid rgb(44, 49, 60); }", "")
+        deselect = getStyle.replace("QPushButton { border-right: 5px solid rgb(30, 30, 30); }", "")
         return deselect
 
     ## ==> CHANGE PAGE LABEL TEXT

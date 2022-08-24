@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowsUfMeY.ui'
+## Form generated from reading UI file 'mainWindowQNsjvh.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -940,6 +940,258 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.addWidget(self.page_home_content)
 
         self.stackedWidget.addWidget(self.page_home)
+        self.page_rt_nodes = QWidget()
+        self.page_rt_nodes.setObjectName(u"page_rt_nodes")
+        self.verticalLayout_19 = QVBoxLayout(self.page_rt_nodes)
+        self.verticalLayout_19.setSpacing(0)
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.verticalLayout_19.setContentsMargins(0, 0, 0, 0)
+        self.page_rt_content = QFrame(self.page_rt_nodes)
+        self.page_rt_content.setObjectName(u"page_rt_content")
+        self.page_rt_content.setFrameShape(QFrame.NoFrame)
+        self.page_rt_content.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_20 = QVBoxLayout(self.page_rt_content)
+        self.verticalLayout_20.setSpacing(0)
+        self.verticalLayout_20.setObjectName(u"verticalLayout_20")
+        self.verticalLayout_20.setContentsMargins(0, 0, 0, 0)
+        self.frame_3 = QFrame(self.page_rt_content)
+        self.frame_3.setObjectName(u"frame_3")
+        self.frame_3.setMaximumSize(QSize(16777215, 50))
+        self.frame_3.setStyleSheet(u"background-color: rgb(30, 30, 30);")
+        self.frame_3.setFrameShape(QFrame.NoFrame)
+        self.frame_3.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_17 = QHBoxLayout(self.frame_3)
+        self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.horizontalLayout_17.setContentsMargins(12, 0, 0, 0)
+        self.label = QLabel(self.frame_3)
+        self.label.setObjectName(u"label")
+        self.label.setFont(font4)
+
+        self.horizontalLayout_17.addWidget(self.label)
+
+
+        self.verticalLayout_20.addWidget(self.frame_3)
+
+        self.frame_5 = QFrame(self.page_rt_content)
+        self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setFrameShape(QFrame.NoFrame)
+        self.frame_5.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_26 = QVBoxLayout(self.frame_5)
+        self.verticalLayout_26.setObjectName(u"verticalLayout_26")
+        self.verticalLayout_26.setContentsMargins(0, 0, 0, 0)
+        self.rtNodeManagementTable = QTableWidget(self.frame_5)
+        self.rtNodeManagementTable.setObjectName(u"rtNodeManagementTable")
+        self.rtNodeManagementTable.setEnabled(True)
+        sizePolicy4.setHeightForWidth(self.rtNodeManagementTable.sizePolicy().hasHeightForWidth())
+        self.rtNodeManagementTable.setSizePolicy(sizePolicy4)
+        self.rtNodeManagementTable.setMaximumSize(QSize(99999, 1000))
+        palette1 = QPalette()
+        palette1.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        palette1.setBrush(QPalette.Active, QPalette.Button, brush1)
+        palette1.setBrush(QPalette.Active, QPalette.Text, brush)
+        palette1.setBrush(QPalette.Active, QPalette.ButtonText, brush)
+        palette1.setBrush(QPalette.Active, QPalette.Base, brush1)
+        palette1.setBrush(QPalette.Active, QPalette.Window, brush1)
+        brush5 = QBrush(QColor(210, 210, 210, 128))
+        brush5.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette1.setBrush(QPalette.Active, QPalette.PlaceholderText, brush5)
+#endif
+        palette1.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette1.setBrush(QPalette.Inactive, QPalette.Button, brush1)
+        palette1.setBrush(QPalette.Inactive, QPalette.Text, brush)
+        palette1.setBrush(QPalette.Inactive, QPalette.ButtonText, brush)
+        palette1.setBrush(QPalette.Inactive, QPalette.Base, brush1)
+        palette1.setBrush(QPalette.Inactive, QPalette.Window, brush1)
+        brush6 = QBrush(QColor(210, 210, 210, 128))
+        brush6.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette1.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush6)
+#endif
+        palette1.setBrush(QPalette.Disabled, QPalette.WindowText, brush)
+        palette1.setBrush(QPalette.Disabled, QPalette.Button, brush1)
+        palette1.setBrush(QPalette.Disabled, QPalette.Text, brush)
+        palette1.setBrush(QPalette.Disabled, QPalette.ButtonText, brush)
+        palette1.setBrush(QPalette.Disabled, QPalette.Base, brush1)
+        palette1.setBrush(QPalette.Disabled, QPalette.Window, brush1)
+        brush7 = QBrush(QColor(210, 210, 210, 128))
+        brush7.setStyle(Qt.NoBrush)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush7)
+#endif
+        self.rtNodeManagementTable.setPalette(palette1)
+        self.rtNodeManagementTable.setStyleSheet(u"QTableWidget {	\n"
+"	background-color: rgb(30, 30, 30);\n"
+"	padding: 10px;\n"
+"	border-radius: 0px;\n"
+"	gridline-color: rgb(44, 49, 60);\n"
+"	/*border-bottom: 1px solid rgb(44, 49, 60);*/\n"
+"	border-top-left-radius: 0px;\n"
+"	border-top-right-radius: 0px;\n"
+"}\n"
+"QTableWidget::item{\n"
+"	border-color: rgb(44, 49, 60);\n"
+"	padding-left: 5px;\n"
+"	padding-right: 5px;\n"
+"	gridline-color: rgb(44, 49, 60);\n"
+"}\n"
+"QTableWidget::item:selected{\n"
+"	background-color: rgb(85, 170, 255);\n"
+"}\n"
+"QScrollBar:horizontal {\n"
+"    border: none;\n"
+"    background: rgb(52, 59, 72);\n"
+"    height: 14px;\n"
+"    margin: 0px 21px 0 21px;\n"
+"	border-radius: 0px;\n"
+"}\n"
+" QScrollBar:vertical {\n"
+"	border: none;\n"
+"    background: rgb(52, 59, 72);\n"
+"    width: 14px;\n"
+"    margin: 21px 0 21px 0;\n"
+"	border-radius: 0px;\n"
+" }\n"
+"QHeaderView::section{\n"
+"	Background-color: rgb(39, 44, 54);\n"
+"	max-width: 30px;\n"
+"	border: 1px solid rgb(44, 49, 60);\n"
+"	border-style: none;\n"
+"    border-bottom: 1px solid "
+                        "rgb(44, 49, 60);\n"
+"    border-right: 1px solid rgb(44, 49, 60);\n"
+"}\n"
+"QTableWidget::horizontalHeader {	\n"
+"	background-color: rgb(81, 255, 0);\n"
+"}\n"
+"QHeaderView::section:horizontal\n"
+"{\n"
+"    border: 1px solid rgb(32, 34, 42);\n"
+"	background-color: rgb(27, 29, 35);\n"
+"	padding: 3px;\n"
+"	border-top-left-radius: 7px;\n"
+"    border-top-right-radius: 7px;\n"
+"}\n"
+"QHeaderView::section:vertical\n"
+"{\n"
+"    border: 1px solid rgb(44, 49, 60);\n"
+"}\n"
+"")
+        self.rtNodeManagementTable.setFrameShape(QFrame.NoFrame)
+        self.rtNodeManagementTable.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.rtNodeManagementTable.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.rtNodeManagementTable.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.rtNodeManagementTable.setAutoScroll(True)
+        self.rtNodeManagementTable.setAutoScrollMargin(16)
+        self.rtNodeManagementTable.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.rtNodeManagementTable.setAlternatingRowColors(False)
+        self.rtNodeManagementTable.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.rtNodeManagementTable.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.rtNodeManagementTable.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.rtNodeManagementTable.setShowGrid(True)
+        self.rtNodeManagementTable.setGridStyle(Qt.SolidLine)
+        self.rtNodeManagementTable.setSortingEnabled(False)
+        self.rtNodeManagementTable.setWordWrap(True)
+        self.rtNodeManagementTable.setRowCount(0)
+        self.rtNodeManagementTable.horizontalHeader().setVisible(False)
+        self.rtNodeManagementTable.horizontalHeader().setCascadingSectionResizes(False)
+        self.rtNodeManagementTable.horizontalHeader().setDefaultSectionSize(200)
+        self.rtNodeManagementTable.horizontalHeader().setStretchLastSection(True)
+        self.rtNodeManagementTable.verticalHeader().setVisible(False)
+        self.rtNodeManagementTable.verticalHeader().setCascadingSectionResizes(False)
+        self.rtNodeManagementTable.verticalHeader().setMinimumSectionSize(30)
+        self.rtNodeManagementTable.verticalHeader().setDefaultSectionSize(30)
+        self.rtNodeManagementTable.verticalHeader().setHighlightSections(False)
+        self.rtNodeManagementTable.verticalHeader().setStretchLastSection(False)
+
+        self.verticalLayout_26.addWidget(self.rtNodeManagementTable)
+
+
+        self.verticalLayout_20.addWidget(self.frame_5)
+
+        self.frame_6 = QFrame(self.page_rt_content)
+        self.frame_6.setObjectName(u"frame_6")
+        self.frame_6.setMaximumSize(QSize(16777215, 50))
+        self.frame_6.setStyleSheet(u"background-color: rgb(30, 30, 30);")
+        self.frame_6.setFrameShape(QFrame.NoFrame)
+        self.frame_6.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_16 = QHBoxLayout(self.frame_6)
+        self.horizontalLayout_16.setSpacing(8)
+        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
+        self.horizontalLayout_16.setContentsMargins(0, 0, 12, 0)
+        self.horizontalSpacer_8 = QSpacerItem(751, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_16.addItem(self.horizontalSpacer_8)
+
+        self.pushButton_4 = QPushButton(self.frame_6)
+        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.pushButton_4.setMinimumSize(QSize(65, 0))
+        self.pushButton_4.setFont(font4)
+        self.pushButton_4.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(50, 50, 51);\n"
+"	border-radius: 5px;	\n"
+"	background-color: rgb(50, 50, 51);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(56, 56, 57);\n"
+"	border: 2px solid rgb(56, 56, 57);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	background-color: rgb(56, 56, 57);\n"
+"	border: 1px solid rgb(0, 122, 204);\n"
+"}")
+
+        self.horizontalLayout_16.addWidget(self.pushButton_4)
+
+        self.pushButton_3 = QPushButton(self.frame_6)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setMinimumSize(QSize(60, 0))
+        self.pushButton_3.setFont(font4)
+        self.pushButton_3.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(50, 50, 51);\n"
+"	border-radius: 5px;	\n"
+"	background-color: rgb(50, 50, 51);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(56, 56, 57);\n"
+"	border: 2px solid rgb(56, 56, 57);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	background-color: rgb(56, 56, 57);\n"
+"	border: 1px solid rgb(0, 122, 204);\n"
+"}")
+
+        self.horizontalLayout_16.addWidget(self.pushButton_3)
+
+        self.pushButton_5 = QPushButton(self.frame_6)
+        self.pushButton_5.setObjectName(u"pushButton_5")
+        self.pushButton_5.setMinimumSize(QSize(85, 0))
+        self.pushButton_5.setFont(font4)
+        self.pushButton_5.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(50, 50, 51);\n"
+"	border-radius: 5px;	\n"
+"	background-color: rgb(50, 50, 51);\n"
+"	color: rgb(255, 84, 87);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(193, 59, 59);\n"
+"	border: 1px solid rgb(193, 59, 59);\n"
+"	color: rgb(210, 210, 210);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	background-color: rgb(220, 67, 67);\n"
+"	border: 1px solid rgb(220, 67, 67);\n"
+"}")
+
+        self.horizontalLayout_16.addWidget(self.pushButton_5)
+
+
+        self.verticalLayout_20.addWidget(self.frame_6)
+
+
+        self.verticalLayout_19.addWidget(self.page_rt_content)
+
+        self.stackedWidget.addWidget(self.page_rt_nodes)
         self.page_users = QWidget()
         self.page_users.setObjectName(u"page_users")
         self.verticalLayout_16 = QVBoxLayout(self.page_users)
@@ -979,43 +1231,43 @@ class Ui_MainWindow(object):
         sizePolicy4.setHeightForWidth(self.userTableWidget.sizePolicy().hasHeightForWidth())
         self.userTableWidget.setSizePolicy(sizePolicy4)
         self.userTableWidget.setMaximumSize(QSize(99999, 1000))
-        palette1 = QPalette()
-        palette1.setBrush(QPalette.Active, QPalette.WindowText, brush)
-        brush5 = QBrush(QColor(39, 44, 54, 255))
-        brush5.setStyle(Qt.SolidPattern)
-        palette1.setBrush(QPalette.Active, QPalette.Button, brush5)
-        palette1.setBrush(QPalette.Active, QPalette.Text, brush)
-        palette1.setBrush(QPalette.Active, QPalette.ButtonText, brush)
-        palette1.setBrush(QPalette.Active, QPalette.Base, brush5)
-        palette1.setBrush(QPalette.Active, QPalette.Window, brush5)
-        brush6 = QBrush(QColor(210, 210, 210, 128))
-        brush6.setStyle(Qt.NoBrush)
+        palette2 = QPalette()
+        palette2.setBrush(QPalette.Active, QPalette.WindowText, brush)
+        brush8 = QBrush(QColor(39, 44, 54, 255))
+        brush8.setStyle(Qt.SolidPattern)
+        palette2.setBrush(QPalette.Active, QPalette.Button, brush8)
+        palette2.setBrush(QPalette.Active, QPalette.Text, brush)
+        palette2.setBrush(QPalette.Active, QPalette.ButtonText, brush)
+        palette2.setBrush(QPalette.Active, QPalette.Base, brush8)
+        palette2.setBrush(QPalette.Active, QPalette.Window, brush8)
+        brush9 = QBrush(QColor(210, 210, 210, 128))
+        brush9.setStyle(Qt.NoBrush)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Active, QPalette.PlaceholderText, brush6)
+        palette2.setBrush(QPalette.Active, QPalette.PlaceholderText, brush9)
 #endif
-        palette1.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
-        palette1.setBrush(QPalette.Inactive, QPalette.Button, brush5)
-        palette1.setBrush(QPalette.Inactive, QPalette.Text, brush)
-        palette1.setBrush(QPalette.Inactive, QPalette.ButtonText, brush)
-        palette1.setBrush(QPalette.Inactive, QPalette.Base, brush5)
-        palette1.setBrush(QPalette.Inactive, QPalette.Window, brush5)
-        brush7 = QBrush(QColor(210, 210, 210, 128))
-        brush7.setStyle(Qt.NoBrush)
+        palette2.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
+        palette2.setBrush(QPalette.Inactive, QPalette.Button, brush8)
+        palette2.setBrush(QPalette.Inactive, QPalette.Text, brush)
+        palette2.setBrush(QPalette.Inactive, QPalette.ButtonText, brush)
+        palette2.setBrush(QPalette.Inactive, QPalette.Base, brush8)
+        palette2.setBrush(QPalette.Inactive, QPalette.Window, brush8)
+        brush10 = QBrush(QColor(210, 210, 210, 128))
+        brush10.setStyle(Qt.NoBrush)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush7)
+        palette2.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush10)
 #endif
-        palette1.setBrush(QPalette.Disabled, QPalette.WindowText, brush)
-        palette1.setBrush(QPalette.Disabled, QPalette.Button, brush5)
-        palette1.setBrush(QPalette.Disabled, QPalette.Text, brush)
-        palette1.setBrush(QPalette.Disabled, QPalette.ButtonText, brush)
-        palette1.setBrush(QPalette.Disabled, QPalette.Base, brush5)
-        palette1.setBrush(QPalette.Disabled, QPalette.Window, brush5)
-        brush8 = QBrush(QColor(210, 210, 210, 128))
-        brush8.setStyle(Qt.NoBrush)
+        palette2.setBrush(QPalette.Disabled, QPalette.WindowText, brush)
+        palette2.setBrush(QPalette.Disabled, QPalette.Button, brush8)
+        palette2.setBrush(QPalette.Disabled, QPalette.Text, brush)
+        palette2.setBrush(QPalette.Disabled, QPalette.ButtonText, brush)
+        palette2.setBrush(QPalette.Disabled, QPalette.Base, brush8)
+        palette2.setBrush(QPalette.Disabled, QPalette.Window, brush8)
+        brush11 = QBrush(QColor(210, 210, 210, 128))
+        brush11.setStyle(Qt.NoBrush)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush8)
+        palette2.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush11)
 #endif
-        self.userTableWidget.setPalette(palette1)
+        self.userTableWidget.setPalette(palette2)
         self.userTableWidget.setStyleSheet(u"QTableWidget {	\n"
 "	background-color: rgb(39, 44, 54);\n"
 "	padding: 10px;\n"
@@ -1500,10 +1752,10 @@ class Ui_MainWindow(object):
 "	padding: 10px;\n"
 "}\n"
 "QPlainTextEdit:hover {\n"
-"	border: 2px solid rgb(64, 71, 88);\n"
+"	border-top: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QPlainTextEdit:focus {\n"
-"	border: 2px solid rgb(91, 101, 124);\n"
+"	border-top: 2px solid rgb(91, 101, 124);\n"
 "}")
         self.console.setFrameShape(QFrame.NoFrame)
         self.console.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
@@ -1590,7 +1842,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1622,12 +1874,16 @@ class Ui_MainWindow(object):
         self.label_top_info_1.setText("")
         self.label_top_info_2.setText(QCoreApplication.translate("MainWindow", u"| INICIO", None))
         self.label_user_icon.setText(QCoreApplication.translate("MainWindow", u"AL", None))
-        self.net_node_in_use.setText(QCoreApplication.translate("MainWindow", u"Terminal", None))
+        self.net_node_in_use.setText(QCoreApplication.translate("MainWindow", u"Nodo en uso", None))
         self.city_label.setText(QCoreApplication.translate("MainWindow", u"Municipio:", None))
         self.net_node_city.setText(QCoreApplication.translate("MainWindow", u"Text", None))
         self.label_table_info.setText(QCoreApplication.translate("MainWindow", u"Nodos RT", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Desconectar", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Conectar", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Gestion de Nodos RT", None))
+        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
+        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Crear", None))
+        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Eliminar", None))
         self.labelHeaderUser.setText(QCoreApplication.translate("MainWindow", u"Usuarios", None))
         self.editBtn.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.createBtn.setText(QCoreApplication.translate("MainWindow", u"Crear", None))
