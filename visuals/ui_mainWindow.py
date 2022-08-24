@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowQNsjvh.ui'
+## Form generated from reading UI file 'mainWindowmjLgxQ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1066,15 +1066,15 @@ class Ui_MainWindow(object):
 "}\n"
 "QHeaderView::section:horizontal\n"
 "{\n"
-"    border: 1px solid rgb(32, 34, 42);\n"
-"	background-color: rgb(27, 29, 35);\n"
+"    border: 1px solid rgb(30,30,30);\n"
+"	background-color: rgb(0, 122, 204);\n"
 "	padding: 3px;\n"
 "	border-top-left-radius: 7px;\n"
 "    border-top-right-radius: 7px;\n"
 "}\n"
 "QHeaderView::section:vertical\n"
 "{\n"
-"    border: 1px solid rgb(44, 49, 60);\n"
+"    border: 1px solid rgb(0, 122, 204);\n"
 "}\n"
 "")
         self.rtNodeManagementTable.setFrameShape(QFrame.NoFrame)

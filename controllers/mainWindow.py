@@ -5,6 +5,7 @@ from PySide2.QtGui import *
 from visuals.ui_mainWindow import Ui_MainWindow
 from styles.ui_styles import Style
 from controllers import netNodeSelector
+from services import rt_service
 
 GLOBAL_STATE = 0
 GLOBAL_FULLSCREEN = 0
@@ -206,6 +207,7 @@ class MainWindow(QMainWindow):
 
         # Rt Nodes Management
         if btnWidget.objectName() == "btn_rt_nodes":
+            self.loadRtManagementTable()
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_rt_nodes)
             self.resetStyle("btn_rt_nodes")
             self.labelPage("Nodos RT")
@@ -266,3 +268,17 @@ class MainWindow(QMainWindow):
             self.ui.layout_menus.addWidget(button)
         else:
             self.ui.layout_menu_bottom.addWidget(button)
+
+    def loadRtManagementTable(self):
+        rows = []
+        for rtNode in rt_service.read_all():
+            rows.append((rtNode.id, rtNode.nodename, rtNode.city, rtNode.date_created.date()))
+        self.ui.rtNodeManagementTable.setColumnCount(4)
+        self.ui.rtNodeManagementTable.setHorizontalHeaderLabels(("ID","Nombre","Ciudad","Fecha de Creación"))
+        self.ui.rtNodeManagementTable.horizontalHeader().setVisible(True)
+        self.ui.rtNodeManagementTable.setRowCount(len(rows))
+        for row, cols in enumerate(rows):
+            for col, text in enumerate(cols):
+                table_item = QTableWidgetItem(str(text))
+                table_item.setData(QtCore.Qt.UserRole+1, rt_service.read_byID(rows[row][0]))
+                self.ui.rtNodeManagementTable.setItem(row, col, table_item)
