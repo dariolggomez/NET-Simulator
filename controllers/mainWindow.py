@@ -100,7 +100,9 @@ class MainWindow(QMainWindow):
             self.ui.central_widget_layout.setContentsMargins(0, 0, 0, 0)
             self.ui.btn_maximize_restore.setToolTip("Restaurar")
             self.ui.btn_maximize_restore.setIcon(QtGui.QIcon(u":/16x16/icons/16x16/cil-window-restore.png"))
-            self.ui.frame_top_btns.setStyleSheet("background-color: rgb(27, 29, 35)")
+            self.ui.frame_top_btns.setStyleSheet("background-color: rgb(50, 50, 51); border-top-right-radius: 0px;")
+            self.ui.frame_toggle.setStyleSheet("background-color: rgb(50, 50, 51); border-top-left-radius: 0px;")
+            self.ui.frame_grip.setStyleSheet("background-color: rgb(0, 122, 204); border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;")
             self.ui.frame_size_grip.hide()
         else:
             GLOBAL_STATE = 0
@@ -109,7 +111,9 @@ class MainWindow(QMainWindow):
             self.ui.central_widget_layout.setContentsMargins(10, 10, 10, 10)
             self.ui.btn_maximize_restore.setToolTip("Maximizar")
             self.ui.btn_maximize_restore.setIcon(QtGui.QIcon(u":/16x16/icons/16x16/cil-window-maximize.png"))
-            self.ui.frame_top_btns.setStyleSheet("background-color: rgba(27, 29, 35, 200)")
+            self.ui.frame_top_btns.setStyleSheet("background-color: rgb(50, 50, 51); border-top-right-radius: 10px;")
+            self.ui.frame_toggle.setStyleSheet("background-color: rgb(50, 50, 51); border-top-left-radius: 10px;")
+            self.ui.frame_grip.setStyleSheet("background-color: rgb(0, 122, 204); border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;")
             self.ui.frame_size_grip.show()
 
     def winFullscreen(self):
@@ -122,6 +126,8 @@ class MainWindow(QMainWindow):
             GLOBAL_STATE = 1
             self.ui.central_widget_layout.setContentsMargins(0,0,0,0)
             self.ui.frame_top_btns.setMaximumHeight(0)
+            self.ui.frame_toggle.setStyleSheet("background-color: rgb(50, 50, 51); border-top-left-radius: 0px;")
+            self.ui.frame_grip.setStyleSheet("background-color: rgb(0, 122, 204); border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;")
             self.ui.frame_size_grip.hide()
         else:
             self.showNormal()
@@ -129,6 +135,8 @@ class MainWindow(QMainWindow):
             GLOBAL_STATE = 0
             self.ui.central_widget_layout.setContentsMargins(10,10,10,10)
             self.ui.frame_top_btns.setMaximumHeight(42)
+            self.ui.frame_toggle.setStyleSheet("background-color: rgb(50, 50, 51); border-top-left-radius: 10px;")
+            self.ui.frame_grip.setStyleSheet("background-color: rgb(0, 122, 204); border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;")
             self.ui.frame_size_grip.show()
             self.ui.btn_maximize_restore.setIcon(QtGui.QIcon(u":/16x16/icons/16x16/cil-window-maximize.png"))
 
@@ -200,7 +208,7 @@ class MainWindow(QMainWindow):
     ########################################################################
     ## ==> SELECT
     def selectMenu(self, getStyle):
-        select = getStyle + ("QPushButton { border-right: 7px solid rgb(30, 30, 30); }")
+        select = getStyle + ("QPushButton { border-right: 5px solid rgb(30, 30, 30); }")
         return select
     
     ## ==> RESET SELECTION
