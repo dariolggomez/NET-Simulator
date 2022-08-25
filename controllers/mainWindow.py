@@ -5,7 +5,7 @@ from PySide2.QtGui import *
 from visuals.ui_mainWindow import Ui_MainWindow
 from styles.ui_styles import Style
 from controllers import netNodeSelector, rtForm
-from services import rt_service
+from services import rt_service, net_service
 
 GLOBAL_STATE = 0
 GLOBAL_FULLSCREEN = 0
@@ -279,7 +279,7 @@ class MainWindow(QMainWindow):
 
     def loadRtManagementTable(self):
         rows = []
-        for rtNode in rt_service.read_all():
+        for rtNode in net_service.read_byID(self.currentNetNode.id).rt_nodes:
             rows.append((rtNode.id, rtNode.nodename, rtNode.city, rtNode.date_created.date()))
         self.ui.rtNodeManagementTable.setColumnCount(4)
         self.ui.rtNodeManagementTable.setHorizontalHeaderLabels(("ID","Nombre","Ciudad","Fecha de Creación"))

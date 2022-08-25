@@ -1,8 +1,8 @@
-from services import engine
+from services import engine, net_service
 from models.rtNode_model import RtNode
 from sqlalchemy import exists
 
-local_session = engine.Session(bind = engine.engine)
+local_session = net_service.local_session
 engine.create_all()
 
 def create_rtNode(nodename, city, net_id):
