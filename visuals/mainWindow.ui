@@ -1103,7 +1103,7 @@ QPushButton:pressed {
 color: rgb(210, 210, 210);</string>
                   </property>
                   <property name="currentIndex">
-                   <number>0</number>
+                   <number>1</number>
                   </property>
                   <widget class="QWidget" name="page_home">
                    <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -2400,7 +2400,7 @@ QPushButton:pressed {
                            </widget>
                           </item>
                           <item>
-                           <widget class="QPushButton" name="pushButton_3">
+                           <widget class="QPushButton" name="create_rtnode_btn">
                             <property name="minimumSize">
                              <size>
                               <width>60</width>

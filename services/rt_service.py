@@ -1,5 +1,6 @@
 from services import engine
 from models.rtNode_model import RtNode
+from sqlalchemy import exists
 
 local_session = engine.Session(bind = engine.engine)
 engine.create_all()
@@ -29,3 +30,7 @@ def update_RtNode(rtNode):
 def delete_rtNode(rtNode):
     local_session.delete(rtNode)
     local_session.commit()
+
+def checkNodenameExists(nodename):
+    ret = local_session.query(exists().where(RtNode.nodename == nodename)).scalar()
+    return ret

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'rtFormCaVAFd.ui'
+## Form generated from reading UI file 'rtFormDpxRSr.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -13,16 +13,16 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        if not Dialog.objectName():
-            Dialog.setObjectName(u"Dialog")
-        Dialog.resize(449, 449)
-        Dialog.setStyleSheet(u"background-color: rgb(44, 49, 60);\n"
+class Ui_rtForm(object):
+    def setupUi(self, rtForm):
+        if not rtForm.objectName():
+            rtForm.setObjectName(u"rtForm")
+        rtForm.resize(449, 449)
+        rtForm.setStyleSheet(u"background-color: rgb(44, 49, 60);\n"
 "color: rgb(85, 170, 255);")
-        self.verticalLayout = QVBoxLayout(Dialog)
+        self.verticalLayout = QVBoxLayout(rtForm)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.bg = QFrame(Dialog)
+        self.bg = QFrame(rtForm)
         self.bg.setObjectName(u"bg")
         self.bg.setStyleSheet(u"/* LINE EDIT */\n"
 "QLineEdit {\n"
@@ -416,33 +416,33 @@ class Ui_Dialog(object):
         self.verticalLayout.addWidget(self.bg)
 
 
-        self.retranslateUi(Dialog)
+        self.retranslateUi(rtForm)
 
-        QMetaObject.connectSlotsByName(Dialog)
+        QMetaObject.connectSlotsByName(rtForm)
     # setupUi
 
-    def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.label_4.setText(QCoreApplication.translate("Dialog", u"Crear Nodo", None))
-        self.label_3.setText(QCoreApplication.translate("Dialog", u"Nombre", None))
-        self.label.setText(QCoreApplication.translate("Dialog", u"Municipio", None))
-        self.cityComboBox.setItemText(0, QCoreApplication.translate("Dialog", u"Cerro", None))
-        self.cityComboBox.setItemText(1, QCoreApplication.translate("Dialog", u"Playa", None))
-        self.cityComboBox.setItemText(2, QCoreApplication.translate("Dialog", u"Plaza de la Revoluci\u00f3n", None))
-        self.cityComboBox.setItemText(3, QCoreApplication.translate("Dialog", u"Centro Habana", None))
-        self.cityComboBox.setItemText(4, QCoreApplication.translate("Dialog", u"La Habana Vieja", None))
-        self.cityComboBox.setItemText(5, QCoreApplication.translate("Dialog", u"Regla", None))
-        self.cityComboBox.setItemText(6, QCoreApplication.translate("Dialog", u"La Habana del Este", None))
-        self.cityComboBox.setItemText(7, QCoreApplication.translate("Dialog", u"Guanabacoa", None))
-        self.cityComboBox.setItemText(8, QCoreApplication.translate("Dialog", u"San Miguel del Padr\u00f3n", None))
-        self.cityComboBox.setItemText(9, QCoreApplication.translate("Dialog", u"Diez de Octubre", None))
-        self.cityComboBox.setItemText(10, QCoreApplication.translate("Dialog", u"Marianao", None))
-        self.cityComboBox.setItemText(11, QCoreApplication.translate("Dialog", u"La Lisa", None))
-        self.cityComboBox.setItemText(12, QCoreApplication.translate("Dialog", u"Boyeros", None))
-        self.cityComboBox.setItemText(13, QCoreApplication.translate("Dialog", u"Arroyo Naranjo", None))
-        self.cityComboBox.setItemText(14, QCoreApplication.translate("Dialog", u"Cotorro", None))
+    def retranslateUi(self, rtForm):
+        rtForm.setWindowTitle(QCoreApplication.translate("rtForm", u"Dialog", None))
+        self.label_4.setText(QCoreApplication.translate("rtForm", u"Crear Nodo", None))
+        self.label_3.setText(QCoreApplication.translate("rtForm", u"Nombre", None))
+        self.label.setText(QCoreApplication.translate("rtForm", u"Municipio", None))
+        self.cityComboBox.setItemText(0, QCoreApplication.translate("rtForm", u"Cerro", None))
+        self.cityComboBox.setItemText(1, QCoreApplication.translate("rtForm", u"Playa", None))
+        self.cityComboBox.setItemText(2, QCoreApplication.translate("rtForm", u"Plaza de la Revoluci\u00f3n", None))
+        self.cityComboBox.setItemText(3, QCoreApplication.translate("rtForm", u"Centro Habana", None))
+        self.cityComboBox.setItemText(4, QCoreApplication.translate("rtForm", u"La Habana Vieja", None))
+        self.cityComboBox.setItemText(5, QCoreApplication.translate("rtForm", u"Regla", None))
+        self.cityComboBox.setItemText(6, QCoreApplication.translate("rtForm", u"La Habana del Este", None))
+        self.cityComboBox.setItemText(7, QCoreApplication.translate("rtForm", u"Guanabacoa", None))
+        self.cityComboBox.setItemText(8, QCoreApplication.translate("rtForm", u"San Miguel del Padr\u00f3n", None))
+        self.cityComboBox.setItemText(9, QCoreApplication.translate("rtForm", u"Diez de Octubre", None))
+        self.cityComboBox.setItemText(10, QCoreApplication.translate("rtForm", u"Marianao", None))
+        self.cityComboBox.setItemText(11, QCoreApplication.translate("rtForm", u"La Lisa", None))
+        self.cityComboBox.setItemText(12, QCoreApplication.translate("rtForm", u"Boyeros", None))
+        self.cityComboBox.setItemText(13, QCoreApplication.translate("rtForm", u"Arroyo Naranjo", None))
+        self.cityComboBox.setItemText(14, QCoreApplication.translate("rtForm", u"Cotorro", None))
 
-        self.acceptBtn.setText(QCoreApplication.translate("Dialog", u"Aceptar", None))
-        self.cancelBtn.setText(QCoreApplication.translate("Dialog", u"Cancelar", None))
+        self.acceptBtn.setText(QCoreApplication.translate("rtForm", u"Aceptar", None))
+        self.cancelBtn.setText(QCoreApplication.translate("rtForm", u"Cancelar", None))
     # retranslateUi
 

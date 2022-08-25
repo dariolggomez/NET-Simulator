@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowlJienP.ui'
+## Form generated from reading UI file 'mainWindowxAqwui.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1143,11 +1143,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.pushButton_4)
 
-        self.pushButton_3 = QPushButton(self.frame_6)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setMinimumSize(QSize(60, 30))
-        self.pushButton_3.setFont(font4)
-        self.pushButton_3.setStyleSheet(u"QPushButton {\n"
+        self.create_rtnode_btn = QPushButton(self.frame_6)
+        self.create_rtnode_btn.setObjectName(u"create_rtnode_btn")
+        self.create_rtnode_btn.setMinimumSize(QSize(60, 30))
+        self.create_rtnode_btn.setFont(font4)
+        self.create_rtnode_btn.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(50, 50, 51);\n"
 "	border-radius: 5px;	\n"
 "	background-color: rgb(50, 50, 51);\n"
@@ -1161,7 +1161,7 @@ class Ui_MainWindow(object):
 "	border: 1px solid rgb(0, 122, 204);\n"
 "}")
 
-        self.horizontalLayout_16.addWidget(self.pushButton_3)
+        self.horizontalLayout_16.addWidget(self.create_rtnode_btn)
 
         self.pushButton_5 = QPushButton(self.frame_6)
         self.pushButton_5.setObjectName(u"pushButton_5")
@@ -1842,7 +1842,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1882,7 +1882,7 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Conectar", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Gestion de Nodos RT", None))
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Crear", None))
+        self.create_rtnode_btn.setText(QCoreApplication.translate("MainWindow", u"Crear", None))
         self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Eliminar", None))
         self.labelHeaderUser.setText(QCoreApplication.translate("MainWindow", u"Usuarios", None))
         self.editBtn.setText(QCoreApplication.translate("MainWindow", u"Editar", None))

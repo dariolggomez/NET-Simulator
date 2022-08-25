@@ -4,7 +4,7 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from visuals.ui_mainWindow import Ui_MainWindow
 from styles.ui_styles import Style
-from controllers import netNodeSelector
+from controllers import netNodeSelector, rtForm
 from services import rt_service
 
 GLOBAL_STATE = 0
@@ -46,12 +46,13 @@ class MainWindow(QMainWindow):
         self.addNewMenu("Inicio", "btn_home", "url(:/16x16/icons/16x16/cil-home.png)", True)
         self.addNewMenu("Nodos RT", "btn_rt_nodes", "url(:/16x16/icons/16x16/cil-layers.png)", True)
         self.addNewMenu("Desconectar Nodo", "btn_disconnect", "url(:/16x16/icons/16x16/cil-account-logout.png)", False)
+        
         #Select standard menu
         self.selectStandardMenu("btn_home")
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
 
         #Events Connections
-
+        self.ui.create_rtnode_btn.clicked.connect(self.showRtForm)
 
     def removeTitleBar(self):
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -282,3 +283,7 @@ class MainWindow(QMainWindow):
                 table_item = QTableWidgetItem(str(text))
                 table_item.setData(QtCore.Qt.UserRole+1, rt_service.read_byID(rows[row][0]))
                 self.ui.rtNodeManagementTable.setItem(row, col, table_item)
+
+    def showRtForm(self):
+        rtFormController = rtForm.RtFormController(self)
+        rtFormController.show()
