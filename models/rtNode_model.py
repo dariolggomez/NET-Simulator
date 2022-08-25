@@ -1,23 +1,22 @@
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String, DateTime, Integer, Sequence, ForeignKey
 from sqlalchemy.ext.hybrid import hybrid_property
 from datetime import datetime
+from services import engine
 
-RtNodeBase = declarative_base()
-class RtNode(RtNodeBase):
+class RtNode(engine.Base):
     __tablename__='rtNodes'
     __id = Column("id", Integer(), Sequence('rtNode_id_sequence'), primary_key = True)
     __nodename = Column("nodename", String(25), nullable = False, unique = True)
     __city = Column("city", String(80), nullable = False, unique = False)
     __date_created = Column("date_created", DateTime(), default = datetime.now)
     __net_id = Column("net_id", Integer(), ForeignKey('netNodes.id'))
+    net_node = relationship("NetNode", back_populates = "rt_nodes")
 
-
-    def __init__(self, nodename, city):
+    def __init__(self, nodename, city, net_id):
         self.__nodename = nodename
         self.__city = city
-        self.__net_node = relationship("NetNode", back_populates = "rt_nodes")
-
+        self.__net_id = net_id
 
     @hybrid_property
     def id(self):
@@ -41,7 +40,7 @@ class RtNode(RtNodeBase):
 
     @hybrid_property
     def net_node(self):
-        return self.__net_node
+        return self.net_node
 
     @nodename.setter
     def nodename(self, nodename):

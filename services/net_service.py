@@ -1,8 +1,9 @@
-from .engine import Session, engine
+from services import engine
 from models.netNode_model import NetNode
 from sqlalchemy import exists
 
-local_session = Session(bind = engine)
+local_session = engine.Session(bind = engine.engine)
+engine.create_all()
 
 def create_netNode(nodename, city):
     local_session.add(NetNode(nodename, city))

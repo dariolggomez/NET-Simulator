@@ -1,7 +1,8 @@
-from .engine import Session, engine
+from services import engine
 from models.rtNode_model import RtNode
 
-local_session = Session(bind = engine)
+local_session = engine.Session(bind = engine.engine)
+engine.create_all()
 
 def create_rtNode(nodename, city):
     local_session.add(RtNode(nodename, city))
