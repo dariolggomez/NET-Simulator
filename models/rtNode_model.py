@@ -3,8 +3,8 @@ from sqlalchemy import Column, String, DateTime, Integer, Sequence
 from sqlalchemy.ext.hybrid import hybrid_property
 from datetime import datetime
 
-Base = declarative_base()
-class RtNode(Base):
+RtNodeBase = declarative_base()
+class RtNode(RtNodeBase):
     __tablename__='rtNodes'
     __id = Column("id", Integer(), Sequence('rtNode_id_sequence'), primary_key = True)
     __nodename = Column("nodename", String(25), nullable = False, unique = True)

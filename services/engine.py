@@ -1,4 +1,4 @@
-from models.rtNode_model import Base
+from models.rtNode_model import RtNodeBase
 from models.netNode_model import NetNodeBase
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
@@ -8,5 +8,5 @@ engine = create_engine(connection_string, echo = True)
 
 Session = sessionmaker()
 
-Base.metadata.create_all(engine)
+RtNodeBase.metadata.create_all(engine)
 NetNodeBase.metadata.create_all(engine)
