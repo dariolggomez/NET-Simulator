@@ -11,7 +11,7 @@ class NetNode(engine.Base):
     __nodename = Column("nodename", String(25), nullable = False, unique = True)
     __city = Column("city", String(80), nullable = False, unique = False)
     __date_created = Column("date_created", DateTime(), default = datetime.now)
-    rt_nodes = relationship("RtNode", order_by= rtNode_model.RtNode.id, back_populates = "net_node")
+    rt_nodes = relationship("RtNode", order_by= rtNode_model.RtNode.id, back_populates = "net_node", cascade = "all, delete")
 
     def __init__(self, nodename, city):
         self.__nodename = nodename
