@@ -34,7 +34,8 @@ class MainWindow(QMainWindow):
         ## WINDOW SIZE ==> DEFAULT SIZE
         startSize = QSize(1280, 900)
         self.resize(startSize)
-        self.setMinimumSize(startSize)
+        minSize = QSize(600, 500)
+        self.setMinimumSize(minSize)
 
         ## ==> TOGGLE MENU SIZE
         self.ui.btn_toggle_menu.clicked.connect(lambda: self.toggleMenu(220, True))
