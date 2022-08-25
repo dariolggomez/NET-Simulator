@@ -56,6 +56,7 @@ class MainWindow(QMainWindow):
 
         #Events Connections
         self.ui.create_rtnode_btn.clicked.connect(self.showRtForm)
+        self.ui.delete_rtnode_btn.clicked.connect(self.deleteRtCurrentTableItem)
 
     @property
     def currentNetNode(self):
@@ -294,3 +295,15 @@ class MainWindow(QMainWindow):
     def showRtForm(self):
         rtFormController = rtForm.RtFormController(self)
         rtFormController.show()
+
+    def deleteRtCurrentTableItem(self):
+        item = self.ui.rtNodeManagementTable.currentItem()
+        if(item is not None):
+            rtNode = item.data(Qt.UserRole+1)
+            rt_service.delete_rtNode(rtNode)
+            self.loadRtManagementTable()
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle("NET-Simulator")
+            msg.setText("Debe seleccionar un nodo.")
+            msg.exec_()

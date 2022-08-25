@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowxAqwui.ui'
+## Form generated from reading UI file 'mainWindowyPgYPa.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1020,6 +1020,7 @@ class Ui_MainWindow(object):
         palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush7)
 #endif
         self.rtNodeManagementTable.setPalette(palette1)
+        self.rtNodeManagementTable.setFocusPolicy(Qt.StrongFocus)
         self.rtNodeManagementTable.setStyleSheet(u"QTableWidget {	\n"
 "	background-color: rgb(30, 30, 30);\n"
 "	padding: 10px;\n"
@@ -1036,7 +1037,7 @@ class Ui_MainWindow(object):
 "	gridline-color: rgb(44, 49, 60);\n"
 "}\n"
 "QTableWidget::item:selected{\n"
-"	background-color: rgb(0, 122, 204);\n"
+"	background-color: rgb(50, 50, 51);\n"
 "}\n"
 "QScrollBar:horizontal {\n"
 "    border: none;\n"
@@ -1057,8 +1058,8 @@ class Ui_MainWindow(object):
 "	max-width: 30px;\n"
 "	border: 1px solid rgb(44, 49, 60);\n"
 "	border-style: none;\n"
-"    border-bottom: 1px solid r"
-                        "gb(44, 49, 60);\n"
+"    border-bottom: 1px solid rg"
+                        "b(44, 49, 60);\n"
 "    border-right: 1px solid rgb(44, 49, 60);\n"
 "}\n"
 "QTableWidget::horizontalHeader {	\n"
@@ -1123,11 +1124,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addItem(self.horizontalSpacer_8)
 
-        self.pushButton_4 = QPushButton(self.frame_6)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setMinimumSize(QSize(65, 30))
-        self.pushButton_4.setFont(font4)
-        self.pushButton_4.setStyleSheet(u"QPushButton {\n"
+        self.edit_rtnode_btn = QPushButton(self.frame_6)
+        self.edit_rtnode_btn.setObjectName(u"edit_rtnode_btn")
+        self.edit_rtnode_btn.setMinimumSize(QSize(65, 30))
+        self.edit_rtnode_btn.setFont(font4)
+        self.edit_rtnode_btn.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(50, 50, 51);\n"
 "	border-radius: 5px;	\n"
 "	background-color: rgb(50, 50, 51);\n"
@@ -1141,7 +1142,7 @@ class Ui_MainWindow(object):
 "	border: 1px solid rgb(0, 122, 204);\n"
 "}")
 
-        self.horizontalLayout_16.addWidget(self.pushButton_4)
+        self.horizontalLayout_16.addWidget(self.edit_rtnode_btn)
 
         self.create_rtnode_btn = QPushButton(self.frame_6)
         self.create_rtnode_btn.setObjectName(u"create_rtnode_btn")
@@ -1163,11 +1164,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.create_rtnode_btn)
 
-        self.pushButton_5 = QPushButton(self.frame_6)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        self.pushButton_5.setMinimumSize(QSize(85, 30))
-        self.pushButton_5.setFont(font4)
-        self.pushButton_5.setStyleSheet(u"QPushButton {\n"
+        self.delete_rtnode_btn = QPushButton(self.frame_6)
+        self.delete_rtnode_btn.setObjectName(u"delete_rtnode_btn")
+        self.delete_rtnode_btn.setMinimumSize(QSize(85, 30))
+        self.delete_rtnode_btn.setFont(font4)
+        self.delete_rtnode_btn.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(50, 50, 51);\n"
 "	border-radius: 5px;	\n"
 "	background-color: rgb(50, 50, 51);\n"
@@ -1183,7 +1184,7 @@ class Ui_MainWindow(object):
 "	border: 1px solid rgb(220, 67, 67);\n"
 "}")
 
-        self.horizontalLayout_16.addWidget(self.pushButton_5)
+        self.horizontalLayout_16.addWidget(self.delete_rtnode_btn)
 
 
         self.verticalLayout_20.addWidget(self.frame_6)
@@ -1881,9 +1882,9 @@ class Ui_MainWindow(object):
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Desconectar", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Conectar", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Gestion de Nodos RT", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
+        self.edit_rtnode_btn.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.create_rtnode_btn.setText(QCoreApplication.translate("MainWindow", u"Crear", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Eliminar", None))
+        self.delete_rtnode_btn.setText(QCoreApplication.translate("MainWindow", u"Eliminar", None))
         self.labelHeaderUser.setText(QCoreApplication.translate("MainWindow", u"Usuarios", None))
         self.editBtn.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.createBtn.setText(QCoreApplication.translate("MainWindow", u"Crear", None))

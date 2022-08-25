@@ -2176,6 +2176,9 @@ QPushButton:pressed {
                               </disabled>
                              </palette>
                             </property>
+                            <property name="focusPolicy">
+                             <enum>Qt::StrongFocus</enum>
+                            </property>
                             <property name="styleSheet">
                              <string notr="true">QTableWidget {	
 	background-color: rgb(30, 30, 30);
@@ -2193,7 +2196,7 @@ QTableWidget::item{
 	gridline-color: rgb(44, 49, 60);
 }
 QTableWidget::item:selected{
-	background-color: rgb(0, 122, 204);
+	background-color: rgb(50, 50, 51);
 }
 QScrollBar:horizontal {
     border: none;
@@ -2364,7 +2367,7 @@ QHeaderView::section:vertical
                            </spacer>
                           </item>
                           <item>
-                           <widget class="QPushButton" name="pushButton_4">
+                           <widget class="QPushButton" name="edit_rtnode_btn">
                             <property name="minimumSize">
                              <size>
                               <width>65</width>
@@ -2436,7 +2439,7 @@ QPushButton:pressed {
                            </widget>
                           </item>
                           <item>
-                           <widget class="QPushButton" name="pushButton_5">
+                           <widget class="QPushButton" name="delete_rtnode_btn">
                             <property name="minimumSize">
                              <size>
                               <width>85</width>
