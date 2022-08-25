@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowzSHuWj.ui'
+## Form generated from reading UI file 'mainWindowlJienP.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1112,20 +1112,20 @@ class Ui_MainWindow(object):
         self.frame_6 = QFrame(self.page_rt_content)
         self.frame_6.setObjectName(u"frame_6")
         self.frame_6.setMaximumSize(QSize(16777215, 50))
-        self.frame_6.setStyleSheet(u"background-color: rgb(30, 30, 30);")
+        self.frame_6.setStyleSheet(u"background-color: rgb(37, 37, 38);")
         self.frame_6.setFrameShape(QFrame.NoFrame)
         self.frame_6.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_16 = QHBoxLayout(self.frame_6)
         self.horizontalLayout_16.setSpacing(8)
         self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
-        self.horizontalLayout_16.setContentsMargins(0, 0, 12, 0)
+        self.horizontalLayout_16.setContentsMargins(12, 12, 12, 12)
         self.horizontalSpacer_8 = QSpacerItem(751, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_16.addItem(self.horizontalSpacer_8)
 
         self.pushButton_4 = QPushButton(self.frame_6)
         self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setMinimumSize(QSize(65, 0))
+        self.pushButton_4.setMinimumSize(QSize(65, 30))
         self.pushButton_4.setFont(font4)
         self.pushButton_4.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(50, 50, 51);\n"
@@ -1145,7 +1145,7 @@ class Ui_MainWindow(object):
 
         self.pushButton_3 = QPushButton(self.frame_6)
         self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setMinimumSize(QSize(60, 0))
+        self.pushButton_3.setMinimumSize(QSize(60, 30))
         self.pushButton_3.setFont(font4)
         self.pushButton_3.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(50, 50, 51);\n"
@@ -1165,7 +1165,7 @@ class Ui_MainWindow(object):
 
         self.pushButton_5 = QPushButton(self.frame_6)
         self.pushButton_5.setObjectName(u"pushButton_5")
-        self.pushButton_5.setMinimumSize(QSize(85, 0))
+        self.pushButton_5.setMinimumSize(QSize(85, 30))
         self.pushButton_5.setFont(font4)
         self.pushButton_5.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(50, 50, 51);\n"
@@ -1842,7 +1842,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
