@@ -17,6 +17,7 @@ class MainWindow(QMainWindow):
         #Initialization
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.__currentNetNode = currentNetNode
 
         #Remove Default Title Bar
         self.removeTitleBar()
@@ -53,6 +54,10 @@ class MainWindow(QMainWindow):
 
         #Events Connections
         self.ui.create_rtnode_btn.clicked.connect(self.showRtForm)
+
+    @property
+    def currentNetNode(self):
+        return self.__currentNetNode
 
     def removeTitleBar(self):
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)

@@ -29,7 +29,7 @@ class RtFormController(QDialog):
         result, _, errors = validate(request, rules, return_info=True)
         if(result):
             if(not rt_service.checkNodenameExists(nodename)):
-                rt_service.create_rtNode(nodename, city)
+                rt_service.create_rtNode(nodename, city, caller.currentNetNode.id)
                 caller.loadRtManagementTable()
                 self.close()
             else:

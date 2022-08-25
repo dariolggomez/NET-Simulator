@@ -5,8 +5,8 @@ from sqlalchemy import exists
 local_session = engine.Session(bind = engine.engine)
 engine.create_all()
 
-def create_rtNode(nodename, city):
-    local_session.add(RtNode(nodename, city))
+def create_rtNode(nodename, city, net_id):
+    local_session.add(RtNode(nodename, city, net_id))
     local_session.commit()
 
 def read_all():
