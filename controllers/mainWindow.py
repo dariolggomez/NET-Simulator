@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.__currentNetNode = currentNetNode
+        print(f"Los nodos rt relacionados son: {self.__currentNetNode.rt_nodes}")
 
         #Remove Default Title Bar
         self.removeTitleBar()

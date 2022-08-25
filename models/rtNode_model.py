@@ -18,6 +18,9 @@ class RtNode(engine.Base):
         self.__city = city
         self.__net_id = net_id
 
+    def __repr__(self) -> str:
+        return f"Nodo: {self.nodename}, Municipio: {self.city}"
+
     @hybrid_property
     def id(self):
         return self.__id
@@ -37,10 +40,6 @@ class RtNode(engine.Base):
     @hybrid_property
     def net_id(self):
         return self.__net_id
-
-    @hybrid_property
-    def net_node(self):
-        return self.net_node
 
     @nodename.setter
     def nodename(self, nodename):

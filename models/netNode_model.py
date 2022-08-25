@@ -34,10 +34,6 @@ class NetNode(engine.Base):
     def date_created(self):
         return self.__date_created
 
-    @hybrid_property
-    def rt_nodes(self):
-        return self.rt_nodes
-
     @nodename.setter
     def nodename(self, nodename):
         self.__nodename = nodename
