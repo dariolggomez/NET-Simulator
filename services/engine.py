@@ -8,5 +8,5 @@ engine = create_engine(connection_string, echo = True)
 
 Session = sessionmaker()
 
-RtNodeBase.metadata.create_all(engine)
 NetNodeBase.metadata.create_all(engine)
+RtNodeBase.metadata.create_all(engine)

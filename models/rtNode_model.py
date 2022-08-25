@@ -1,5 +1,5 @@
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, String, DateTime, Integer, Sequence
+from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy import Column, String, DateTime, Integer, Sequence, ForeignKey
 from sqlalchemy.ext.hybrid import hybrid_property
 from datetime import datetime
 
@@ -10,10 +10,14 @@ class RtNode(RtNodeBase):
     __nodename = Column("nodename", String(25), nullable = False, unique = True)
     __city = Column("city", String(80), nullable = False, unique = False)
     __date_created = Column("date_created", DateTime(), default = datetime.now)
+    __net_id = Column("net_id", Integer(), ForeignKey('netNodes.id'))
+
 
     def __init__(self, nodename, city):
         self.__nodename = nodename
         self.__city = city
+        self.__net_node = relationship("NetNode", back_populates = "rt_nodes")
+
 
     @hybrid_property
     def id(self):
@@ -30,6 +34,14 @@ class RtNode(RtNodeBase):
     @hybrid_property
     def date_created(self):
         return self.__date_created
+
+    @hybrid_property
+    def net_id(self):
+        return self.__net_id
+
+    @hybrid_property
+    def net_node(self):
+        return self.__net_node
 
     @nodename.setter
     def nodename(self, nodename):
