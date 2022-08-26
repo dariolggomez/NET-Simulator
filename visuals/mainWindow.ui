@@ -1932,7 +1932,7 @@ QPushButton:pressed {
                              </font>
                             </property>
                             <property name="text">
-                             <string>Gestion de Nodos RT</string>
+                             <string>Gestión de Nodos RT</string>
                             </property>
                            </widget>
                           </item>
@@ -2177,7 +2177,7 @@ QPushButton:pressed {
                              </palette>
                             </property>
                             <property name="focusPolicy">
-                             <enum>Qt::StrongFocus</enum>
+                             <enum>Qt::NoFocus</enum>
                             </property>
                             <property name="styleSheet">
                              <string notr="true">QTableWidget {	
@@ -2197,6 +2197,7 @@ QTableWidget::item{
 }
 QTableWidget::item:selected{
 	background-color: rgb(50, 50, 51);
+	color: rgb(219, 219, 219);
 }
 QScrollBar:horizontal {
     border: none;
@@ -2270,6 +2271,9 @@ QHeaderView::section:vertical
                             <property name="verticalScrollMode">
                              <enum>QAbstractItemView::ScrollPerPixel</enum>
                             </property>
+                            <property name="horizontalScrollMode">
+                             <enum>QAbstractItemView::ScrollPerPixel</enum>
+                            </property>
                             <property name="showGrid">
                              <bool>true</bool>
                             </property>
@@ -2277,7 +2281,7 @@ QHeaderView::section:vertical
                              <enum>Qt::SolidLine</enum>
                             </property>
                             <property name="sortingEnabled">
-                             <bool>false</bool>
+                             <bool>true</bool>
                             </property>
                             <property name="wordWrap">
                              <bool>true</bool>
