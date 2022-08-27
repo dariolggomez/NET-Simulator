@@ -279,6 +279,8 @@ class MainWindow(QMainWindow):
             self.ui.layout_menu_bottom.addWidget(button)
 
     def loadRtManagementTable(self):
+        self.ui.rtNodeManagementTable.sortByColumn(0, Qt.AscendingOrder)
+        self.ui.rtNodeManagementTable.setRowCount(0)
         rows = []
         for rtNode in net_service.read_byID(self.currentNetNode.id).rt_nodes:
             rows.append((rtNode.id, rtNode.nodename, rtNode.city, rtNode.date_created.date()))
@@ -288,8 +290,12 @@ class MainWindow(QMainWindow):
         self.ui.rtNodeManagementTable.setRowCount(len(rows))
         for row, cols in enumerate(rows):
             for col, text in enumerate(cols):
-                table_item = QTableWidgetItem(str(text))
-                table_item.setData(QtCore.Qt.UserRole+1, rt_service.read_byID(rows[row][0]))
+                if(col == 0):
+                    table_item = QTableWidgetItem()
+                    table_item.setData(QtCore.Qt.DisplayRole, rt_service.read_byID(rows[row][0]).id)
+                else:
+                    table_item = QTableWidgetItem(str(text))
+                    table_item.setData(QtCore.Qt.UserRole+1, rt_service.read_byID(rows[row][0]))
                 self.ui.rtNodeManagementTable.setItem(row, col, table_item)
 
     def showRtForm(self):
@@ -297,7 +303,12 @@ class MainWindow(QMainWindow):
         rtFormController.show()
 
     def deleteRtCurrentTableItem(self):
-        item = self.ui.rtNodeManagementTable.currentItem()
+        currentColumn = self.ui.rtNodeManagementTable.currentColumn()
+        currentRow = self.ui.rtNodeManagementTable.currentRow()
+        if(currentColumn == 0):
+            item = self.ui.rtNodeManagementTable.item(currentRow, currentColumn+1)
+        else:
+            item = self.ui.rtNodeManagementTable.currentItem()
         if(item is not None):
             rtNode = item.data(Qt.UserRole+1)
             rt_service.delete_rtNode(rtNode)
