@@ -11,6 +11,7 @@ class RtNode(engine.Base):
     __city = Column("city", String(80), nullable = False, unique = False)
     __date_created = Column("date_created", DateTime(), default = datetime.now)
     __net_id = Column("net_id", Integer(), ForeignKey('netNodes.id'))
+    __status = Column("status", Integer(), nullable = False, unique = False, default = 0)
     net_node = relationship("NetNode", back_populates = "rt_nodes")
 
     def __init__(self, nodename, city, net_id):
@@ -41,6 +42,10 @@ class RtNode(engine.Base):
     def net_id(self):
         return self.__net_id
 
+    @hybrid_property
+    def status(self):
+        return self.__status
+
     @nodename.setter
     def nodename(self, nodename):
         self.__nodename = nodename
@@ -48,3 +53,7 @@ class RtNode(engine.Base):
     @city.setter
     def city(self, city):
         self.__city = city
+
+    @status.setter
+    def status(self, status):
+        self.__status = status
