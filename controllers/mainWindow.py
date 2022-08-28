@@ -4,7 +4,7 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from visuals.ui_mainWindow import Ui_MainWindow
 from styles.ui_styles import Style
-from controllers import netNodeSelector, rtForm
+from controllers import netNodeSelector, rtForm, rtUpdateForm
 from services import rt_service, net_service
 
 GLOBAL_STATE = 0
@@ -57,6 +57,7 @@ class MainWindow(QMainWindow):
         #Events Connections
         self.ui.create_rtnode_btn.clicked.connect(self.showRtForm)
         self.ui.delete_rtnode_btn.clicked.connect(self.deleteRtCurrentTableItem)
+        self.ui.edit_rtnode_btn.clicked.connect(self.editRtNode)
 
     @property
     def currentNetNode(self):
@@ -318,3 +319,17 @@ class MainWindow(QMainWindow):
             msg.setWindowTitle("NET-Simulator")
             msg.setText("Debe seleccionar un nodo.")
             msg.exec_()
+
+    def editRtNode(self):
+        currentRow = self.ui.rtNodeManagementTable.currentRow()
+        item = self.ui.rtNodeManagementTable.item(currentRow, 1)
+        if(item is not None):
+            rtNode = item.data(Qt.UserRole+1)
+            rtUpdateUi = rtUpdateForm.RtUpdateFormController(self)
+            rtUpdateUi.setLinesEditsValues(rtNode)
+            rtUpdateUi.show()
+        else:
+            msgBox = QMessageBox()
+            msgBox.setWindowTitle("NET-Simulator")
+            msgBox.setText("Debe seleccionar un nodo.")
+            msgBox.exec_()

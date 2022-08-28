@@ -23,8 +23,8 @@ def read_byNodename(nodename):
 
 def update_RtNode(rtNode):
     rtNode_to_update = read_byID(rtNode.id)
-    rtNode_to_update.nodename(rtNode.nodename)
-    rtNode_to_update.city(rtNode.city)
+    rtNode_to_update.nodename = rtNode.nodename
+    rtNode_to_update.city = rtNode.city
     local_session.commit()
 
 def delete_rtNode(rtNode):
