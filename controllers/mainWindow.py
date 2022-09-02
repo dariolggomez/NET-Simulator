@@ -54,6 +54,9 @@ class MainWindow(QMainWindow):
         self.selectStandardMenu("btn_home")
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
 
+        #Load RT Nodes Status Table
+        self.loadRtStatusTable()
+
         #Events Connections
         self.ui.create_rtnode_btn.clicked.connect(self.showRtForm)
         self.ui.delete_rtnode_btn.clicked.connect(self.deleteRtCurrentTableItem)
@@ -205,6 +208,7 @@ class MainWindow(QMainWindow):
         # PAGE HOME
         if btnWidget.objectName() == "btn_home":
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+            self.loadRtStatusTable()
             self.resetStyle("btn_home")
             self.labelPage("Inicio")
             btnWidget.setStyleSheet(self.selectMenu(btnWidget.styleSheet()))
@@ -302,6 +306,40 @@ class MainWindow(QMainWindow):
                     table_item = QTableWidgetItem(str(text))
                     table_item.setData(QtCore.Qt.UserRole+1, rt_service.read_byID(rows[row][0]))
                 self.ui.rtNodeManagementTable.setItem(row, col, table_item)
+
+    def loadRtStatusTable(self):
+        self.ui.rtNodeStatusTable.sortByColumn(0, Qt.AscendingOrder)
+        self.ui.rtNodeStatusTable.setRowCount(0)
+        rows = []
+        for rtNode in net_service.read_byID(self.currentNetNode.id).rt_nodes:
+            rows.append((rtNode.id, rtNode.nodename, rtNode.city, rtNode.status))
+        self.ui.rtNodeStatusTable.setColumnCount(4)
+        self.ui.rtNodeStatusTable.setHorizontalHeaderLabels(("ID","Nombre","Ciudad","Estado de Conexión"))
+        self.ui.rtNodeStatusTable.horizontalHeader().setVisible(True)
+        self.ui.rtNodeStatusTable.setRowCount(len(rows))
+        for row, cols in enumerate(rows):
+            for col, text in enumerate(cols):
+                if(col == 0 or col == 3):
+                    if(col == 0):
+                        table_item = QTableWidgetItem()
+                        table_item.setData(QtCore.Qt.DisplayRole, text)
+                        table_item.setTextAlignment(Qt.AlignHCenter)
+                    else:
+                        if(text == 0):
+                            text = "Desconectado"
+                            table_item = QTableWidgetItem(str(text))
+                            table_item.setForeground(QBrush(QColor(255,100,100)))
+                        else:
+                            text = "Conectado"
+                            table_item = QTableWidgetItem(str(text))
+                            table_item.setForeground(QBrush(QColor(100,255,100)))
+                        table_item.setTextAlignment(Qt.AlignHCenter)
+                        table_item.setData(QtCore.Qt.UserRole+1, rt_service.read_byID(rows[row][0]))
+                else:
+                    table_item = QTableWidgetItem(str(text))
+                    table_item.setData(QtCore.Qt.UserRole+1, rt_service.read_byID(rows[row][0]))
+                    table_item.setTextAlignment(Qt.AlignHCenter)
+                self.ui.rtNodeStatusTable.setItem(row, col, table_item)
 
     def showRtForm(self):
         rtFormController = rtForm.RtFormController(self)

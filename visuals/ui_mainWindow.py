@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowVAUapw.ui'
+## Form generated from reading UI file 'mainWindowuCYwTz.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -734,12 +734,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_17.setSpacing(0)
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
         self.verticalLayout_17.setContentsMargins(0, 0, 0, 0)
-        self.rtNodeTableWidget = QTableWidget(self.frame_table)
-        self.rtNodeTableWidget.setObjectName(u"rtNodeTableWidget")
-        self.rtNodeTableWidget.setEnabled(True)
-        sizePolicy4.setHeightForWidth(self.rtNodeTableWidget.sizePolicy().hasHeightForWidth())
-        self.rtNodeTableWidget.setSizePolicy(sizePolicy4)
-        self.rtNodeTableWidget.setMaximumSize(QSize(99999, 1000))
+        self.rtNodeStatusTable = QTableWidget(self.frame_table)
+        self.rtNodeStatusTable.setObjectName(u"rtNodeStatusTable")
+        self.rtNodeStatusTable.setEnabled(True)
+        sizePolicy4.setHeightForWidth(self.rtNodeStatusTable.sizePolicy().hasHeightForWidth())
+        self.rtNodeStatusTable.setSizePolicy(sizePolicy4)
+        self.rtNodeStatusTable.setMaximumSize(QSize(99999, 1000))
         palette = QPalette()
         brush = QBrush(QColor(210, 210, 210, 255))
         brush.setStyle(Qt.SolidPattern)
@@ -778,8 +778,9 @@ class Ui_MainWindow(object):
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush4)
 #endif
-        self.rtNodeTableWidget.setPalette(palette)
-        self.rtNodeTableWidget.setStyleSheet(u"QTableWidget {	\n"
+        self.rtNodeStatusTable.setPalette(palette)
+        self.rtNodeStatusTable.setFocusPolicy(Qt.NoFocus)
+        self.rtNodeStatusTable.setStyleSheet(u"QTableWidget {	\n"
 "	background-color: rgb(30, 30, 30);\n"
 "	padding: 10px;\n"
 "	border-radius: 0px;\n"
@@ -795,7 +796,8 @@ class Ui_MainWindow(object):
 "	gridline-color: rgb(44, 49, 60);\n"
 "}\n"
 "QTableWidget::item:selected{\n"
-"	background-color: rgb(85, 170, 255);\n"
+"	background-color: rgb(50, 50, 51);\n"
+"	color: rgb(219, 219, 219);\n"
 "}\n"
 "QScrollBar:horizontal {\n"
 "    border: none;\n"
@@ -816,8 +818,8 @@ class Ui_MainWindow(object):
 "	max-width: 30px;\n"
 "	border: 1px solid rgb(44, 49, 60);\n"
 "	border-style: none;\n"
-"    border-bottom: 1px solid "
-                        "rgb(44, 49, 60);\n"
+""
+                        "    border-bottom: 1px solid rgb(44, 49, 60);\n"
 "    border-right: 1px solid rgb(44, 49, 60);\n"
 "}\n"
 "QTableWidget::horizontalHeader {	\n"
@@ -825,45 +827,46 @@ class Ui_MainWindow(object):
 "}\n"
 "QHeaderView::section:horizontal\n"
 "{\n"
-"    border: 1px solid rgb(32, 34, 42);\n"
-"	background-color: rgb(27, 29, 35);\n"
+"    border: 1px solid rgb(30,30,30);\n"
+"	background-color: rgb(0, 122, 204);\n"
 "	padding: 3px;\n"
 "	border-top-left-radius: 7px;\n"
 "    border-top-right-radius: 7px;\n"
 "}\n"
 "QHeaderView::section:vertical\n"
 "{\n"
-"    border: 1px solid rgb(44, 49, 60);\n"
+"    border: 1px solid rgb(0, 122, 204);\n"
 "}\n"
 "")
-        self.rtNodeTableWidget.setFrameShape(QFrame.NoFrame)
-        self.rtNodeTableWidget.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
-        self.rtNodeTableWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
-        self.rtNodeTableWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
-        self.rtNodeTableWidget.setAutoScroll(True)
-        self.rtNodeTableWidget.setAutoScrollMargin(16)
-        self.rtNodeTableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.rtNodeTableWidget.setAlternatingRowColors(False)
-        self.rtNodeTableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.rtNodeTableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.rtNodeTableWidget.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
-        self.rtNodeTableWidget.setShowGrid(True)
-        self.rtNodeTableWidget.setGridStyle(Qt.SolidLine)
-        self.rtNodeTableWidget.setSortingEnabled(False)
-        self.rtNodeTableWidget.setWordWrap(True)
-        self.rtNodeTableWidget.setRowCount(0)
-        self.rtNodeTableWidget.horizontalHeader().setVisible(False)
-        self.rtNodeTableWidget.horizontalHeader().setCascadingSectionResizes(False)
-        self.rtNodeTableWidget.horizontalHeader().setDefaultSectionSize(200)
-        self.rtNodeTableWidget.horizontalHeader().setStretchLastSection(True)
-        self.rtNodeTableWidget.verticalHeader().setVisible(False)
-        self.rtNodeTableWidget.verticalHeader().setCascadingSectionResizes(False)
-        self.rtNodeTableWidget.verticalHeader().setMinimumSectionSize(30)
-        self.rtNodeTableWidget.verticalHeader().setDefaultSectionSize(30)
-        self.rtNodeTableWidget.verticalHeader().setHighlightSections(False)
-        self.rtNodeTableWidget.verticalHeader().setStretchLastSection(False)
+        self.rtNodeStatusTable.setFrameShape(QFrame.NoFrame)
+        self.rtNodeStatusTable.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.rtNodeStatusTable.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.rtNodeStatusTable.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.rtNodeStatusTable.setAutoScroll(True)
+        self.rtNodeStatusTable.setAutoScrollMargin(16)
+        self.rtNodeStatusTable.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.rtNodeStatusTable.setAlternatingRowColors(False)
+        self.rtNodeStatusTable.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.rtNodeStatusTable.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.rtNodeStatusTable.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.rtNodeStatusTable.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.rtNodeStatusTable.setShowGrid(True)
+        self.rtNodeStatusTable.setGridStyle(Qt.SolidLine)
+        self.rtNodeStatusTable.setSortingEnabled(True)
+        self.rtNodeStatusTable.setWordWrap(True)
+        self.rtNodeStatusTable.setRowCount(0)
+        self.rtNodeStatusTable.horizontalHeader().setVisible(False)
+        self.rtNodeStatusTable.horizontalHeader().setCascadingSectionResizes(False)
+        self.rtNodeStatusTable.horizontalHeader().setDefaultSectionSize(200)
+        self.rtNodeStatusTable.horizontalHeader().setStretchLastSection(True)
+        self.rtNodeStatusTable.verticalHeader().setVisible(False)
+        self.rtNodeStatusTable.verticalHeader().setCascadingSectionResizes(False)
+        self.rtNodeStatusTable.verticalHeader().setMinimumSectionSize(30)
+        self.rtNodeStatusTable.verticalHeader().setDefaultSectionSize(30)
+        self.rtNodeStatusTable.verticalHeader().setHighlightSections(False)
+        self.rtNodeStatusTable.verticalHeader().setStretchLastSection(False)
 
-        self.verticalLayout_17.addWidget(self.rtNodeTableWidget)
+        self.verticalLayout_17.addWidget(self.rtNodeStatusTable)
 
 
         self.verticalLayout.addWidget(self.frame_table)
@@ -1845,7 +1848,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
