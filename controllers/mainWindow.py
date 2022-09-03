@@ -301,12 +301,15 @@ class MainWindow(QMainWindow):
                     if(col == 0):
                         table_item = QTableWidgetItem()
                         table_item.setData(QtCore.Qt.DisplayRole, text)
+                        table_item.setTextAlignment(Qt.AlignHCenter)
                     else:
                         table_item = QTableWidgetItem()
                         table_item.setData(QtCore.Qt.DisplayRole, QDateTime(text))
+                        table_item.setTextAlignment(Qt.AlignHCenter)
                 else:
                     table_item = QTableWidgetItem(str(text))
                     table_item.setData(QtCore.Qt.UserRole+1, rt_service.read_byID(rows[row][0]))
+                    table_item.setTextAlignment(Qt.AlignHCenter)
                 self.ui.rtNodeManagementTable.setItem(row, col, table_item)
 
     def loadRtStatusTable(self):
