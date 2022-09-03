@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowuCYwTz.ui'
+## Form generated from reading UI file 'mainWindowjUFzBD.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -883,21 +883,21 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_15.addItem(self.horizontalSpacer_7)
 
-        self.pushButton = QPushButton(self.frame_2)
-        self.pushButton.setObjectName(u"pushButton")
+        self.disconnect_btn = QPushButton(self.frame_2)
+        self.disconnect_btn.setObjectName(u"disconnect_btn")
         sizePolicy6 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
         sizePolicy6.setHorizontalStretch(0)
         sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy6)
-        self.pushButton.setMinimumSize(QSize(105, 30))
+        sizePolicy6.setHeightForWidth(self.disconnect_btn.sizePolicy().hasHeightForWidth())
+        self.disconnect_btn.setSizePolicy(sizePolicy6)
+        self.disconnect_btn.setMinimumSize(QSize(105, 30))
         font5 = QFont()
         font5.setFamily(u"Segoe UI Semibold")
         font5.setPointSize(9)
         font5.setBold(True)
         font5.setWeight(75)
-        self.pushButton.setFont(font5)
-        self.pushButton.setStyleSheet(u"QPushButton {\n"
+        self.disconnect_btn.setFont(font5)
+        self.disconnect_btn.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(50, 50, 51);\n"
 "	border-radius: 5px;	\n"
 "	background-color: rgb(50, 50, 51);\n"
@@ -911,13 +911,13 @@ class Ui_MainWindow(object):
 "	border: 1px solid rgb(0, 122, 204);\n"
 "}")
 
-        self.horizontalLayout_15.addWidget(self.pushButton)
+        self.horizontalLayout_15.addWidget(self.disconnect_btn)
 
-        self.pushButton_2 = QPushButton(self.frame_2)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setMinimumSize(QSize(80, 30))
-        self.pushButton_2.setFont(font5)
-        self.pushButton_2.setStyleSheet(u"QPushButton {\n"
+        self.connect_btn = QPushButton(self.frame_2)
+        self.connect_btn.setObjectName(u"connect_btn")
+        self.connect_btn.setMinimumSize(QSize(80, 30))
+        self.connect_btn.setFont(font5)
+        self.connect_btn.setStyleSheet(u"QPushButton {\n"
 "	border: 2px solid rgb(50, 50, 51);\n"
 "	border-radius: 5px;	\n"
 "	background-color: rgb(50, 50, 51);\n"
@@ -931,7 +931,7 @@ class Ui_MainWindow(object):
 "	border: 1px solid rgb(0, 122, 204);\n"
 "}")
 
-        self.horizontalLayout_15.addWidget(self.pushButton_2)
+        self.horizontalLayout_15.addWidget(self.connect_btn)
 
 
         self.verticalLayout.addWidget(self.frame_2)
@@ -1884,8 +1884,8 @@ class Ui_MainWindow(object):
         self.city_label.setText(QCoreApplication.translate("MainWindow", u"Municipio:", None))
         self.net_node_city.setText(QCoreApplication.translate("MainWindow", u"Text", None))
         self.label_table_info.setText(QCoreApplication.translate("MainWindow", u"Nodos RT", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Desconectar", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Conectar", None))
+        self.disconnect_btn.setText(QCoreApplication.translate("MainWindow", u"Desconectar", None))
+        self.connect_btn.setText(QCoreApplication.translate("MainWindow", u"Conectar", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Gesti\u00f3n de Nodos RT", None))
         self.edit_rtnode_btn.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.create_rtnode_btn.setText(QCoreApplication.translate("MainWindow", u"Crear", None))

@@ -61,6 +61,7 @@ class MainWindow(QMainWindow):
         self.ui.create_rtnode_btn.clicked.connect(self.showRtForm)
         self.ui.delete_rtnode_btn.clicked.connect(self.deleteRtCurrentTableItem)
         self.ui.edit_rtnode_btn.clicked.connect(self.editRtNode)
+        self.ui.connect_btn.clicked.connect(self.connectCurrentRTNode)
 
     @property
     def currentNetNode(self):
@@ -366,6 +367,26 @@ class MainWindow(QMainWindow):
             rtUpdateUi = rtUpdateForm.RtUpdateFormController(self)
             rtUpdateUi.setLinesEditsValues(rtNode)
             rtUpdateUi.show()
+        else:
+            msgBox = QMessageBox()
+            msgBox.setWindowTitle("NET-Simulator")
+            msgBox.setText("Debe seleccionar un nodo.")
+            msgBox.exec_()
+
+    def connectCurrentRTNode(self):
+        currentRow = self.ui.rtNodeStatusTable.currentRow()
+        item = self.ui.rtNodeStatusTable.item(currentRow, 1)
+        if(item is not None):
+            rtNode = item.data(Qt.UserRole+1)
+            rtNode.status = 1
+            try:
+                rt_service.update_RtNode(rtNode)
+            except:
+                msgBox = QMessageBox()
+                msgBox.setWindowTitle("NET-Simulator")
+                msgBox.setText("Ocurrió un error al intentar conectar el nodo.")
+                msgBox.exec_()
+            self.loadRtStatusTable()
         else:
             msgBox = QMessageBox()
             msgBox.setWindowTitle("NET-Simulator")

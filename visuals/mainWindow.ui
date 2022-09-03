@@ -1769,7 +1769,7 @@ QHeaderView::section:vertical
                               </spacer>
                              </item>
                              <item>
-                              <widget class="QPushButton" name="pushButton">
+                              <widget class="QPushButton" name="disconnect_btn">
                                <property name="sizePolicy">
                                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                                  <horstretch>0</horstretch>
@@ -1811,7 +1811,7 @@ QPushButton:pressed {
                               </widget>
                              </item>
                              <item>
-                              <widget class="QPushButton" name="pushButton_2">
+                              <widget class="QPushButton" name="connect_btn">
                                <property name="minimumSize">
                                 <size>
                                  <width>80</width>
