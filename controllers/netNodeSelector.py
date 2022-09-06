@@ -6,6 +6,7 @@ from visuals.ui_netSelector import Ui_NetSelector
 from services import net_service
 from controllers.netForm import NetFormController
 from controllers.mainWindow import MainWindow
+from threading import Thread
 import network.app_client as client
 
 GLOBAL_STATE = 0
@@ -30,13 +31,14 @@ class NetSelectorController(QMainWindow):
         #Load Ui Definitions
         self.uiDefinitions()
 
-        #Load Node Table
-        self.loadNetNodeTable()
+        #Load Node Table by requesting to the server
+        self.connectToGetNetNodesInUse()
 
         #Connections
         self.ui.create_node_btn.clicked.connect(self.showCreateNetNodeDialog)
         self.ui.eliminate_node_btn.clicked.connect(self.eliminateNetTableCurrentRow)
         self.ui.use_node_btn.clicked.connect(self.useNetNode)
+        self.ui.update_node_btn.clicked.connect(self.connectToGetNetNodesInUse)
 
     def uiDefinitions(self):
         def doubleClickMaximizeRestore(event):
@@ -108,7 +110,14 @@ class NetSelectorController(QMainWindow):
     def returnStatus(self):
         return GLOBAL_STATE
 
+    def connectToGetNetNodesInUse(self):
+        # connectionThread = Thread(target=client.start_client, args=("127.0.0.1", 65432, "get_netnodes_in_use", "", self))
+        # connectionThread.daemon = True
+        # connectionThread.start()
+        client.start_client("127.0.0.1", 65432, "get_netnodes_in_use", "", self)
+    
     def loadNetNodeTable(self, netNodesIdInUse):
+        self.ui.netNodeTableWidget.setRowCount(0)
         rows = []
         allNetNodes = net_service.read_all()
         netNodesUnused = allNetNodes.copy()

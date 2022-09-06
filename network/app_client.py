@@ -7,11 +7,8 @@ import traceback
 
 import network.libclient as libclient
 
-sel = selectors.DefaultSelector()
-
-
 def create_request(action, value):
-    if action == "search":
+    if action == "search" or action == "get_netnodes_in_use":
         return dict(
             type="text/json",
             encoding="utf-8",
@@ -25,14 +22,14 @@ def create_request(action, value):
         )
 
 
-def start_connection(host, port, request):
+def start_connection(sel, host, port, request, controllerInstance):
     addr = (host, port)
     print(f"Starting connection to {addr}")
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setblocking(False)
     sock.connect_ex(addr)
     events = selectors.EVENT_READ | selectors.EVENT_WRITE
-    message = libclient.Message(sel, sock, addr, request)
+    message = libclient.Message(sel, sock, addr, request, controllerInstance)
     sel.register(sock, events, data=message)
 
 
@@ -40,14 +37,15 @@ def start_connection(host, port, request):
 #     print(f"Usage: {sys.argv[0]} <host> <port> <action> <value>")
 #     sys.exit(1)
 
-def start_client(host, port, action, value):
+def start_client(host, port, action, value, controllerInstance):
+    sel = selectors.DefaultSelector()
     action, value = action, value
     request = create_request(action, value)
-    start_connection(host, port, request)
+    start_connection(sel, host, port, request, controllerInstance)
 
     try:
         while True:
-            events = sel.select(timeout=1)
+            events = sel.select(timeout=None)
             for key, mask in events:
                 message = key.data
                 try:
@@ -61,7 +59,5 @@ def start_client(host, port, action, value):
             # Check for a socket being monitored to continue.
             if not sel.get_map():
                 break
-    except KeyboardInterrupt:
-        print("Caught keyboard interrupt, exiting")
     finally:
         sel.close()

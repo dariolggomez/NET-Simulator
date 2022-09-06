@@ -3,14 +3,16 @@ import selectors
 import json
 import io
 import struct
+import controllers.netNodeSelector as netselcontroller
 
 
 class Message:
-    def __init__(self, selector, sock, addr, request):
+    def __init__(self, selector, sock, addr, request, controller):
         self.selector = selector
         self.sock = sock
         self.addr = addr
         self.request = request
+        self.controller = controller
         self._recv_buffer = b""
         self._send_buffer = b""
         self._request_queued = False
@@ -82,8 +84,13 @@ class Message:
 
     def _process_response_json_content(self):
         content = self.response
-        result = content.get("result")
-        print(f"Got result: {result}")
+        action = content.get("action")
+        if action == "get_netnodes_in_use":
+            result = content.get("result")
+            print(f"Got result: {result}")
+            self.controller.loadNetNodeTable(result)
+        else:
+            print(f"Got invalid action '{action}'")
 
     def _process_response_binary_content(self):
         content = self.response

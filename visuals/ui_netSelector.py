@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'netSelectorwpnvCS.ui'
+## Form generated from reading UI file 'netSelectorfkDuUY.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -702,6 +702,26 @@ class Ui_NetSelector(object):
 
         self.horizontalLayout_8.addWidget(self.use_node_btn)
 
+        self.update_node_btn = QPushButton(self.frame_main_btns)
+        self.update_node_btn.setObjectName(u"update_node_btn")
+        self.update_node_btn.setMinimumSize(QSize(85, 30))
+        self.update_node_btn.setFont(font4)
+        self.update_node_btn.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(52, 59, 72);\n"
+"	border-radius: 5px;	\n"
+"	background-color: rgb(52, 59, 72);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(57, 65, 80);\n"
+"	border: 2px solid rgb(61, 70, 86);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	background-color: rgb(35, 40, 49);\n"
+"	border: 2px solid rgb(43, 50, 61);\n"
+"}")
+
+        self.horizontalLayout_8.addWidget(self.update_node_btn)
+
 
         self.verticalLayout_5.addWidget(self.frame_main_btns)
 
@@ -796,6 +816,7 @@ class Ui_NetSelector(object):
         self.eliminate_node_btn.setText(QCoreApplication.translate("NetSelector", u"Eliminar", None))
         self.create_node_btn.setText(QCoreApplication.translate("NetSelector", u"Crear", None))
         self.use_node_btn.setText(QCoreApplication.translate("NetSelector", u"Utilizar", None))
+        self.update_node_btn.setText(QCoreApplication.translate("NetSelector", u"Actualizar", None))
         self.label_credits.setText("")
         self.label_version.setText(QCoreApplication.translate("NetSelector", u"v1.0.0", None))
     # retranslateUi
