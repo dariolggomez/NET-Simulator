@@ -6,6 +6,7 @@ from visuals.ui_netSelector import Ui_NetSelector
 from services import net_service
 from controllers.netForm import NetFormController
 from controllers.mainWindow import MainWindow
+import network.app_client as client
 
 GLOBAL_STATE = 0
 
@@ -107,9 +108,16 @@ class NetSelectorController(QMainWindow):
     def returnStatus(self):
         return GLOBAL_STATE
 
-    def loadNetNodeTable(self):
+    def loadNetNodeTable(self, netNodesIdInUse):
         rows = []
-        for netNode in net_service.read_all():
+        allNetNodes = net_service.read_all()
+        netNodesUnused = allNetNodes.copy()
+        #Filter all net nodes that are not in use
+        for netNode in allNetNodes:
+            if(netNodesIdInUse.count(netNode.id) > 0):
+                netNodesUnused.remove(netNode)
+        #Show the filtered nodes on the table
+        for netNode in netNodesUnused:
             rows.append((netNode.id, netNode.nodename, netNode.city, netNode.date_created.date()))
         self.ui.netNodeTableWidget.setColumnCount(4)
         self.ui.netNodeTableWidget.setHorizontalHeaderLabels(("ID","Nodo","Ciudad","Fecha de Creación"))
