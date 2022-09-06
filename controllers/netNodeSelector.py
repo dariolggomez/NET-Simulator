@@ -18,6 +18,7 @@ class NetSelectorController(QMainWindow):
         #Initialization
         self.ui = Ui_NetSelector()
         self.ui.setupUi(self)
+        self.client = client.ClientController()
         
         #Borderless Window
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -114,8 +115,9 @@ class NetSelectorController(QMainWindow):
         # connectionThread = Thread(target=client.start_client, args=("127.0.0.1", 65432, "get_netnodes_in_use", "", self))
         # connectionThread.daemon = True
         # connectionThread.start()
-        client.start_client("127.0.0.1", 65432, "get_netnodes_in_use", "", self)
+        self.client.start_client("127.0.0.1", 65432, "get_netnodes_in_use", "", self)
     
+    @Slot()
     def loadNetNodeTable(self, netNodesIdInUse):
         self.ui.netNodeTableWidget.setRowCount(0)
         rows = []

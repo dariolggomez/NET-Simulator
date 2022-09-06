@@ -4,10 +4,13 @@ import json
 import io
 import struct
 import controllers.netNodeSelector as netselcontroller
+import PySide2.QtCore as QtCore
 
 
-class Message:
+class Message(QtCore.QObject):
+    nodesReceive = QtCore.Signal(object)
     def __init__(self, selector, sock, addr, request, controller):
+        super().__init__()
         self.selector = selector
         self.sock = sock
         self.addr = addr
@@ -19,6 +22,9 @@ class Message:
         self._jsonheader_len = None
         self.jsonheader = None
         self.response = None
+
+        #Signal Connections
+        self.nodesReceive.connect(self.controller.loadNetNodeTable)
 
     def _set_selector_events_mask(self, mode):
         """Set selector to listen for events: mode is 'r', 'w', or 'rw'."""
@@ -88,7 +94,7 @@ class Message:
         if action == "get_netnodes_in_use":
             result = content.get("result")
             print(f"Got result: {result}")
-            self.controller.loadNetNodeTable(result)
+            self.nodesReceive.emit(result) 
         else:
             print(f"Got invalid action '{action}'")
 
