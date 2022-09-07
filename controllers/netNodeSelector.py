@@ -166,6 +166,7 @@ class NetSelectorController(QMainWindow):
         item = self.ui.netNodeTableWidget.currentItem()
         if(item is not None):
             netNode = item.data(Qt.UserRole+1)
+            self.client.start_client("127.0.0.1", 65432, "add_node_in_use", netNode.id, self)
             mainWindow = MainWindow(netNode)
             mainWindow.show()
             mainWindow.activateWindow()

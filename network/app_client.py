@@ -13,7 +13,7 @@ class ClientController():
         self.sel = None
 
     def create_request(self, action, value):
-        if action == "search" or action == "get_netnodes_in_use":
+        if action == "search" or action == "get_netnodes_in_use" or action == "add_node_in_use":
             return dict(
                 type="text/json",
                 encoding="utf-8",
