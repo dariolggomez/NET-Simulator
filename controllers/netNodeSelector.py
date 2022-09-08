@@ -18,7 +18,7 @@ class NetSelectorController(QMainWindow):
         #Initialization
         self.ui = Ui_NetSelector()
         self.ui.setupUi(self)
-        self.client = client.ClientController()
+        self.client = client.ClientController(self)
         
         #Borderless Window
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -115,7 +115,7 @@ class NetSelectorController(QMainWindow):
         # connectionThread = Thread(target=client.start_client, args=("127.0.0.1", 65432, "get_netnodes_in_use", "", self))
         # connectionThread.daemon = True
         # connectionThread.start()
-        self.client.start_client("127.0.0.1", 65432, "get_netnodes_in_use", "", self)
+        self.client.start_client("127.0.0.1", 65432, "get_netnodes_in_use", "")
     
     @Slot()
     def loadNetNodeTable(self, netNodesIdInUse):
@@ -139,6 +139,12 @@ class NetSelectorController(QMainWindow):
                 table_item = QTableWidgetItem(str(text))
                 table_item.setData(QtCore.Qt.UserRole+1, net_service.read_byID(rows[row][0]))
                 self.ui.netNodeTableWidget.setItem(row, col, table_item)
+    @Slot()
+    def notifyConnectionToServer(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("NET-Selector")
+        msg.setText("No se pudo establecer la conexión con el servidor")
+        msg.exec_()
 
     def showCreateNetNodeDialog(self):
         self.netForm = NetFormController(self)
@@ -166,7 +172,7 @@ class NetSelectorController(QMainWindow):
         item = self.ui.netNodeTableWidget.currentItem()
         if(item is not None):
             netNode = item.data(Qt.UserRole+1)
-            self.client.start_client("127.0.0.1", 65432, "add_node_in_use", netNode.id, self)
+            self.client.start_client("127.0.0.1", 65432, "add_node_in_use", netNode.id)
             mainWindow = MainWindow(netNode)
             mainWindow.show()
             mainWindow.activateWindow()
