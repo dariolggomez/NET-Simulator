@@ -7,6 +7,7 @@ import traceback
 import threading
 import PySide2.QtCore as QtCore
 import network.libclient as libclient
+import controllers.netNodeSelector as netNodeSelector
 
 class ClientController(QtCore.QObject):
     connectionToServerFailed = QtCore.Signal()
@@ -16,21 +17,22 @@ class ClientController(QtCore.QObject):
         self.controllerInstance = controller
 
         #Signals and Slots Connections
-        self.connectionToServerFailed.connect(self.controllerInstance.notifyConnectionToServer) 
+        if self.controllerInstance.__class__ == netNodeSelector.NetSelectorController:
+            self.connectionToServerFailed.connect(self.controllerInstance.notifyConnectionToServer) 
 
     def create_request(self, action, value):
-        if action == "search" or action == "get_netnodes_in_use" or action == "add_node_in_use":
-            return dict(
-                type="text/json",
-                encoding="utf-8",
-                content=dict(action=action, value=value),
-            )
-        else:
-            return dict(
-                type="binary/custom-client-binary-type",
-                encoding="binary",
-                content=bytes(action + value, encoding="utf-8"),
-            )
+        # if action == "search" or action == "get_netnodes_in_use" or action == "add_node_in_use":
+        return dict(
+            type="text/json",
+            encoding="utf-8",
+            content=dict(action=action, value=value),
+        )
+        # else:
+        #     return dict(
+        #         type="binary/custom-client-binary-type",
+        #         encoding="binary",
+        #         content=bytes(action + value, encoding="utf-8"),
+        #     )
 
 
     def start_connection(self, host, port, request):

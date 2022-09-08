@@ -5,6 +5,7 @@ import io
 import struct
 import controllers.netNodeSelector as netselcontroller
 import PySide2.QtCore as QtCore
+import controllers.netNodeSelector as netNodeSelector
 
 
 class Message(QtCore.QObject):
@@ -24,7 +25,8 @@ class Message(QtCore.QObject):
         self.response = None
 
         #Signal Connections
-        self.nodesReceive.connect(self.controller.loadNetNodeTable)
+        if self.controller.__class__ == netNodeSelector.NetSelectorController:
+            self.nodesReceive.connect(self.controller.loadNetNodeTable)
 
     def _set_selector_events_mask(self, mode):
         """Set selector to listen for events: mode is 'r', 'w', or 'rw'."""

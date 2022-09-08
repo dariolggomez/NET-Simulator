@@ -6,6 +6,7 @@ from visuals.ui_mainWindow import Ui_MainWindow
 from styles.ui_styles import Style
 from controllers import netNodeSelector, rtForm, rtUpdateForm
 from services import rt_service, net_service
+import network.app_client as client
 
 GLOBAL_STATE = 0
 GLOBAL_FULLSCREEN = 0
@@ -18,6 +19,9 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.__currentNetNode = currentNetNode
+        self.host = "127.0.0.1"
+        self.port = 65432
+        self.clientController = client.ClientController(self)
         print(f"Los nodos rt relacionados son: {self.__currentNetNode.rt_nodes}")
 
         #Remove Default Title Bar
@@ -217,6 +221,7 @@ class MainWindow(QMainWindow):
 
         # Disconnect Node
         if btnWidget.objectName() == "btn_disconnect":
+            self.disconnectCurrentNetNode()
             nodeSelector = netNodeSelector.NetSelectorController()
             nodeSelector.show()
             self.close()
@@ -416,3 +421,7 @@ class MainWindow(QMainWindow):
             msgBox.setWindowTitle("NET-Simulator")
             msgBox.setText("Debe seleccionar un nodo.")
             msgBox.exec_()
+
+    def disconnectCurrentNetNode(self):
+        self.clientController.start_client(self.host, self.port, "disconnect_net_node",
+                                           self.__currentNetNode.id)
