@@ -13,8 +13,9 @@ class ClientController(QtCore.QObject):
     connectionToServerFailed = QtCore.Signal()
     def __init__(self, controller):
         super().__init__()
-        self.sel = None
+        self.sel = selectors.DefaultSelector()
         self.controllerInstance = controller
+        self.looping = False
 
         #Signals and Slots Connections
         if self.controllerInstance.__class__ == netNodeSelector.NetSelectorController:
@@ -51,21 +52,23 @@ class ClientController(QtCore.QObject):
     #     sys.exit(1)
 
     def start_client(self, host, port, action, value):
-        self.sel = selectors.DefaultSelector()
         action, value = action, value
         request = self.create_request(action, value)
         self.start_connection(host, port, request)
-        connectionThread = threading.Thread(target=self.start_event_loop)
-        connectionThread.daemon = False
-        connectionThread.start()
+        if self.looping == False:
+            connectionThread = threading.Thread(target=self.start_event_loop)
+            connectionThread.daemon = False
+            connectionThread.start()
 
     def start_event_loop(self):
         try:
             while True:
+                self.looping = True
                 events = self.sel.select(timeout=None)
                 for key, mask in events:
                     message = key.data
                     try:
+                        # self.processEventsSignal.emit(mask)
                         message.process_events(mask)
                     except Exception as e:
                         print(
@@ -78,6 +81,9 @@ class ClientController(QtCore.QObject):
                         message.close()
                 # Check for a socket being monitored to continue.
                 if not self.sel.get_map():
+                    self.looping = False
                     break
-        finally:
-            self.sel.close()
+        except Exception as e:
+            print(e)
+        # finally:
+        #     self.sel.close()

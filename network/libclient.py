@@ -9,7 +9,9 @@ import controllers.netNodeSelector as netNodeSelector
 
 
 class Message(QtCore.QObject):
-    nodesReceive = QtCore.Signal()
+    loadNetNodeTableSignal = QtCore.Signal()
+    netNodeInUse = QtCore.Signal()
+    netNodeNotInUse = QtCore.Signal()
     def __init__(self, selector, sock, addr, request, controller):
         super().__init__()
         self.selector = selector
@@ -26,7 +28,9 @@ class Message(QtCore.QObject):
 
         #Signal Connections
         if self.controller.__class__ == netNodeSelector.NetSelectorController:
-            self.nodesReceive.connect(self.controller.loadNetNodeTable)
+            self.loadNetNodeTableSignal.connect(self.controller.loadNetNodeTable)
+            self.netNodeInUse.connect(self.controller.showNetNodeInUseDialog)
+            self.netNodeNotInUse.connect(self.controller.useNetNode)
 
     def _set_selector_events_mask(self, mode):
         """Set selector to listen for events: mode is 'r', 'w', or 'rw'."""
@@ -97,7 +101,16 @@ class Message(QtCore.QObject):
             result = content.get("result")
             print(f"Got result: {result}")
             self.controller.netNodesIdInUse = result.copy()
-            self.nodesReceive.emit() 
+            self.loadNetNodeTableSignal.emit()
+        elif action == "check_if_net_in_use":
+            result = content.get("result")
+            netNodeId = content.get("nodeId")
+            print(f"Got result: {result}")
+            if result == False:
+                self.netNodeNotInUse.emit()
+            else:
+                self.controller.netNodesIdInUse.append(netNodeId)
+                self.netNodeInUse.emit()
         else:
             print(f"Got invalid action '{action}'")
 

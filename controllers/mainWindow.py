@@ -23,6 +23,8 @@ class MainWindow(QMainWindow):
         self.port = 65432
         self.clientController = client.ClientController(self)
         print(f"Los nodos rt relacionados son: {self.__currentNetNode.rt_nodes}")
+        self.client = client.ClientController(self)
+        self.client.start_client("127.0.0.1", 65432, "add_node_in_use", self.__currentNetNode.id)
 
         #Remove Default Title Bar
         self.removeTitleBar()

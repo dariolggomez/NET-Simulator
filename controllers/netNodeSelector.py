@@ -39,7 +39,7 @@ class NetSelectorController(QMainWindow):
         #Connections
         self.ui.create_node_btn.clicked.connect(self.showCreateNetNodeDialog)
         self.ui.eliminate_node_btn.clicked.connect(self.eliminateNetTableCurrentRow)
-        self.ui.use_node_btn.clicked.connect(self.useNetNode)
+        self.ui.use_node_btn.clicked.connect(self.connectToCheckNetNodeInUse)
         self.ui.update_node_btn.clicked.connect(self.connectToGetNetNodesInUse)
 
     def uiDefinitions(self):
@@ -117,7 +117,26 @@ class NetSelectorController(QMainWindow):
         # connectionThread.daemon = True
         # connectionThread.start()
         self.client.start_client("127.0.0.1", 65432, "get_netnodes_in_use", "")
+
+    def connectToCheckNetNodeInUse(self):
+        item = self.ui.netNodeTableWidget.currentItem()
+        if item is not None:
+            netNode = item.data(Qt.UserRole+1)
+            self.client.start_client("127.0.0.1", 65432, "check_if_net_in_use", netNode.id)
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle("Información")
+            msg.setText("Debe seleccionar un nodo.")
+            msg.exec_()
     
+    def showNetNodeInUseDialog(self):
+        self.loadNetNodeTable()
+        msg = QMessageBox()
+        msg.setWindowTitle("NET-Simulator")
+        msg.setText("El nodo seleccionado está en uso.")
+        msg.exec_()
+        
+
     @Slot()
     def loadNetNodeTable(self):
         self.ui.netNodeTableWidget.setRowCount(0)
@@ -173,7 +192,7 @@ class NetSelectorController(QMainWindow):
         item = self.ui.netNodeTableWidget.currentItem()
         if(item is not None):
             netNode = item.data(Qt.UserRole+1)
-            self.client.start_client("127.0.0.1", 65432, "add_node_in_use", netNode.id)
+            # self.client.start_client("127.0.0.1", 65432, "add_node_in_use", netNode.id)
             mainWindow = MainWindow(netNode)
             mainWindow.show()
             mainWindow.activateWindow()
