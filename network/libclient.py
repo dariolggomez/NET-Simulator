@@ -9,7 +9,7 @@ import controllers.netNodeSelector as netNodeSelector
 
 
 class Message(QtCore.QObject):
-    nodesReceive = QtCore.Signal(object)
+    nodesReceive = QtCore.Signal()
     def __init__(self, selector, sock, addr, request, controller):
         super().__init__()
         self.selector = selector
@@ -96,7 +96,8 @@ class Message(QtCore.QObject):
         if action == "get_netnodes_in_use":
             result = content.get("result")
             print(f"Got result: {result}")
-            self.nodesReceive.emit(result) 
+            self.controller.netNodesIdInUse = result.copy()
+            self.nodesReceive.emit() 
         else:
             print(f"Got invalid action '{action}'")
 

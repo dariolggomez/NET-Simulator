@@ -19,6 +19,7 @@ class NetSelectorController(QMainWindow):
         self.ui = Ui_NetSelector()
         self.ui.setupUi(self)
         self.client = client.ClientController(self)
+        self.netNodesIdInUse = []
         
         #Borderless Window
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -118,14 +119,14 @@ class NetSelectorController(QMainWindow):
         self.client.start_client("127.0.0.1", 65432, "get_netnodes_in_use", "")
     
     @Slot()
-    def loadNetNodeTable(self, netNodesIdInUse):
+    def loadNetNodeTable(self):
         self.ui.netNodeTableWidget.setRowCount(0)
         rows = []
         allNetNodes = net_service.read_all()
         netNodesUnused = allNetNodes.copy()
         #Filter all net nodes that are not in use
         for netNode in allNetNodes:
-            if(netNodesIdInUse.count(netNode.id) > 0):
+            if(self.netNodesIdInUse.count(netNode.id) > 0):
                 netNodesUnused.remove(netNode)
         #Show the filtered nodes on the table
         for netNode in netNodesUnused:
