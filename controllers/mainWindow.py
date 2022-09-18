@@ -105,7 +105,7 @@ class MainWindow(QMainWindow):
         self.ui.btn_maximize_restore.clicked.connect(self.maximize_restore)
 
         ## ==> CLOSE APPLICATION
-        self.ui.btn_close.clicked.connect(self.close)
+        self.ui.btn_close.clicked.connect(self.closeApp)
 
         ## ==> FULLSCREEN
         self.ui.btn_fullscreen.clicked.connect(self.winFullscreen)
@@ -423,6 +423,10 @@ class MainWindow(QMainWindow):
             msgBox.setWindowTitle("NET-Simulator")
             msgBox.setText("Debe seleccionar un nodo.")
             msgBox.exec_()
+
+    def closeApp(self):
+        self.disconnectCurrentNetNode()
+        self.close()
 
     def disconnectCurrentNetNode(self):
         self.clientController.start_client(self.host, self.port, "disconnect_net_node",
