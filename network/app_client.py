@@ -15,7 +15,7 @@ class ClientController(QtCore.QObject):
         super().__init__()
         self.sel = selectors.DefaultSelector()
         self.controllerInstance = controller
-        self.looping = False
+        
 
         #Signals and Slots Connections
         if self.controllerInstance.__class__ == netNodeSelector.NetSelectorController:
@@ -55,15 +55,13 @@ class ClientController(QtCore.QObject):
         action, value = action, value
         request = self.create_request(action, value)
         self.start_connection(host, port, request)
-        if self.looping == False:
-            connectionThread = threading.Thread(target=self.start_event_loop)
-            connectionThread.daemon = False
-            connectionThread.start()
+        connectionThread = threading.Thread(target=self.start_event_loop)
+        connectionThread.daemon = False
+        connectionThread.start()
 
     def start_event_loop(self):
         try:
             while True:
-                self.looping = True
                 events = self.sel.select(timeout=None)
                 for key, mask in events:
                     message = key.data
@@ -81,7 +79,6 @@ class ClientController(QtCore.QObject):
                         message.close()
                 # Check for a socket being monitored to continue.
                 if not self.sel.get_map():
-                    self.looping = False
                     break
         except Exception as e:
             print(e)
