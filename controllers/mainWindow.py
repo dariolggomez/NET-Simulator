@@ -4,7 +4,7 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from visuals.ui_mainWindow import Ui_MainWindow
 from styles.ui_styles import Style
-from controllers import netNodeSelector, rtForm, rtUpdateForm
+from controllers import netNodeSelector, rtForm, rtUpdateForm, graphics
 from services import rt_service, net_service
 import network.app_client as client
 
@@ -23,9 +23,8 @@ class MainWindow(QMainWindow):
         self.port = 65432
         self.clientController = client.ClientController(self)
         print(f"Los nodos rt relacionados son: {self.__currentNetNode.rt_nodes}")
-        self.client = client.ClientController(self)
-        self.client.start_client("127.0.0.1", 65432, "add_node_in_use", self.__currentNetNode.id)
-
+        self.clientController.start_client("127.0.0.1", 65432, "add_node_in_use", self.__currentNetNode.id)
+        self.graphicsController = graphics.GraphicsController(self)
         #Remove Default Title Bar
         self.removeTitleBar()
 
@@ -70,6 +69,8 @@ class MainWindow(QMainWindow):
         self.ui.edit_rtnode_btn.clicked.connect(self.editRtNode)
         self.ui.connect_btn.clicked.connect(self.connectCurrentRTNode)
         self.ui.disconnect_btn.clicked.connect(self.disconnectCurrentRTNode)
+        self.ui.start_btn.clicked.connect(self.graphicsController.startWaveform)
+        self.ui.stop_btn.clicked.connect(self.graphicsController.stopWaveform)
 
     @property
     def currentNetNode(self):

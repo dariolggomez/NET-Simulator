@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowYZYAcF.ui'
+## Form generated from reading UI file 'mainWindowShZkiO.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1220,13 +1220,13 @@ class Ui_MainWindow(object):
         self.frame_waveform.setObjectName(u"frame_waveform")
         self.frame_waveform.setFrameShape(QFrame.StyledPanel)
         self.frame_waveform.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_33 = QVBoxLayout(self.frame_waveform)
-        self.verticalLayout_33.setObjectName(u"verticalLayout_33")
-        self.verticalLayout_33.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_31 = QVBoxLayout(self.frame_waveform)
+        self.verticalLayout_31.setObjectName(u"verticalLayout_31")
+        self.verticalLayout_31.setContentsMargins(0, 0, 0, 0)
         self.waveform_layout = QVBoxLayout()
         self.waveform_layout.setObjectName(u"waveform_layout")
 
-        self.verticalLayout_33.addLayout(self.waveform_layout)
+        self.verticalLayout_31.addLayout(self.waveform_layout)
 
 
         self.horizontalLayout_18.addWidget(self.frame_waveform)

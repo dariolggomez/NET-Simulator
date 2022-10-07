@@ -2547,7 +2547,7 @@ QPushButton:pressed {
                             <property name="frameShadow">
                              <enum>QFrame::Raised</enum>
                             </property>
-                            <layout class="QVBoxLayout" name="verticalLayout_33">
+                            <layout class="QVBoxLayout" name="verticalLayout_31">
                              <property name="leftMargin">
                               <number>0</number>
                              </property>
