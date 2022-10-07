@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pyqtgraph as pg
 from pyqtgraph.Qt import QtCore, QtGui, QtWidgets
-from services.receptor import MicrophoneRecorder
+from receptor import MicrophoneRecorder
 from time import perf_counter
 
 
@@ -21,7 +21,7 @@ def generatePgColormap(cm_name):
 
 
 CHUNKSIZE = 1024
-SAMPLE_RATE = 44100
+SAMPLE_RATE = 48000
 TIME_VECTOR = np.arange(CHUNKSIZE) / SAMPLE_RATE
 N_FFT = 1024
 FREQ_VECTOR = np.fft.rfftfreq(N_FFT, d=TIME_VECTOR[1] - TIME_VECTOR[0])
@@ -52,13 +52,14 @@ curve = waveform_plot.plot(pen='y')
 def update_waveform():
     global curve, data, ptr, waveform_plot, recorder
     frames = recorder.get_frames()
-    ptr += TIMEOUT
     if len(frames) == 0:
         data = np.zeros((recorder.chunksize,), dtype=np.int64)
     else:
         data = frames[-1]
         curve.setData(x=TIME_VECTOR*100, y=data)
-        curve.setPos(ptr, 0)
+        if(frames[0][0] != 0):
+            ptr += TIMEOUT
+            curve.setPos(ptr, 0)
 
 
 timer = QtCore.QTimer()
@@ -95,15 +96,19 @@ win.nextRow()
 image_data = np.random.rand(20, 20)
 waterfall_plot = win.addPlot(title='Waterfall plot', colspan=2)
 waterfall_plot.setLabel('left', "Frequency", units='Hz')
-waterfall_plot.setLabel('bottom', "Time", units='s')
+waterfall_plot.showAxis('bottom', False)
+# waterfall_plot.setLabel('bottom', "Time", units='s')
 waterfall_plot.setXRange(0, WATERFALL_FRAMES * TIME_VECTOR.max())
+# waterfall_plot.enableAutoRange('x', True)
 waterfall_image = pg.ImageItem()
 waterfall_plot.addItem(waterfall_image)
 waterfall_image.setImage(image_data)
 lut = generatePgColormap('jet')
 waterfall_image.setLookupTable(lut)
+tr = QtGui.QTransform()
+tr.scale((CHUNKSIZE / SAMPLE_RATE), FREQ_VECTOR.max() * 2. / N_FFT)
 # set scale: x in seconds, y in Hz
-waterfall_image.scale(CHUNKSIZE / SAMPLE_RATE, FREQ_VECTOR.max() * 2. / N_FFT)
+waterfall_image.setTransform(tr)
 
 
 def update_waterfall():

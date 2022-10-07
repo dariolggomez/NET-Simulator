@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowjUFzBD.ui'
+## Form generated from reading UI file 'mainWindowYZYAcF.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1198,6 +1198,158 @@ class Ui_MainWindow(object):
         self.verticalLayout_19.addWidget(self.page_rt_content)
 
         self.stackedWidget.addWidget(self.page_rt_nodes)
+        self.page_rt_graphics = QWidget()
+        self.page_rt_graphics.setObjectName(u"page_rt_graphics")
+        self.verticalLayout_27 = QVBoxLayout(self.page_rt_graphics)
+        self.verticalLayout_27.setObjectName(u"verticalLayout_27")
+        self.verticalLayout_27.setContentsMargins(0, 0, 0, 0)
+        self.rt_graphics_content = QFrame(self.page_rt_graphics)
+        self.rt_graphics_content.setObjectName(u"rt_graphics_content")
+        self.rt_graphics_content.setFrameShape(QFrame.StyledPanel)
+        self.rt_graphics_content.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_28 = QVBoxLayout(self.rt_graphics_content)
+        self.verticalLayout_28.setObjectName(u"verticalLayout_28")
+        self.upsideGraphics = QFrame(self.rt_graphics_content)
+        self.upsideGraphics.setObjectName(u"upsideGraphics")
+        self.upsideGraphics.setFrameShape(QFrame.StyledPanel)
+        self.upsideGraphics.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_18 = QHBoxLayout(self.upsideGraphics)
+        self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
+        self.horizontalLayout_18.setContentsMargins(0, 0, 0, 0)
+        self.frame_waveform = QFrame(self.upsideGraphics)
+        self.frame_waveform.setObjectName(u"frame_waveform")
+        self.frame_waveform.setFrameShape(QFrame.StyledPanel)
+        self.frame_waveform.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_33 = QVBoxLayout(self.frame_waveform)
+        self.verticalLayout_33.setObjectName(u"verticalLayout_33")
+        self.verticalLayout_33.setContentsMargins(0, 0, 0, 0)
+        self.waveform_layout = QVBoxLayout()
+        self.waveform_layout.setObjectName(u"waveform_layout")
+
+        self.verticalLayout_33.addLayout(self.waveform_layout)
+
+
+        self.horizontalLayout_18.addWidget(self.frame_waveform)
+
+        self.frame_fft_transform = QFrame(self.upsideGraphics)
+        self.frame_fft_transform.setObjectName(u"frame_fft_transform")
+        self.frame_fft_transform.setFrameShape(QFrame.StyledPanel)
+        self.frame_fft_transform.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_34 = QVBoxLayout(self.frame_fft_transform)
+        self.verticalLayout_34.setObjectName(u"verticalLayout_34")
+        self.verticalLayout_34.setContentsMargins(0, 0, 0, 0)
+        self.fft_transform_layout = QVBoxLayout()
+        self.fft_transform_layout.setObjectName(u"fft_transform_layout")
+
+        self.verticalLayout_34.addLayout(self.fft_transform_layout)
+
+
+        self.horizontalLayout_18.addWidget(self.frame_fft_transform)
+
+
+        self.verticalLayout_28.addWidget(self.upsideGraphics)
+
+        self.downsideGraphics = QFrame(self.rt_graphics_content)
+        self.downsideGraphics.setObjectName(u"downsideGraphics")
+        self.downsideGraphics.setFrameShape(QFrame.StyledPanel)
+        self.downsideGraphics.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_19 = QHBoxLayout(self.downsideGraphics)
+        self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
+        self.horizontalLayout_19.setContentsMargins(0, 0, 0, 0)
+        self.spectrogram_frame = QFrame(self.downsideGraphics)
+        self.spectrogram_frame.setObjectName(u"spectrogram_frame")
+        self.spectrogram_frame.setFrameShape(QFrame.StyledPanel)
+        self.spectrogram_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_35 = QVBoxLayout(self.spectrogram_frame)
+        self.verticalLayout_35.setObjectName(u"verticalLayout_35")
+        self.verticalLayout_35.setContentsMargins(0, 0, 0, 0)
+        self.spectrogram_layout = QVBoxLayout()
+        self.spectrogram_layout.setObjectName(u"spectrogram_layout")
+
+        self.verticalLayout_35.addLayout(self.spectrogram_layout)
+
+
+        self.horizontalLayout_19.addWidget(self.spectrogram_frame)
+
+        self.frame_interactions_btns = QFrame(self.downsideGraphics)
+        self.frame_interactions_btns.setObjectName(u"frame_interactions_btns")
+        self.frame_interactions_btns.setMaximumSize(QSize(150, 16777215))
+        self.frame_interactions_btns.setFrameShape(QFrame.StyledPanel)
+        self.frame_interactions_btns.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_29 = QVBoxLayout(self.frame_interactions_btns)
+        self.verticalLayout_29.setSpacing(0)
+        self.verticalLayout_29.setObjectName(u"verticalLayout_29")
+        self.verticalLayout_29.setContentsMargins(-1, 0, -1, 110)
+        self.start_btn = QPushButton(self.frame_interactions_btns)
+        self.start_btn.setObjectName(u"start_btn")
+        self.start_btn.setMinimumSize(QSize(65, 30))
+        self.start_btn.setFont(font4)
+        self.start_btn.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(50, 50, 51);\n"
+"	border-radius: 5px;	\n"
+"	background-color: rgb(50, 50, 51);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(56, 56, 57);\n"
+"	border: 2px solid rgb(56, 56, 57);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	background-color: rgb(56, 56, 57);\n"
+"	border: 1px solid rgb(0, 122, 204);\n"
+"}")
+
+        self.verticalLayout_29.addWidget(self.start_btn)
+
+        self.stop_btn = QPushButton(self.frame_interactions_btns)
+        self.stop_btn.setObjectName(u"stop_btn")
+        self.stop_btn.setMinimumSize(QSize(65, 30))
+        self.stop_btn.setFont(font4)
+        self.stop_btn.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(50, 50, 51);\n"
+"	border-radius: 5px;	\n"
+"	background-color: rgb(50, 50, 51);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(56, 56, 57);\n"
+"	border: 2px solid rgb(56, 56, 57);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	background-color: rgb(56, 56, 57);\n"
+"	border: 1px solid rgb(0, 122, 204);\n"
+"}")
+
+        self.verticalLayout_29.addWidget(self.stop_btn)
+
+        self.reset_btn = QPushButton(self.frame_interactions_btns)
+        self.reset_btn.setObjectName(u"reset_btn")
+        self.reset_btn.setMinimumSize(QSize(65, 30))
+        self.reset_btn.setFont(font4)
+        self.reset_btn.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(50, 50, 51);\n"
+"	border-radius: 5px;	\n"
+"	background-color: rgb(50, 50, 51);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(56, 56, 57);\n"
+"	border: 2px solid rgb(56, 56, 57);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	background-color: rgb(56, 56, 57);\n"
+"	border: 1px solid rgb(0, 122, 204);\n"
+"}")
+
+        self.verticalLayout_29.addWidget(self.reset_btn)
+
+
+        self.horizontalLayout_19.addWidget(self.frame_interactions_btns)
+
+
+        self.verticalLayout_28.addWidget(self.downsideGraphics)
+
+
+        self.verticalLayout_27.addWidget(self.rt_graphics_content)
+
+        self.stackedWidget.addWidget(self.page_rt_graphics)
         self.page_users = QWidget()
         self.page_users.setObjectName(u"page_users")
         self.verticalLayout_16 = QVBoxLayout(self.page_users)
@@ -1848,7 +2000,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1890,6 +2042,9 @@ class Ui_MainWindow(object):
         self.edit_rtnode_btn.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.create_rtnode_btn.setText(QCoreApplication.translate("MainWindow", u"Crear", None))
         self.delete_rtnode_btn.setText(QCoreApplication.translate("MainWindow", u"Eliminar", None))
+        self.start_btn.setText(QCoreApplication.translate("MainWindow", u"Iniciar", None))
+        self.stop_btn.setText(QCoreApplication.translate("MainWindow", u"Detener", None))
+        self.reset_btn.setText(QCoreApplication.translate("MainWindow", u"Restablecer", None))
         self.labelHeaderUser.setText(QCoreApplication.translate("MainWindow", u"Usuarios", None))
         self.editBtn.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.createBtn.setText(QCoreApplication.translate("MainWindow", u"Crear", None))

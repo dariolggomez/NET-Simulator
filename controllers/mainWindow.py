@@ -54,6 +54,7 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setMinimumWidth(20)
         self.addNewMenu("Inicio", "btn_home", "url(:/16x16/icons/16x16/cil-home.png)", True)
         self.addNewMenu("Nodos RT", "btn_rt_nodes", "url(:/16x16/icons/16x16/cil-layers.png)", True)
+        self.addNewMenu("Gráficas", "btn_rt_graphics", "url(:/16x16/icons/16x16/cil-chart.png)", True)
         self.addNewMenu("Desconectar Nodo", "btn_disconnect", "url(:/16x16/icons/16x16/cil-account-logout.png)", False)
         
         #Select standard menu
@@ -236,6 +237,12 @@ class MainWindow(QMainWindow):
             self.labelPage("Nodos RT")
             btnWidget.setStyleSheet(self.selectMenu(btnWidget.styleSheet()))
 
+        # RT Graphics
+        if btnWidget.objectName() == "btn_rt_graphics":
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_rt_graphics)
+            self.resetStyle("btn_rt_graphics")
+            self.labelPage("Gráficas")
+            btnWidget.setStyleSheet(self.selectMenu(btnWidget.styleSheet()))
 
     ## ==> SELECT/DESELECT MENU
     ########################################################################
