@@ -69,8 +69,8 @@ class MainWindow(QMainWindow):
         self.ui.edit_rtnode_btn.clicked.connect(self.editRtNode)
         self.ui.connect_btn.clicked.connect(self.connectCurrentRTNode)
         self.ui.disconnect_btn.clicked.connect(self.disconnectCurrentRTNode)
-        self.ui.start_btn.clicked.connect(self.graphicsController.startWaveform)
-        self.ui.stop_btn.clicked.connect(self.graphicsController.stopWaveform)
+        self.ui.start_btn.clicked.connect(self.graphicsController.startAll)
+        self.ui.stop_btn.clicked.connect(self.graphicsController.stopAll)
 
     @property
     def currentNetNode(self):

@@ -18,6 +18,7 @@ class GraphicsController():
         self.__mainWindow = parent
         self.createDefinitions()
         self.createWaveformPlot()
+        self.createFftPlot()
 
     def generatePgColormap(cm_name):
         """Converts a matplotlib colormap to a pyqtgraph colormap."""
@@ -33,11 +34,13 @@ class GraphicsController():
         self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = int(self.TIME_VECTOR.max() * 1000)
+        self.TIMEOUT = 81
         self.fps = None
         self.EPS = 1e-8
         self.ptr = 0
         self.last_time = perf_counter()
+        self.running = False
+        self.first_run = True
     
     def startMicrophone(self):
         self.recorder = MicrophoneRecorder(sample_rate=self.SAMPLE_RATE, chunksize=self.CHUNKSIZE)
@@ -48,7 +51,7 @@ class GraphicsController():
     # win.setWindowTitle('pyqtgraph spectrographer')
 
     def createWaveformPlot(self):
-        self.waveform_plot = pg.PlotWidget(name="Forma de Onda")
+        self.waveform_plot = pg.PlotWidget(title="Forma de Onda")
         self.waveform_plot.showGrid(x=True, y=True)
         self.waveform_plot.enableAutoRange('x', True)
         # waveform_plot.setXRange(TIME_VECTOR.min(), TIME_VECTOR.max())
@@ -69,40 +72,59 @@ class GraphicsController():
             if(self.frames[0][0] != 0):
                 self.ptr += self.TIMEOUT
                 self.curve.setPos(self.ptr, 0)
+    
     @Slot()
-    def startWaveform(self):
+    def startAll(self):
         self.startMicrophone()
+        self.startWaveform()
+        self.start_fft_plot()
+        self.running = True
+    
+    @Slot()
+    def stopAll(self):
+        if self.running:
+            self.stopWaveform()
+            self.stop_fft_plot()
+            self.recorder.stop = True
+            self.running = False
+
+    def startWaveform(self):
         self.waveformTimer = QtCore.QTimer()
         self.waveformTimer.timeout.connect(self.update_waveform)
         self.waveformTimer.start(self.TIMEOUT)
-    @Slot()
+    
     def stopWaveform(self):
         self.waveformTimer.stop()
 
-    # fft_plot = win.addPlot(title='FFT plot')
-    # fft_curve = fft_plot.plot(pen='y')
-    # fft_plot.enableAutoRange('xy', False)
-    # fft_plot.showGrid(x=True, y=True)
-    # fft_plot.setXRange(FREQ_VECTOR.min(), FREQ_VECTOR.max())
-    # fft_plot.setYRange(20 * np.log10(2 ** 11 * CHUNKSIZE) - 100, 20 * np.log10(2 ** 11 * CHUNKSIZE))
-    # fft_plot.setLabel('left', "Amplitude", units='A.U.')
-    # fft_plot.setLabel('bottom', "Frequency", units='Hz')
+    def createFftPlot(self):
+        self.fft_plot = pg.PlotWidget(title='Transformada de Fourier')
+        self.fft_curve = self.fft_plot.plot(pen='y')
+        self.fft_plot.enableAutoRange('xy', False)
+        self.fft_plot.showGrid(x=True, y=True)
+        self.fft_plot.setXRange(self.FREQ_VECTOR.min(), self.FREQ_VECTOR.max())
+        self.fft_plot.setYRange(20 * np.log10(2 ** 11 * self.CHUNKSIZE) - 100, 20 * np.log10(2 ** 11 * self.CHUNKSIZE))
+        self.fft_plot.setLabel('left', "Amplitud", units='A.U.')
+        self.fft_plot.setLabel('bottom', "Frecuencia", units='Hz')
+        self.__mainWindow.ui.fft_transform_layout.addWidget(self.fft_plot)
+        self.waterfall_data = deque(maxlen=self.WATERFALL_FRAMES)
+    
+    def update_fft(self):
+        if self.first_run:
+            self.data = np.zeros((self.recorder.chunksize,), dtype=np.int64)
+            self.first_run = False
+        if self.data.max() > 1:
+            X = np.abs(np.fft.rfft(np.hanning(self.data.size) * self.data, n=self.N_FFT))
+            magn = 20 * np.log10(X + self.EPS)
+            self.fft_curve.setData(x=self.FREQ_VECTOR, y=magn)
+            self.waterfall_data.append(np.log10(X + 1e-12))
 
-    # waterfall_data = deque(maxlen=WATERFALL_FRAMES)
+    def start_fft_plot(self):
+        self.timer_fft = QtCore.QTimer()
+        self.timer_fft.timeout.connect(self.update_fft)
+        self.timer_fft.start(self.TIMEOUT)
 
-
-    # def update_fft():
-    #     global data, fft_curve, fft_plot
-    #     if data.max() > 1:
-    #         X = np.abs(np.fft.rfft(np.hanning(data.size) * data, n=N_FFT))
-    #         magn = 20 * np.log10(X + EPS)
-    #         fft_curve.setData(x=FREQ_VECTOR, y=magn)
-    #         waterfall_data.append(np.log10(X + 1e-12))
-
-
-    # timer_fft = QtCore.QTimer()
-    # timer_fft.timeout.connect(update_fft)
-    # timer_fft.start(TIMEOUT)
+    def stop_fft_plot(self):
+        self.timer_fft.stop()
 
     # win.nextRow()
 
