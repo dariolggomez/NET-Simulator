@@ -16,9 +16,11 @@ class GraphicsController():
     __mainWindow = None
     def __init__(self, parent) -> None:
         self.__mainWindow = parent
+        self.default_pen = pg.mkPen(width=0.9, color='y')
         self.createDefinitions()
         self.createWaveformPlot()
         self.createFftPlot()
+        # pg.setConfigOptions(useOpenGL=True)
 
     def generatePgColormap(cm_name):
         """Converts a matplotlib colormap to a pyqtgraph colormap."""
@@ -28,13 +30,16 @@ class GraphicsController():
         return lut
 
     def createDefinitions(self):
+        sfmt = QtGui.QSurfaceFormat()
+        sfmt.setSwapInterval(0)
+        QtGui.QSurfaceFormat.setDefaultFormat(sfmt)
         self.CHUNKSIZE = 1024
         self.SAMPLE_RATE = 48000
         self.TIME_VECTOR = np.arange(self.CHUNKSIZE) / self.SAMPLE_RATE
         self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 81
+        self.TIMEOUT = 71
         self.fps = None
         self.EPS = 1e-8
         self.ptr = 0
@@ -54,11 +59,12 @@ class GraphicsController():
         self.waveform_plot = pg.PlotWidget(title="Forma de Onda")
         self.waveform_plot.showGrid(x=True, y=True)
         self.waveform_plot.enableAutoRange('x', True)
+        self.waveform_plot.setMouseEnabled(x=False, y=True)
         # waveform_plot.setXRange(TIME_VECTOR.min(), TIME_VECTOR.max())
         self.waveform_plot.setYRange(-2 ** 15, 2 ** 15 - 1)
         self.waveform_plot.setLabel('left', "Señal", units='A.U.')
         self.waveform_plot.setLabel('bottom', "Tiempo", units='s')
-        self.curve = self.waveform_plot.plot(pen='y')
+        self.curve = self.waveform_plot.plot(pen=self.default_pen, skipFiniteCheck=True, width=100)
         self.__mainWindow.ui.waveform_layout.addWidget(self.waveform_plot)
 
 
@@ -98,8 +104,9 @@ class GraphicsController():
 
     def createFftPlot(self):
         self.fft_plot = pg.PlotWidget(title='Transformada de Fourier')
-        self.fft_curve = self.fft_plot.plot(pen='y')
-        self.fft_plot.enableAutoRange('xy', False)
+        self.fft_curve = self.fft_plot.plot(pen=self.default_pen, skipFiniteCheck=True)
+        self.fft_plot.enableAutoRange('y', True)
+        self.fft_plot.setMouseEnabled(x=False, y=True)
         self.fft_plot.showGrid(x=True, y=True)
         self.fft_plot.setXRange(self.FREQ_VECTOR.min(), self.FREQ_VECTOR.max())
         self.fft_plot.setYRange(20 * np.log10(2 ** 11 * self.CHUNKSIZE) - 100, 20 * np.log10(2 ** 11 * self.CHUNKSIZE))
