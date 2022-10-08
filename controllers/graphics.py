@@ -10,17 +10,19 @@ import pyqtgraph as pg
 from pyqtgraph.Qt import QtCore, QtGui, QtWidgets
 from services.receptor import MicrophoneRecorder
 from time import perf_counter
-from PySide2.QtCore import Slot
+from PySide2.QtCore import Slot, Qt
 
 class GraphicsController():
     __mainWindow = None
     def __init__(self, parent) -> None:
         self.__mainWindow = parent
         self.default_pen = pg.mkPen(width=0.9, color='y')
+        self.default_pen.setStyle(Qt.PenStyle.SolidLine)
         self.createDefinitions()
         self.createWaveformPlot()
         self.createFftPlot()
         # pg.setConfigOptions(useOpenGL=True)
+        # pg.setConfigOption('enableExperimental', True)
 
     def generatePgColormap(cm_name):
         """Converts a matplotlib colormap to a pyqtgraph colormap."""
@@ -39,7 +41,7 @@ class GraphicsController():
         self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 71
+        self.TIMEOUT = 81
         self.fps = None
         self.EPS = 1e-8
         self.ptr = 0
@@ -57,7 +59,7 @@ class GraphicsController():
 
     def createWaveformPlot(self):
         self.waveform_plot = pg.PlotWidget(title="Forma de Onda")
-        self.waveform_plot.showGrid(x=True, y=True)
+        self.waveform_plot.showGrid(x=False, y=True)
         self.waveform_plot.enableAutoRange('x', True)
         self.waveform_plot.setMouseEnabled(x=False, y=True)
         # waveform_plot.setXRange(TIME_VECTOR.min(), TIME_VECTOR.max())
@@ -75,9 +77,12 @@ class GraphicsController():
         else:
             self.data = self.frames[-1]
             self.curve.setData(x=self.TIME_VECTOR*100, y=self.data)
+            t_end = perf_counter()
             if(self.frames[0][0] != 0):
                 self.ptr += self.TIMEOUT
-                self.curve.setPos(self.ptr, 0)
+                if(t_end - self.last_time >= 0.5):
+                    self.last_time = perf_counter()
+                    self.curve.setPos(self.ptr, 0)
     
     @Slot()
     def startAll(self):
