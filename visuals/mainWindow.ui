@@ -2660,7 +2660,7 @@ QPushButton:pressed {
                             </property>
                             <layout class="QVBoxLayout" name="verticalLayout_29">
                              <property name="spacing">
-                              <number>0</number>
+                              <number>8</number>
                              </property>
                              <property name="topMargin">
                               <number>0</number>

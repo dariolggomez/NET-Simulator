@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowShZkiO.ui'
+## Form generated from reading UI file 'mainWindowscyxhw.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1277,7 +1277,7 @@ class Ui_MainWindow(object):
         self.frame_interactions_btns.setFrameShape(QFrame.StyledPanel)
         self.frame_interactions_btns.setFrameShadow(QFrame.Raised)
         self.verticalLayout_29 = QVBoxLayout(self.frame_interactions_btns)
-        self.verticalLayout_29.setSpacing(0)
+        self.verticalLayout_29.setSpacing(8)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.verticalLayout_29.setContentsMargins(-1, 0, -1, 110)
         self.start_btn = QPushButton(self.frame_interactions_btns)
