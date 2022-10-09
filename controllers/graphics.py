@@ -42,7 +42,7 @@ class GraphicsController():
         self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 121
+        self.TIMEOUT = 111
         self.fps = None
         self.EPS = 1e-8
         self.ptr = 0
@@ -74,7 +74,7 @@ class GraphicsController():
     def update_waveform(self):
         self.frames = self.recorder.get_frames()
         if len(self.frames) == 0:
-            self.data = np.zeros((self.recorder.chunksize,), dtype=np.int64)
+            self.data = np.zeros((self.recorder.chunksize,), dtype=np.int32)
         else:
             self.data = self.frames[-1]
             self.curve.setData(x=self.TIME_VECTOR*100, y=self.data)
@@ -126,7 +126,7 @@ class GraphicsController():
     
     def update_fft(self):
         if self.first_run:
-            self.data = np.zeros((self.recorder.chunksize,), dtype=np.int64)
+            self.data = np.zeros((self.recorder.chunksize,), dtype=np.int32)
             self.first_run = False
         if self.data.max() > 1:
             X = np.abs(np.fft.rfft(np.hanning(self.data.size) * self.data, n=self.N_FFT))
