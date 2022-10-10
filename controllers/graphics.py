@@ -114,11 +114,11 @@ class GraphicsController():
         self.fft_plot = pg.PlotWidget(title='Transformada de Fourier')
         self.fft_curve = pg.PlotCurveItem(pen=self.default_pen, skipFiniteCheck=True)
         self.fft_plot.addItem(self.fft_curve)
-        self.fft_plot.enableAutoRange('y', True)
+        self.fft_plot.autoRange()
         self.fft_plot.setMouseEnabled(x=False, y=True)
         self.fft_plot.showGrid(x=True, y=True)
         self.fft_plot.setXRange(self.FREQ_VECTOR.min(), self.FREQ_VECTOR.max())
-        self.fft_plot.setYRange(20 * np.log10(2 ** 11 * self.CHUNKSIZE) - 100, 20 * np.log10(2 ** 11 * self.CHUNKSIZE))
+        # self.fft_plot.setYRange(20 * np.log10(2 ** 11 * self.CHUNKSIZE) - 100, 20 * np.log10(2 ** 11 * self.CHUNKSIZE))
         self.fft_plot.setLabel('left', "Amplitud", units='A.U.')
         self.fft_plot.setLabel('bottom', "Frecuencia", units='Hz')
         self.__mainWindow.ui.fft_transform_layout.addWidget(self.fft_plot)
@@ -132,6 +132,7 @@ class GraphicsController():
             X = np.abs(np.fft.rfft(np.hanning(self.data.size) * self.data, n=self.N_FFT))
             magn = 20 * np.log10(X + self.EPS)
             self.fft_curve.setData(x=self.FREQ_VECTOR, y=magn)
+            self.fft_plot.enableAutoRange('y', True)
             self.waterfall_data.append(np.log10(X + 1e-12))
 
     def start_fft_plot(self):
