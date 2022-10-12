@@ -53,10 +53,10 @@ class GraphicsController(QtCore.QObject):
         self.CHUNKSIZE = 1024
         self.SAMPLE_RATE = 44100
         self.TIME_VECTOR = np.arange(self.CHUNKSIZE) / self.SAMPLE_RATE
-        self.N_FFT = 1024
+        self.N_FFT = 2048
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 151
+        self.TIMEOUT = 101
         self.fps = None
         self.EPS = 1e-8
         self.ptr = 0
