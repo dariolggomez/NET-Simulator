@@ -12,10 +12,13 @@ from services.receptor import MicrophoneRecorder
 from time import perf_counter
 from PySide2 import QtCore
 from PySide2.QtCore import Slot, Qt, Signal
+from threading import Thread
 
 class GraphicsController(QtCore.QObject):
     __mainWindow = None
     update_waveform_signal = Signal(object)
+    set_curve_data_signal = Signal(list)
+    set_curve_pos_signal = Signal(int)
     def __init__(self, parent) -> None:
         super().__init__()
         self.__mainWindow = parent
@@ -31,6 +34,8 @@ class GraphicsController(QtCore.QObject):
 
     def connectSignals(self):
         self.update_waveform_signal.connect(self.__mainWindow.update_board_waveform)
+        self.set_curve_data_signal.connect(self.set_curve_data)
+        self.set_curve_pos_signal.connect(self.set_curve_pos)
 
     def generatePgColormap(self, cm_name):
         """Converts a matplotlib colormap to a pyqtgraph colormap."""
@@ -49,7 +54,7 @@ class GraphicsController(QtCore.QObject):
         self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 301
+        self.TIMEOUT = 81
         self.fps = None
         self.EPS = 1e-8
         self.ptr = 0
@@ -77,6 +82,10 @@ class GraphicsController(QtCore.QObject):
         self.curve = self.waveform_plot.plot(pen=self.default_pen, skipFiniteCheck=True)
         self.__mainWindow.ui.waveform_layout.addWidget(self.waveform_plot)
 
+    def start_waveform_updater_thread(self):
+        updater_thread = Thread(target=self.update_waveform)
+        updater_thread.daemon = True
+        updater_thread.start()
 
     def update_waveform(self):
         self.frames = self.recorder.get_frames()
@@ -84,17 +93,26 @@ class GraphicsController(QtCore.QObject):
             self.data = np.zeros((self.recorder.chunksize,), dtype=np.int32)
         else:
             self.data = self.frames[-1]
-            self.curve.setData(x=self.TIME_VECTOR*100, y=self.data)
-            t_end = perf_counter()
+            # self.curve.setData(x=self.TIME_VECTOR*100, y=self.data)
+            values = [self.TIME_VECTOR*100, self.data]
+            self.set_curve_data_signal.emit(values)
+            # t_end = perf_counter()
             if(self.frames[0][0] != 0):
                 self.ptr += self.TIMEOUT
             # if(t_end - self.last_time >= 0.5):
             # self.last_time = perf_counter()
-            self.curve.setPos(self.ptr, 0)
+            # self.curve.setPos(self.ptr, 0)
+            self.set_curve_pos_signal.emit(self.ptr)
             values_dict = {"x": (self.TIME_VECTOR*100).tolist(),
                            "y": self.data.tolist(),
                            "ptr": self.ptr}
-            self.update_waveform_signal.emit(values_dict)
+            # self.update_waveform_signal.emit(values_dict)
+
+    def set_curve_data(self, values):
+        self.curve.setData(x=values[0], y=values[1])
+
+    def set_curve_pos(self, value):
+        self.curve.setPos(value, 0)
     
     @Slot()
     def startAll(self):
@@ -115,7 +133,7 @@ class GraphicsController(QtCore.QObject):
 
     def startWaveform(self):
         self.waveformTimer = QtCore.QTimer()
-        self.waveformTimer.timeout.connect(self.update_waveform)
+        self.waveformTimer.timeout.connect(self.start_waveform_updater_thread)
         self.waveformTimer.start(self.TIMEOUT)
     
     def stopWaveform(self):
