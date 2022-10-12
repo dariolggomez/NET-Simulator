@@ -19,6 +19,7 @@ class GraphicsController(QtCore.QObject):
     update_waveform_signal = Signal(object)
     set_curve_data_signal = Signal(list)
     set_curve_pos_signal = Signal(int)
+    set_fttCurve_data_signal = Signal(list)
     def __init__(self, parent) -> None:
         super().__init__()
         self.__mainWindow = parent
@@ -36,6 +37,7 @@ class GraphicsController(QtCore.QObject):
         self.update_waveform_signal.connect(self.__mainWindow.update_board_waveform)
         self.set_curve_data_signal.connect(self.set_curve_data)
         self.set_curve_pos_signal.connect(self.set_curve_pos)
+        self.set_fttCurve_data_signal.connect(self.set_fftCurve_data)
 
     def generatePgColormap(self, cm_name):
         """Converts a matplotlib colormap to a pyqtgraph colormap."""
@@ -54,7 +56,7 @@ class GraphicsController(QtCore.QObject):
         self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 81
+        self.TIMEOUT = 151
         self.fps = None
         self.EPS = 1e-8
         self.ptr = 0
@@ -106,7 +108,7 @@ class GraphicsController(QtCore.QObject):
             values_dict = {"x": (self.TIME_VECTOR*100).tolist(),
                            "y": self.data.tolist(),
                            "ptr": self.ptr}
-            # self.update_waveform_signal.emit(values_dict)
+            self.update_waveform_signal.emit(values_dict)
 
     def set_curve_data(self, values):
         self.curve.setData(x=values[0], y=values[1])
@@ -153,6 +155,11 @@ class GraphicsController(QtCore.QObject):
         self.__mainWindow.ui.fft_transform_layout.addWidget(self.fft_plot)
         self.waterfall_data = deque(maxlen=self.WATERFALL_FRAMES)
     
+    def start_fft_updater_thread(self):
+        fft_updater_thread = Thread(target=self.update_fft)
+        fft_updater_thread.daemon = True
+        fft_updater_thread.start()
+
     def update_fft(self):
         if self.first_run:
             self.data = np.zeros((self.recorder.chunksize,), dtype=np.int32)
@@ -160,13 +167,19 @@ class GraphicsController(QtCore.QObject):
         if self.data.max() > 1:
             X = np.abs(np.fft.rfft(np.hanning(self.data.size) * self.data, n=self.N_FFT))
             magn = 20 * np.log10(X + self.EPS)
-            self.fft_curve.setData(x=self.FREQ_VECTOR, y=magn)
-            self.fft_plot.enableAutoRange('y', True)
+            # self.fft_curve.setData(x=self.FREQ_VECTOR, y=magn)
+            values = [self.FREQ_VECTOR, magn]
+            self.set_fttCurve_data_signal.emit(values)
+            # self.fft_plot.enableAutoRange('y', True)
             self.waterfall_data.append(np.log10(X + 1e-12))
+
+    def set_fftCurve_data(self, values):
+        self.fft_curve.setData(x=values[0], y=values[1])
+        self.fft_plot.enableAutoRange('y', True)
 
     def start_fft_plot(self):
         self.timer_fft = QtCore.QTimer()
-        self.timer_fft.timeout.connect(self.update_fft)
+        self.timer_fft.timeout.connect(self.start_fft_updater_thread)
         self.timer_fft.start(self.TIMEOUT)
 
     def stop_fft_plot(self):

@@ -38,7 +38,7 @@ class ClientController(QtCore.QObject):
 
     def start_connection(self, host, port, request):
         addr = (host, port)
-        print(f"Starting connection to {addr}")
+        # print(f"Starting connection to {addr}")
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.setblocking(False)
         sock.connect_ex(addr)

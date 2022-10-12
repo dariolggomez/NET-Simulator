@@ -111,8 +111,8 @@ class Message(QtCore.QObject):
             else:
                 self.controller.netNodesIdInUse.append(netNodeId)
                 self.netNodeInUse.emit()
-        else:
-            print(f"Got invalid action '{action}'")
+        # else:
+            # print(f"Got invalid action '{action}'")
 
     def _process_response_binary_content(self):
         content = self.response
@@ -150,7 +150,7 @@ class Message(QtCore.QObject):
                 self._set_selector_events_mask("r")
 
     def close(self):
-        print(f"Closing connection to {self.addr}")
+        # print(f"Closing connection to {self.addr}")
         try:
             self.selector.unregister(self.sock)
         except Exception as e:
@@ -220,7 +220,7 @@ class Message(QtCore.QObject):
         if self.jsonheader["content-type"] == "text/json":
             encoding = self.jsonheader["content-encoding"]
             self.response = self._json_decode(data, encoding)
-            print(f"Received response {self.response!r} from {self.addr}")
+            # print(f"Received response {self.response!r} from {self.addr}")
             self._process_response_json_content()
         else:
             # Binary or unknown content-type
