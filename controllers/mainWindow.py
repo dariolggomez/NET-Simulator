@@ -438,4 +438,8 @@ class MainWindow(QMainWindow):
 
     def disconnectCurrentNetNode(self):
         self.clientController.start_client(self.host, self.port, "disconnect_net_node",
-                                           self.__currentNetNode.id)
+                                           self.currentNetNode.id)
+    @Slot()
+    def update_board_waveform(self, values):
+        self.clientController.start_client(self.host, self.port, "update_waveform",
+                                           values)

@@ -10,11 +10,14 @@ import pyqtgraph as pg
 from pyqtgraph.Qt import QtCore, QtGui, QtWidgets
 from services.receptor import MicrophoneRecorder
 from time import perf_counter
-from PySide2.QtCore import Slot, Qt
+from PySide2 import QtCore
+from PySide2.QtCore import Slot, Qt, Signal
 
-class GraphicsController():
+class GraphicsController(QtCore.QObject):
     __mainWindow = None
+    update_waveform_signal = Signal(object)
     def __init__(self, parent) -> None:
+        super().__init__()
         self.__mainWindow = parent
         self.default_pen = pg.mkPen(width=1, color='y')
         self.default_pen.setStyle(Qt.PenStyle.SolidLine)
@@ -22,8 +25,12 @@ class GraphicsController():
         self.createWaveformPlot()
         self.createFftPlot()
         self.create_spectrogram_graphic()
+        self.connectSignals()
         # pg.setConfigOptions(useOpenGL=True)
         # pg.setConfigOption('enableExperimental', True)
+
+    def connectSignals(self):
+        self.update_waveform_signal.connect(self.__mainWindow.update_board_waveform)
 
     def generatePgColormap(self, cm_name):
         """Converts a matplotlib colormap to a pyqtgraph colormap."""
@@ -42,7 +49,7 @@ class GraphicsController():
         self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 111
+        self.TIMEOUT = 301
         self.fps = None
         self.EPS = 1e-8
         self.ptr = 0
@@ -84,6 +91,10 @@ class GraphicsController():
             # if(t_end - self.last_time >= 0.5):
             # self.last_time = perf_counter()
             self.curve.setPos(self.ptr, 0)
+            values_dict = {"x": (self.TIME_VECTOR*100).tolist(),
+                           "y": self.data.tolist(),
+                           "ptr": self.ptr}
+            self.update_waveform_signal.emit(values_dict)
     
     @Slot()
     def startAll(self):
