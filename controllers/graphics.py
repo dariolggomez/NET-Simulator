@@ -12,7 +12,7 @@ from services.receptor import MicrophoneRecorder
 from time import perf_counter
 from PySide2 import QtCore
 from PySide2.QtCore import Slot, Qt, Signal
-from threading import Thread
+from threading import Thread, Timer
 
 class GraphicsController(QtCore.QObject):
     __mainWindow = None
@@ -109,6 +109,9 @@ class GraphicsController(QtCore.QObject):
                            "y": self.data.tolist(),
                            "ptr": self.ptr}
             self.update_waveform_signal.emit(values_dict)
+        self.waveformTimer = Timer(self.TIMEOUT/1000, function=self.update_waveform)
+        self.waveformTimer.daemon = True
+        self.waveformTimer.start()
 
     def set_curve_data(self, values):
         self.curve.setData(x=values[0], y=values[1])
@@ -134,12 +137,14 @@ class GraphicsController(QtCore.QObject):
             self.running = False
 
     def startWaveform(self):
-        self.waveformTimer = QtCore.QTimer()
-        self.waveformTimer.timeout.connect(self.start_waveform_updater_thread)
-        self.waveformTimer.start(self.TIMEOUT)
+        # self.waveformTimer = QtCore.QTimer()
+        self.waveformTimer = Timer(self.TIMEOUT/1000, function=self.update_waveform)
+        # self.waveformTimer.timeout.connect(timerCallback)
+        self.waveformTimer.daemon = True
+        self.waveformTimer.start()
     
     def stopWaveform(self):
-        self.waveformTimer.stop()
+        self.waveformTimer.cancel()
 
     def createFftPlot(self):
         self.fft_plot = pg.PlotWidget(title='Transformada de Fourier')
