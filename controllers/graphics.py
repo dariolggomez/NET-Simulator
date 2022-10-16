@@ -17,6 +17,7 @@ from threading import Thread, Timer
 class GraphicsController(QtCore.QObject):
     __mainWindow = None
     update_board_waveform_signal = Signal(object)
+    update_board_fft_signal = Signal(object)
     set_curve_data_signal = Signal(list)
     set_curve_pos_signal = Signal(int)
     set_fttCurve_data_signal = Signal(list)
@@ -72,6 +73,27 @@ class GraphicsController(QtCore.QObject):
     def startMicrophone(self):
         self.recorder = MicrophoneRecorder(sample_rate=self.SAMPLE_RATE, chunksize=self.CHUNKSIZE)
         self.recorder.start()
+
+    @Slot()
+    def startAll(self):
+        self.__mainWindow.ui.start_btn.setEnabled(False)
+        self.startMicrophone()
+        self.startDataRetrieving()
+        self.startWaveformUpdate()
+        self.start_fft_plot()
+        self.start_spectrogram()
+        self.running = True
+    
+    @Slot()
+    def stopAll(self):
+        if self.running:
+            self.__mainWindow.ui.start_btn.setEnabled(True)
+            self.stopWaveformDataRtv()
+            self.stopWaveformUpdate()
+            self.stop_fft_plot()
+            self.stop_spectrogram()
+            self.recorder.stop = True
+            self.running = False
 
     # win = pg.GraphicsLayoutWidget(show=True)
     # win.resize(1000, 600)
@@ -129,27 +151,6 @@ class GraphicsController(QtCore.QObject):
     def set_curve_pos(self, value):
         self.curve.setPos(value, 0)
     
-    @Slot()
-    def startAll(self):
-        self.__mainWindow.ui.start_btn.setEnabled(False)
-        self.startMicrophone()
-        self.startDataRetrieving()
-        self.startWaveformUpdate()
-        self.start_fft_plot()
-        self.start_spectrogram()
-        self.running = True
-    
-    @Slot()
-    def stopAll(self):
-        if self.running:
-            self.__mainWindow.ui.start_btn.setEnabled(True)
-            self.stopWaveformDataRtv()
-            self.stopWaveformUpdate()
-            self.stop_fft_plot()
-            self.stop_spectrogram()
-            self.recorder.stop = True
-            self.running = False
-
     def startDataRetrieving(self):
         # self.waveformTimer = QtCore.QTimer()
         self.last_time = time()
@@ -183,10 +184,10 @@ class GraphicsController(QtCore.QObject):
         self.__mainWindow.ui.fft_transform_layout.addWidget(self.fft_plot)
         self.waterfall_data = deque(maxlen=self.WATERFALL_FRAMES)
     
-    def start_fft_updater_thread(self):
-        fft_updater_thread = Thread(target=self.update_fft)
-        fft_updater_thread.daemon = True
-        fft_updater_thread.start()
+    # def start_fft_updater_thread(self):
+    #     fft_updater_thread = Thread(target=self.update_fft)
+    #     fft_updater_thread.daemon = True
+    #     fft_updater_thread.start()
 
     def update_fft(self):
         if self.first_run:
@@ -200,18 +201,22 @@ class GraphicsController(QtCore.QObject):
             self.set_fttCurve_data_signal.emit(values)
             # self.fft_plot.enableAutoRange('y', True)
             self.waterfall_data.append(np.log10(X + 1e-12))
+        self.timer_fft = Timer((self.TIMEOUT+100)/1000, function=self.update_fft)
+        self.timer_fft.daemon = True
+        self.timer_fft.start()
 
     def set_fftCurve_data(self, values):
         self.fft_curve.setData(x=values[0], y=values[1])
         self.fft_plot.enableAutoRange('y', True)
 
     def start_fft_plot(self):
-        self.timer_fft = QtCore.QTimer()
-        self.timer_fft.timeout.connect(self.start_fft_updater_thread)
-        self.timer_fft.start(self.TIMEOUT+100)
+        self.timer_fft = Timer((self.TIMEOUT+100)/1000, function=self.update_fft)
+        # self.timer_fft.timeout.connect(self.start_fft_updater_thread)
+        self.timer_fft.daemon = True
+        self.timer_fft.start()
 
     def stop_fft_plot(self):
-        self.timer_fft.stop()
+        self.timer_fft.cancel()
 
     # win.nextRow()
     def create_spectrogram_graphic(self):
