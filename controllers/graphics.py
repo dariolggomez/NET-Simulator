@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import pyqtgraph as pg
 from pyqtgraph.Qt import QtCore, QtGui, QtWidgets
 from services.receptor import MicrophoneRecorder
-from time import perf_counter
+from time import perf_counter, time
 from PySide2 import QtCore
 from PySide2.QtCore import Slot, Qt, Signal
 from threading import Thread, Timer
@@ -60,11 +60,12 @@ class GraphicsController(QtCore.QObject):
         self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 71
+        self.TIMEOUT = 1
         self.fps = None
         self.EPS = 1e-8
         self.ptr = 0
-        self.last_time = perf_counter()
+        self.last_time = 0.0
+        self.t_end = 0.0
         self.running = False
         self.first_run = True
     
@@ -88,32 +89,37 @@ class GraphicsController(QtCore.QObject):
         self.curve = self.waveform_plot.plot(pen=self.default_pen, skipFiniteCheck=True)
         self.__mainWindow.ui.waveform_layout.addWidget(self.waveform_plot)
 
-    def start_waveform_updater_thread(self):
-        updater_thread = Thread(target=self.update_waveform)
-        updater_thread.daemon = True
-        updater_thread.start()
+    # def start_waveform_updater_thread(self):
+    #     updater_thread = Thread(target=self.retrieve_waveform_data)
+    #     updater_thread.daemon = True
+    #     updater_thread.start()
 
-    def update_waveform(self):
+    def retrieve_waveform_data(self):
         self.frames = self.recorder.get_frames()
         if len(self.frames) == 0:
             self.data = np.zeros((self.recorder.chunksize,), dtype=np.int32)
         else:
             self.data = self.frames[-1]
             # self.curve.setData(x=self.TIME_VECTOR*100, y=self.data)
-            values = [self.TIME_VECTOR*100, self.data]
-            self.set_curve_data_signal.emit(values)
-            # t_end = perf_counter()
+            self.waveform_values = [self.TIME_VECTOR*100, self.data]
+            self.t_end = time()
             if(self.frames[0][0] != 0):
-                self.ptr += self.TIMEOUT
+                self.ptr += (self.t_end - self.last_time)
             # if(t_end - self.last_time >= 0.5):
-            # self.last_time = perf_counter()
+            self.last_time = time()
             # self.curve.setPos(self.ptr, 0)
-            self.set_curve_pos_signal.emit(self.ptr)
-            values_dict = {"x": (self.TIME_VECTOR*100).tolist(),
+            self.waveform_values_dict = {"x": (self.TIME_VECTOR*100).tolist(),
                            "y": self.data.tolist(),
                            "ptr": self.ptr}
-            self.update_waveform_signal.emit(values_dict)
-        self.waveformTimer = Timer(self.TIMEOUT/1000, function=self.update_waveform)
+        self.waveformDataTimer = Timer(self.TIMEOUT/1000, function=self.retrieve_waveform_data)
+        self.waveformDataTimer.daemon = True
+        self.waveformDataTimer.start()
+
+    def update_waveform(self):
+        self.set_curve_data_signal.emit(self.waveform_values)
+        self.set_curve_pos_signal.emit(self.ptr)
+        self.update_waveform_signal.emit(self.waveform_values_dict)
+        self.waveformTimer = Timer((self.TIMEOUT+80)/1000, function=self.update_waveform)
         self.waveformTimer.daemon = True
         self.waveformTimer.start()
 
@@ -127,7 +133,8 @@ class GraphicsController(QtCore.QObject):
     def startAll(self):
         self.__mainWindow.ui.start_btn.setEnabled(False)
         self.startMicrophone()
-        self.startWaveform()
+        self.startDataRetrieving()
+        self.startWaveformUpdate()
         self.start_fft_plot()
         self.start_spectrogram()
         self.running = True
@@ -136,21 +143,31 @@ class GraphicsController(QtCore.QObject):
     def stopAll(self):
         if self.running:
             self.__mainWindow.ui.start_btn.setEnabled(True)
-            self.stopWaveform()
+            self.stopWaveformDataRtv()
+            self.stopWaveformUpdate()
             self.stop_fft_plot()
             self.stop_spectrogram()
             self.recorder.stop = True
             self.running = False
 
-    def startWaveform(self):
+    def startDataRetrieving(self):
         # self.waveformTimer = QtCore.QTimer()
-        self.waveformTimer = Timer(self.TIMEOUT/1000, function=self.update_waveform)
+        self.last_time = time()
+        self.waveformDataTimer = Timer(self.TIMEOUT/1000, function=self.retrieve_waveform_data)
         # self.waveformTimer.timeout.connect(timerCallback)
+        self.waveformDataTimer.daemon = True
+        self.waveformDataTimer.start()
+
+    def startWaveformUpdate(self):
+        self.waveformTimer = Timer((self.TIMEOUT+80)/1000, function=self.update_waveform)
         self.waveformTimer.daemon = True
         self.waveformTimer.start()
-    
-    def stopWaveform(self):
+
+    def stopWaveformUpdate(self):
         self.waveformTimer.cancel()
+    
+    def stopWaveformDataRtv(self):
+        self.waveformDataTimer.cancel()
 
     def createFftPlot(self):
         self.fft_plot = pg.PlotWidget(title='Transformada de Fourier')
