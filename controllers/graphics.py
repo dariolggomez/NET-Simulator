@@ -20,6 +20,8 @@ class GraphicsController(QtCore.QObject):
     set_curve_data_signal = Signal(list)
     set_curve_pos_signal = Signal(int)
     set_fttCurve_data_signal = Signal(list)
+    set_waterfall_image_signal = Signal(list)
+    set_waterfall_fps_signal = Signal(float)
     def __init__(self, parent) -> None:
         super().__init__()
         self.__mainWindow = parent
@@ -38,6 +40,8 @@ class GraphicsController(QtCore.QObject):
         self.set_curve_data_signal.connect(self.set_curve_data)
         self.set_curve_pos_signal.connect(self.set_curve_pos)
         self.set_fttCurve_data_signal.connect(self.set_fftCurve_data)
+        self.set_waterfall_image_signal.connect(self.setWaterfallImage)
+        self.set_waterfall_fps_signal.connect(self.setWaterfallPlotFps)
 
     def generatePgColormap(self, cm_name):
         """Converts a matplotlib colormap to a pyqtgraph colormap."""
@@ -53,10 +57,10 @@ class GraphicsController(QtCore.QObject):
         self.CHUNKSIZE = 1024
         self.SAMPLE_RATE = 44100
         self.TIME_VECTOR = np.arange(self.CHUNKSIZE) / self.SAMPLE_RATE
-        self.N_FFT = 2048
+        self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 101
+        self.TIMEOUT = 71
         self.fps = None
         self.EPS = 1e-8
         self.ptr = 0
@@ -121,6 +125,7 @@ class GraphicsController(QtCore.QObject):
     
     @Slot()
     def startAll(self):
+        self.__mainWindow.ui.start_btn.setEnabled(False)
         self.startMicrophone()
         self.startWaveform()
         self.start_fft_plot()
@@ -130,6 +135,7 @@ class GraphicsController(QtCore.QObject):
     @Slot()
     def stopAll(self):
         if self.running:
+            self.__mainWindow.ui.start_btn.setEnabled(True)
             self.stopWaveform()
             self.stop_fft_plot()
             self.stop_spectrogram()
@@ -185,7 +191,7 @@ class GraphicsController(QtCore.QObject):
     def start_fft_plot(self):
         self.timer_fft = QtCore.QTimer()
         self.timer_fft.timeout.connect(self.start_fft_updater_thread)
-        self.timer_fft.start(self.TIMEOUT)
+        self.timer_fft.start(self.TIMEOUT+80)
 
     def stop_fft_plot(self):
         self.timer_fft.stop()
@@ -193,7 +199,7 @@ class GraphicsController(QtCore.QObject):
     # win.nextRow()
     def create_spectrogram_graphic(self):
         # image_data = np.random.rand(20, 20)
-        self.waterfall_plot = pg.PlotWidget(title='Waterfall plot', colspan=2)
+        self.waterfall_plot = pg.PlotWidget(title='Espectrograma', colspan=2)
         self.waterfall_plot.setLabel('left', "Frecuencia", units='Hz')
         self.waterfall_plot.showAxis('bottom', False)
         # waterfall_plot.setLabel('bottom', "Time", units='s')
@@ -218,24 +224,37 @@ class GraphicsController(QtCore.QObject):
                 arr = arr[:, np.newaxis]
             max = arr.max()
             min = max / 10
-            self.waterfall_image.setImage(arr, levels=(min, max), autoLevels=False)
-            now = perf_counter()
-            dt = now - self.last_time
-            self.last_time = now
-            if self.fps is None:
-                self.fps = 1.0/dt
-            else:
-                s = np.clip(dt*3., 0, 1)
-                self.fps = self.fps * (1-s) + (1.0/dt) * s
-            self.waterfall_plot.setTitle('%0.2f fps' % self.fps)
+            values = [arr,min,max]
+            # self.waterfall_image.setImage(arr, levels=(min, max), autoLevels=False)
+            self.set_waterfall_image_signal.emit(values)
+            # now = perf_counter()
+            # dt = now - self.last_time
+            # self.last_time = now
+            # if self.fps is None:
+            #     self.fps = 1.0/dt
+            # else:
+            #     s = np.clip(dt*3., 0, 1)
+            #     self.fps = self.fps * (1-s) + (1.0/dt) * s
+            # self.waterfall_plot.setTitle('%0.2f fps' % self.fps)
+            # self.set_waterfall_fps_signal.emit(self.fps)
+        self.timer_waterfall = Timer((self.TIMEOUT+1000)/1000, function=self.update_waterfall)
+        self.timer_waterfall.daemon = True
+        self.timer_waterfall.start()
+
+    def setWaterfallImage(self, values):
+        self.waterfall_image.setImage(values[0], levels=(values[1], values[2]), autoLevels=False)
+
+    def setWaterfallPlotFps(self, fps):
+        self.waterfall_plot.setTitle('%0.2f fps' % fps)
 
     def start_spectrogram(self):
-        self.timer_waterfall = QtCore.QTimer()
-        self.timer_waterfall.timeout.connect(self.update_waterfall)
-        self.timer_waterfall.start(self.TIMEOUT)
+        self.timer_waterfall = Timer(self.TIMEOUT/1000, function=self.update_waterfall)
+        # self.timer_waterfall.timeout.connect(self.update_waterfall)
+        self.timer_waterfall.daemon = True
+        self.timer_waterfall.start()
     
     def stop_spectrogram(self):
-        self.timer_waterfall.stop()
+        self.timer_waterfall.cancel()
 
     # if __name__ == '__main__':
     #     import sys
