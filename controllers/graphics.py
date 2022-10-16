@@ -64,6 +64,7 @@ class GraphicsController(QtCore.QObject):
         self.TIMEOUT = 31
         self.fps = None
         self.EPS = 1e-8
+        self.recorder = MicrophoneRecorder(sample_rate=self.SAMPLE_RATE, chunksize=self.CHUNKSIZE)
         self.ptr = 0
         self.last_time = 0.0
         self.t_end = 0.0
@@ -71,7 +72,6 @@ class GraphicsController(QtCore.QObject):
         self.first_run = True
     
     def startMicrophone(self):
-        self.recorder = MicrophoneRecorder(sample_rate=self.SAMPLE_RATE, chunksize=self.CHUNKSIZE)
         self.recorder.start()
 
     @Slot()
@@ -92,7 +92,7 @@ class GraphicsController(QtCore.QObject):
             self.stopWaveformUpdate()
             self.stop_fft_plot()
             self.stop_spectrogram()
-            self.recorder.stop = True
+            self.recorder.stream.stop_stream()
             self.running = False
 
     # win = pg.GraphicsLayoutWidget(show=True)
