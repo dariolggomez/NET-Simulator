@@ -16,7 +16,7 @@ from threading import Thread, Timer
 
 class GraphicsController(QtCore.QObject):
     __mainWindow = None
-    update_waveform_signal = Signal(object)
+    update_board_waveform_signal = Signal(object)
     set_curve_data_signal = Signal(list)
     set_curve_pos_signal = Signal(int)
     set_fttCurve_data_signal = Signal(list)
@@ -36,7 +36,7 @@ class GraphicsController(QtCore.QObject):
         # pg.setConfigOption('enableExperimental', True)
 
     def connectSignals(self):
-        self.update_waveform_signal.connect(self.__mainWindow.update_board_waveform)
+        self.update_board_waveform_signal.connect(self.__mainWindow.update_board_waveform)
         self.set_curve_data_signal.connect(self.set_curve_data)
         self.set_curve_pos_signal.connect(self.set_curve_pos)
         self.set_fttCurve_data_signal.connect(self.set_fftCurve_data)
@@ -60,7 +60,7 @@ class GraphicsController(QtCore.QObject):
         self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 1
+        self.TIMEOUT = 31
         self.fps = None
         self.EPS = 1e-8
         self.ptr = 0
@@ -118,8 +118,8 @@ class GraphicsController(QtCore.QObject):
     def update_waveform(self):
         self.set_curve_data_signal.emit(self.waveform_values)
         self.set_curve_pos_signal.emit(self.ptr)
-        self.update_waveform_signal.emit(self.waveform_values_dict)
-        self.waveformTimer = Timer((self.TIMEOUT+80)/1000, function=self.update_waveform)
+        self.update_board_waveform_signal.emit(self.waveform_values_dict)
+        self.waveformTimer = Timer((self.TIMEOUT+60)/1000, function=self.update_waveform)
         self.waveformTimer.daemon = True
         self.waveformTimer.start()
 
@@ -159,7 +159,7 @@ class GraphicsController(QtCore.QObject):
         self.waveformDataTimer.start()
 
     def startWaveformUpdate(self):
-        self.waveformTimer = Timer((self.TIMEOUT+80)/1000, function=self.update_waveform)
+        self.waveformTimer = Timer((self.TIMEOUT+60)/1000, function=self.update_waveform)
         self.waveformTimer.daemon = True
         self.waveformTimer.start()
 
@@ -208,7 +208,7 @@ class GraphicsController(QtCore.QObject):
     def start_fft_plot(self):
         self.timer_fft = QtCore.QTimer()
         self.timer_fft.timeout.connect(self.start_fft_updater_thread)
-        self.timer_fft.start(self.TIMEOUT+80)
+        self.timer_fft.start(self.TIMEOUT+100)
 
     def stop_fft_plot(self):
         self.timer_fft.stop()
