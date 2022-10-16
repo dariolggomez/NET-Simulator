@@ -65,6 +65,7 @@ class GraphicsController(QtCore.QObject):
         self.fps = None
         self.EPS = 1e-8
         self.recorder = MicrophoneRecorder(sample_rate=self.SAMPLE_RATE, chunksize=self.CHUNKSIZE)
+        self.recorder.stream.stop_stream()
         self.ptr = 0
         self.last_time = 0.0
         self.t_end = 0.0
