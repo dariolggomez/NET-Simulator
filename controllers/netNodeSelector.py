@@ -37,7 +37,7 @@ class NetSelectorController(QMainWindow):
         self.connectToGetNetNodesInUse()
 
         #Connections
-        self.ui.create_node_btn.clicked.connect(self.showCreateNetNodeDialog)
+        self.ui.create_node_btn.clicked.connect(self.connectToRequestCreation)
         self.ui.eliminate_node_btn.clicked.connect(self.eliminateNetTableCurrentRow)
         self.ui.use_node_btn.clicked.connect(self.connectToCheckNetNodeInUse)
         self.ui.update_node_btn.clicked.connect(self.connectToGetNetNodesInUse)
@@ -111,13 +111,16 @@ class NetSelectorController(QMainWindow):
 
     def returnStatus(self):
         return GLOBAL_STATE
-
+    @Slot()
     def connectToGetNetNodesInUse(self):
         # connectionThread = Thread(target=client.start_client, args=("127.0.0.1", 65432, "get_netnodes_in_use", "", self))
         # connectionThread.daemon = True
         # connectionThread.start()
         self.client.start_client("127.0.0.1", 65432, "get_netnodes_in_use", "")
 
+    def connectToRequestCreation(self):
+        self.client.start_client("127.0.0.1", 65432, "request_creation", "")
+    
     def connectToCheckNetNodeInUse(self):
         item = self.ui.netNodeTableWidget.currentItem()
         if item is not None:

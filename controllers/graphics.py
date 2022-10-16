@@ -61,7 +61,7 @@ class GraphicsController(QtCore.QObject):
         self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 31
+        self.TIMEOUT = 21
         self.fps = None
         self.EPS = 1e-8
         self.recorder = MicrophoneRecorder(sample_rate=self.SAMPLE_RATE, chunksize=self.CHUNKSIZE)
@@ -142,7 +142,7 @@ class GraphicsController(QtCore.QObject):
         self.set_curve_data_signal.emit(self.waveform_values)
         self.set_curve_pos_signal.emit(self.ptr)
         self.update_board_waveform_signal.emit(self.waveform_values_dict)
-        self.waveformTimer = Timer((self.TIMEOUT+60)/1000, function=self.update_waveform)
+        self.waveformTimer = Timer((self.TIMEOUT+70)/1000, function=self.update_waveform)
         self.waveformTimer.daemon = True
         self.waveformTimer.start()
 
@@ -161,7 +161,7 @@ class GraphicsController(QtCore.QObject):
         self.waveformDataTimer.start()
 
     def startWaveformUpdate(self):
-        self.waveformTimer = Timer((self.TIMEOUT+60)/1000, function=self.update_waveform)
+        self.waveformTimer = Timer((self.TIMEOUT+70)/1000, function=self.update_waveform)
         self.waveformTimer.daemon = True
         self.waveformTimer.start()
 
@@ -202,7 +202,7 @@ class GraphicsController(QtCore.QObject):
             self.set_fttCurve_data_signal.emit(values)
             # self.fft_plot.enableAutoRange('y', True)
             self.waterfall_data.append(np.log10(X + 1e-12))
-        self.timer_fft = Timer((self.TIMEOUT+100)/1000, function=self.update_fft)
+        self.timer_fft = Timer((self.TIMEOUT+110)/1000, function=self.update_fft)
         self.timer_fft.daemon = True
         self.timer_fft.start()
 
@@ -211,7 +211,7 @@ class GraphicsController(QtCore.QObject):
         self.fft_plot.enableAutoRange('y', True)
 
     def start_fft_plot(self):
-        self.timer_fft = Timer((self.TIMEOUT+100)/1000, function=self.update_fft)
+        self.timer_fft = Timer((self.TIMEOUT+110)/1000, function=self.update_fft)
         # self.timer_fft.timeout.connect(self.start_fft_updater_thread)
         self.timer_fft.daemon = True
         self.timer_fft.start()
@@ -271,7 +271,7 @@ class GraphicsController(QtCore.QObject):
         self.waterfall_plot.setTitle('%0.2f fps' % fps)
 
     def start_spectrogram(self):
-        self.timer_waterfall = Timer(self.TIMEOUT/1000, function=self.update_waterfall)
+        self.timer_waterfall = Timer((self.TIMEOUT+1000)/1000, function=self.update_waterfall)
         # self.timer_waterfall.timeout.connect(self.update_waterfall)
         self.timer_waterfall.daemon = True
         self.timer_waterfall.start()

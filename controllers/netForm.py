@@ -6,7 +6,8 @@ from visuals.ui_netForm import Ui_formNet
 from validator import validate
 from services import net_service
 
-class NetFormController(QDialog):
+class NetFormController(QDialog, QObject):
+    loadNetTableSignal = Signal()
     def __init__(self, caller):
         super().__init__()
 
@@ -18,6 +19,7 @@ class NetFormController(QDialog):
         #Connections
         self.ui.acceptBtn.clicked.connect(lambda: self.createNetNode(caller))
         self.ui.cancelBtn.clicked.connect(self.close)
+        self.loadNetTableSignal.connect(caller.connectToGetNetNodesInUse)
 
     def createNetNode(self, caller):
         nodename = self.ui.nodenameLineEdit.text()
@@ -29,7 +31,7 @@ class NetFormController(QDialog):
         if(result):
             if(not net_service.checkNodenameExists(nodename)):
                 net_service.create_netNode(nodename, city)
-                caller.loadNetNodeTable()
+                self.loadNetTableSignal.emit()
                 self.close()
             else:
                 msg = QMessageBox()

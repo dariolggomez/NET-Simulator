@@ -12,6 +12,7 @@ class Message(QtCore.QObject):
     loadNetNodeTableSignal = QtCore.Signal()
     netNodeInUse = QtCore.Signal()
     netNodeNotInUse = QtCore.Signal()
+    showCreationFormSignal = QtCore.Signal()
     def __init__(self, selector, sock, addr, request, controller):
         super().__init__()
         self.selector = selector
@@ -31,6 +32,7 @@ class Message(QtCore.QObject):
             self.loadNetNodeTableSignal.connect(self.controller.loadNetNodeTable)
             self.netNodeInUse.connect(self.controller.showNetNodeInUseDialog)
             self.netNodeNotInUse.connect(self.controller.useNetNode)
+            self.showCreationFormSignal.connect(self.controller.showCreateNetNodeDialog)
 
     def _set_selector_events_mask(self, mode):
         """Set selector to listen for events: mode is 'r', 'w', or 'rw'."""
@@ -111,6 +113,10 @@ class Message(QtCore.QObject):
             else:
                 self.controller.netNodesIdInUse.append(netNodeId)
                 self.netNodeInUse.emit()
+        elif action == "request_creation":
+            result = content.get("result")
+            if result == True:
+                self.showCreationFormSignal.emit()
         # else:
             # print(f"Got invalid action '{action}'")
 
