@@ -450,3 +450,7 @@ class MainWindow(QMainWindow):
     def update_board_fft(self, values):
         self.clientController.start_client(self.host, self.port, "update_fft",
                                             values)
+    @Slot()
+    def update_board_spectrogram(self, values):
+        self.clientController.start_client(self.host, self.port, "update_spectrogram",
+                                            values)

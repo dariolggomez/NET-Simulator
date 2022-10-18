@@ -18,6 +18,7 @@ class GraphicsController(QtCore.QObject):
     __mainWindow = None
     update_board_waveform_signal = Signal(object)
     update_board_fft_signal = Signal(object)
+    update_board_spectrogram_signal = Signal(object)
     set_curve_data_signal = Signal(list)
     set_curve_pos_signal = Signal(int)
     set_fttCurve_data_signal = Signal(list)
@@ -39,11 +40,12 @@ class GraphicsController(QtCore.QObject):
     def connectSignals(self):
         self.update_board_waveform_signal.connect(self.__mainWindow.update_board_waveform)
         self.update_board_fft_signal.connect(self.__mainWindow.update_board_fft)
+        self.update_board_spectrogram_signal.connect(self.__mainWindow.update_board_spectrogram)
         self.set_curve_data_signal.connect(self.set_curve_data)
         self.set_curve_pos_signal.connect(self.set_curve_pos)
         self.set_fttCurve_data_signal.connect(self.set_fftCurve_data)
         self.set_waterfall_image_signal.connect(self.setWaterfallImage)
-        self.set_waterfall_fps_signal.connect(self.setWaterfallPlotFps)
+        # self.set_waterfall_fps_signal.connect(self.setWaterfallPlotFps)
 
     def generatePgColormap(self, cm_name):
         """Converts a matplotlib colormap to a pyqtgraph colormap."""
@@ -204,7 +206,9 @@ class GraphicsController(QtCore.QObject):
             self.values = [self.FREQ_VECTOR, magn]
             self.valuesBoardFFt = [self.FREQ_VECTOR.tolist(), magn.tolist()]
             # self.fft_plot.enableAutoRange('y', True)
-            self.waterfall_data.append(np.log10(X + 1e-12))
+            data = np.log10(X + 1e-12)
+            self.waterfall_data.append(data)
+            self.update_board_spectrogram_signal.emit(data.tolist())
         self.timer_fft_processing = Timer((self.TIMEOUT+20)/1000, function=self.process_fft_data)
         self.timer_fft_processing.daemon = True
         self.timer_fft_processing.start()
@@ -285,8 +289,8 @@ class GraphicsController(QtCore.QObject):
     def setWaterfallImage(self, values):
         self.waterfall_image.setImage(values[0], levels=(values[1], values[2]), autoLevels=False)
 
-    def setWaterfallPlotFps(self, fps):
-        self.waterfall_plot.setTitle('%0.2f fps' % fps)
+    # def setWaterfallPlotFps(self, fps):
+    #     self.waterfall_plot.setTitle('%0.2f fps' % fps)
 
     def start_spectrogram(self):
         self.timer_waterfall = Timer((self.TIMEOUT+1000)/1000, function=self.update_waterfall)
