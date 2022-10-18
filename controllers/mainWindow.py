@@ -225,6 +225,7 @@ class MainWindow(QMainWindow):
 
         # Disconnect Node
         if btnWidget.objectName() == "btn_disconnect":
+            self.graphicsController.stopAll()
             self.disconnectCurrentNetNode()
             nodeSelector = netNodeSelector.NetSelectorController()
             nodeSelector.show()
@@ -433,6 +434,7 @@ class MainWindow(QMainWindow):
             msgBox.exec_()
 
     def closeApp(self):
+        self.graphicsController.stopAll()
         self.disconnectCurrentNetNode()
         self.close()
 
@@ -443,3 +445,8 @@ class MainWindow(QMainWindow):
     def update_board_waveform(self, values):
         self.clientController.start_client(self.host, self.port, "update_waveform",
                                            values)
+
+    @Slot()
+    def update_board_fft(self, values):
+        self.clientController.start_client(self.host, self.port, "update_fft",
+                                            values)

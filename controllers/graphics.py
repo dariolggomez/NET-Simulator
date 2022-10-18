@@ -38,6 +38,7 @@ class GraphicsController(QtCore.QObject):
 
     def connectSignals(self):
         self.update_board_waveform_signal.connect(self.__mainWindow.update_board_waveform)
+        self.update_board_fft_signal.connect(self.__mainWindow.update_board_fft)
         self.set_curve_data_signal.connect(self.set_curve_data)
         self.set_curve_pos_signal.connect(self.set_curve_pos)
         self.set_fttCurve_data_signal.connect(self.set_fftCurve_data)
@@ -61,7 +62,7 @@ class GraphicsController(QtCore.QObject):
         self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 21
+        self.TIMEOUT = 51
         self.fps = None
         self.EPS = 1e-8
         self.recorder = MicrophoneRecorder(sample_rate=self.SAMPLE_RATE, chunksize=self.CHUNKSIZE)
@@ -81,7 +82,8 @@ class GraphicsController(QtCore.QObject):
         self.startMicrophone()
         self.startDataRetrieving()
         self.startWaveformUpdate()
-        self.start_fft_plot()
+        self.start_fft_data_processing()
+        self.start_fft_update()
         self.start_spectrogram()
         self.running = True
     
@@ -91,6 +93,7 @@ class GraphicsController(QtCore.QObject):
             self.__mainWindow.ui.start_btn.setEnabled(True)
             self.stopWaveformDataRtv()
             self.stopWaveformUpdate()
+            self.stop_fft_processing()
             self.stop_fft_plot()
             self.stop_spectrogram()
             self.recorder.stream.stop_stream()
@@ -190,7 +193,7 @@ class GraphicsController(QtCore.QObject):
     #     fft_updater_thread.daemon = True
     #     fft_updater_thread.start()
 
-    def update_fft(self):
+    def process_fft_data(self):
         if self.first_run:
             self.data = np.zeros((self.recorder.chunksize,), dtype=np.int32)
             self.first_run = False
@@ -198,26 +201,41 @@ class GraphicsController(QtCore.QObject):
             X = np.abs(np.fft.rfft(np.hanning(self.data.size) * self.data, n=self.N_FFT))
             magn = 20 * np.log10(X + self.EPS)
             # self.fft_curve.setData(x=self.FREQ_VECTOR, y=magn)
-            values = [self.FREQ_VECTOR, magn]
-            self.set_fttCurve_data_signal.emit(values)
+            self.values = [self.FREQ_VECTOR, magn]
+            self.valuesBoardFFt = [self.FREQ_VECTOR.tolist(), magn.tolist()]
             # self.fft_plot.enableAutoRange('y', True)
             self.waterfall_data.append(np.log10(X + 1e-12))
-        self.timer_fft = Timer((self.TIMEOUT+110)/1000, function=self.update_fft)
-        self.timer_fft.daemon = True
-        self.timer_fft.start()
+        self.timer_fft_processing = Timer((self.TIMEOUT+20)/1000, function=self.process_fft_data)
+        self.timer_fft_processing.daemon = True
+        self.timer_fft_processing.start()
 
     def set_fftCurve_data(self, values):
         self.fft_curve.setData(x=values[0], y=values[1])
         self.fft_plot.enableAutoRange('y', True)
 
-    def start_fft_plot(self):
-        self.timer_fft = Timer((self.TIMEOUT+110)/1000, function=self.update_fft)
+    def update_fft_plot(self):
+        self.set_fttCurve_data_signal.emit(self.values)
+        self.update_board_fft_signal.emit(self.valuesBoardFFt)
+        self.update_fft_timer = Timer((self.TIMEOUT+140)/1000, function=self.update_fft_plot)
+        self.update_fft_timer.daemon = True
+        self.update_fft_timer.start()
+
+    def start_fft_data_processing(self):
+        self.timer_fft_processing = Timer((self.TIMEOUT+20)/1000, function=self.process_fft_data)
         # self.timer_fft.timeout.connect(self.start_fft_updater_thread)
-        self.timer_fft.daemon = True
-        self.timer_fft.start()
+        self.timer_fft_processing.daemon = True
+        self.timer_fft_processing.start()
+
+    def start_fft_update(self):
+        self.update_fft_timer = Timer((self.TIMEOUT+140)/1000, function=self.update_fft_plot)
+        self.update_fft_timer.daemon = True
+        self.update_fft_timer.start()
+
+    def stop_fft_processing(self):
+        self.timer_fft_processing.cancel()
 
     def stop_fft_plot(self):
-        self.timer_fft.cancel()
+        self.update_fft_timer.cancel()
 
     # win.nextRow()
     def create_spectrogram_graphic(self):
