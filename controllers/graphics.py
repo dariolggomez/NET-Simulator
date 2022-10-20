@@ -147,7 +147,7 @@ class GraphicsController(QtCore.QObject):
         self.set_curve_data_signal.emit(self.waveform_values)
         self.set_curve_pos_signal.emit(self.ptr)
         self.update_board_waveform_signal.emit(self.waveform_values_dict)
-        self.waveformTimer = Timer((self.TIMEOUT+70)/1000, function=self.update_waveform)
+        self.waveformTimer = Timer((self.TIMEOUT+100)/1000, function=self.update_waveform)
         self.waveformTimer.daemon = True
         self.waveformTimer.start()
 
@@ -166,7 +166,7 @@ class GraphicsController(QtCore.QObject):
         self.waveformDataTimer.start()
 
     def startWaveformUpdate(self):
-        self.waveformTimer = Timer((self.TIMEOUT+70)/1000, function=self.update_waveform)
+        self.waveformTimer = Timer((self.TIMEOUT+100)/1000, function=self.update_waveform)
         self.waveformTimer.daemon = True
         self.waveformTimer.start()
 
@@ -209,7 +209,7 @@ class GraphicsController(QtCore.QObject):
             data = np.log10(X + 1e-12)
             self.waterfall_data.append(data)
             self.update_board_spectrogram_signal.emit(data.tolist())
-        self.timer_fft_processing = Timer((self.TIMEOUT+20)/1000, function=self.process_fft_data)
+        self.timer_fft_processing = Timer((self.TIMEOUT+80)/1000, function=self.process_fft_data)
         self.timer_fft_processing.daemon = True
         self.timer_fft_processing.start()
 
@@ -220,18 +220,18 @@ class GraphicsController(QtCore.QObject):
     def update_fft_plot(self):
         self.set_fttCurve_data_signal.emit(self.values)
         self.update_board_fft_signal.emit(self.valuesBoardFFt)
-        self.update_fft_timer = Timer((self.TIMEOUT+140)/1000, function=self.update_fft_plot)
+        self.update_fft_timer = Timer((self.TIMEOUT+200)/1000, function=self.update_fft_plot)
         self.update_fft_timer.daemon = True
         self.update_fft_timer.start()
 
     def start_fft_data_processing(self):
-        self.timer_fft_processing = Timer((self.TIMEOUT+20)/1000, function=self.process_fft_data)
+        self.timer_fft_processing = Timer((self.TIMEOUT+80)/1000, function=self.process_fft_data)
         # self.timer_fft.timeout.connect(self.start_fft_updater_thread)
         self.timer_fft_processing.daemon = True
         self.timer_fft_processing.start()
 
     def start_fft_update(self):
-        self.update_fft_timer = Timer((self.TIMEOUT+140)/1000, function=self.update_fft_plot)
+        self.update_fft_timer = Timer((self.TIMEOUT+200)/1000, function=self.update_fft_plot)
         self.update_fft_timer.daemon = True
         self.update_fft_timer.start()
 
