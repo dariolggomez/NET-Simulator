@@ -230,6 +230,7 @@ class MainWindow(QMainWindow):
             nodeSelector = netNodeSelector.NetSelectorController()
             nodeSelector.show()
             self.close()
+            self.destroy()
 
         # Rt Nodes Management
         if btnWidget.objectName() == "btn_rt_nodes":

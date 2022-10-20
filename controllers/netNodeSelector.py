@@ -190,7 +190,7 @@ class NetSelectorController(QMainWindow):
             msg = QMessageBox()
             msg.setText("Debe seleccionar un nodo.")
             msg.exec_()
-
+    @Slot()
     def useNetNode(self):
         item = self.ui.netNodeTableWidget.currentItem()
         if(item is not None):
@@ -201,6 +201,7 @@ class NetSelectorController(QMainWindow):
             mainWindow.activateWindow()
             mainWindow.raise_()
             self.close()
+            self.destroy()
         else:
             msg = QMessageBox()
             msg.setWindowTitle("Información")
