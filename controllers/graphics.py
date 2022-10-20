@@ -64,7 +64,7 @@ class GraphicsController(QtCore.QObject):
         self.N_FFT = 1024
         self.FREQ_VECTOR = np.fft.rfftfreq(self.N_FFT, d=self.TIME_VECTOR[1] - self.TIME_VECTOR[0])
         self.WATERFALL_FRAMES = int(250 * 2048 // self.N_FFT)
-        self.TIMEOUT = 51
+        self.TIMEOUT = 21
         self.fps = None
         self.EPS = 1e-8
         self.recorder = MicrophoneRecorder(sample_rate=self.SAMPLE_RATE, chunksize=self.CHUNKSIZE)

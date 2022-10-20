@@ -13,6 +13,7 @@ class ClientController(QtCore.QObject):
     connectionToServerFailed = QtCore.Signal()
     def __init__(self, controller):
         super().__init__()
+        self.create_event_loop_thread()
         self.sel = selectors.DefaultSelector()
         self.controllerInstance = controller
         
@@ -35,6 +36,9 @@ class ClientController(QtCore.QObject):
         #         content=bytes(action + value, encoding="utf-8"),
         #     )
 
+    def create_event_loop_thread(self):
+        self.connectionThread = threading.Thread(target=self.start_event_loop)
+        self.connectionThread.daemon = False
 
     def start_connection(self, host, port, request):
         addr = (host, port)
@@ -55,9 +59,10 @@ class ClientController(QtCore.QObject):
         action, value = action, value
         request = self.create_request(action, value)
         self.start_connection(host, port, request)
-        connectionThread = threading.Thread(target=self.start_event_loop)
-        connectionThread.daemon = False
-        connectionThread.start()
+        if not self.connectionThread.is_alive():
+            self.connectionThread = threading.Thread(target=self.start_event_loop)
+            self.connectionThread.daemon = False
+            self.connectionThread.start()
 
     def start_event_loop(self):
         try:
