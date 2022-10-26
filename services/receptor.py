@@ -15,6 +15,7 @@ class MicrophoneRecorder(object):
                                   rate=self.sample_rate,
                                   input=True,
                                   frames_per_buffer=self.chunksize,
+                                  start=False,
                                   stream_callback=self.new_frame)
         self.lock = threading.Lock()
         self.stop = False
