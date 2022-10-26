@@ -85,7 +85,7 @@ class ClientController(QtCore.QObject):
                             f"Main: Error: Exception for {message.addr}:\n"
                             f"{traceback.format_exc()}"
                         )
-                        if e.__class__ == OSError and e.winerror == 10057:
+                        if e.__class__ == ssl.SSLEOFError and e.args[0] == 8:
                             print("No se pudo conectar al servidor")
                             self.connectionToServerFailed.emit() 
                         message.close()
