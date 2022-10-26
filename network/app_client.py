@@ -2,6 +2,7 @@
 
 import sys
 import socket
+import ssl
 import selectors
 import traceback
 import threading
@@ -14,6 +15,7 @@ class ClientController(QtCore.QObject):
     def __init__(self, controller):
         super().__init__()
         self.create_event_loop_thread()
+        self.create_ssl_context()
         self.sel = selectors.DefaultSelector()
         self.controllerInstance = controller
         
@@ -36,6 +38,10 @@ class ClientController(QtCore.QObject):
         #         content=bytes(action + value, encoding="utf-8"),
         #     )
 
+    def create_ssl_context(self):
+        self.ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        self.ssl_context.load_verify_locations("security/ca.crt")
+
     def create_event_loop_thread(self):
         self.connectionThread = threading.Thread(target=self.start_event_loop)
         self.connectionThread.daemon = False
@@ -44,11 +50,12 @@ class ClientController(QtCore.QObject):
         addr = (host, port)
         # print(f"Starting connection to {addr}")
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.setblocking(False)
-        sock.connect_ex(addr)
+        ssl_sock = self.ssl_context.wrap_socket(sock, server_hostname="heatsserver")
+        ssl_sock.setblocking(False)
+        ssl_sock.connect_ex(addr)
         events = selectors.EVENT_READ | selectors.EVENT_WRITE
-        message = libclient.Message(self.sel, sock, addr, request, self.controllerInstance)
-        self.sel.register(sock, events, data=message)
+        message = libclient.Message(self.sel, ssl_sock, addr, request, self.controllerInstance)
+        self.sel.register(ssl_sock, events, data=message)
 
 
     # if len(sys.argv) != 5:

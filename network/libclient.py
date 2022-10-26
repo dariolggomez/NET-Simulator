@@ -3,6 +3,8 @@ import selectors
 import json
 import io
 import struct
+import socket
+import ssl
 import controllers.netNodeSelector as netselcontroller
 import PySide2.QtCore as QtCore
 import controllers.netNodeSelector as netNodeSelector
@@ -50,8 +52,10 @@ class Message(QtCore.QObject):
         try:
             # Should be ready to read
             data = self.sock.recv(4096)
-        except BlockingIOError:
+        except ssl.SSLError as e:
             # Resource temporarily unavailable (errno EWOULDBLOCK)
+            if e.errno != ssl.SSL_ERROR_WANT_READ and e.errno != ssl.SSL_ERROR_WANT_WRITE:
+                raise
             pass
         else:
             if data:
@@ -65,8 +69,10 @@ class Message(QtCore.QObject):
             try:
                 # Should be ready to write
                 sent = self.sock.send(self._send_buffer)
-            except BlockingIOError:
+            except ssl.SSLError as e:
                 # Resource temporarily unavailable (errno EWOULDBLOCK)
+                if e.errno != ssl.SSL_ERROR_WANT_READ and e.errno != ssl.SSL_ERROR_WANT_WRITE:
+                    raise
                 pass
             else:
                 self._send_buffer = self._send_buffer[sent:]
