@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowscyxhw.ui'
+## Form generated from reading UI file 'mainWindowIPGAJS.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1273,13 +1273,25 @@ class Ui_MainWindow(object):
 
         self.frame_interactions_btns = QFrame(self.downsideGraphics)
         self.frame_interactions_btns.setObjectName(u"frame_interactions_btns")
-        self.frame_interactions_btns.setMaximumSize(QSize(150, 16777215))
-        self.frame_interactions_btns.setFrameShape(QFrame.StyledPanel)
+        self.frame_interactions_btns.setMaximumSize(QSize(200, 16777215))
+        self.frame_interactions_btns.setFrameShape(QFrame.NoFrame)
         self.frame_interactions_btns.setFrameShadow(QFrame.Raised)
         self.verticalLayout_29 = QVBoxLayout(self.frame_interactions_btns)
-        self.verticalLayout_29.setSpacing(8)
+        self.verticalLayout_29.setSpacing(2)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
-        self.verticalLayout_29.setContentsMargins(-1, 0, -1, 110)
+        self.verticalLayout_29.setContentsMargins(-1, 0, -1, 30)
+        self.label_receptor = QLabel(self.frame_interactions_btns)
+        self.label_receptor.setObjectName(u"label_receptor")
+        self.label_receptor.setMaximumSize(QSize(16777215, 25))
+        self.label_receptor.setFont(font4)
+
+        self.verticalLayout_29.addWidget(self.label_receptor)
+
+        self.input_devices = QComboBox(self.frame_interactions_btns)
+        self.input_devices.setObjectName(u"input_devices")
+
+        self.verticalLayout_29.addWidget(self.input_devices)
+
         self.start_btn = QPushButton(self.frame_interactions_btns)
         self.start_btn.setObjectName(u"start_btn")
         self.start_btn.setMinimumSize(QSize(65, 30))
@@ -2042,6 +2054,7 @@ class Ui_MainWindow(object):
         self.edit_rtnode_btn.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.create_rtnode_btn.setText(QCoreApplication.translate("MainWindow", u"Crear", None))
         self.delete_rtnode_btn.setText(QCoreApplication.translate("MainWindow", u"Eliminar", None))
+        self.label_receptor.setText(QCoreApplication.translate("MainWindow", u"Receptor:", None))
         self.start_btn.setText(QCoreApplication.translate("MainWindow", u"Iniciar", None))
         self.stop_btn.setText(QCoreApplication.translate("MainWindow", u"Detener", None))
         self.reset_btn.setText(QCoreApplication.translate("MainWindow", u"Restablecer", None))

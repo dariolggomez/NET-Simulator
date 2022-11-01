@@ -2648,26 +2648,50 @@ QPushButton:pressed {
                            <widget class="QFrame" name="frame_interactions_btns">
                             <property name="maximumSize">
                              <size>
-                              <width>150</width>
+                              <width>200</width>
                               <height>16777215</height>
                              </size>
                             </property>
                             <property name="frameShape">
-                             <enum>QFrame::StyledPanel</enum>
+                             <enum>QFrame::NoFrame</enum>
                             </property>
                             <property name="frameShadow">
                              <enum>QFrame::Raised</enum>
                             </property>
                             <layout class="QVBoxLayout" name="verticalLayout_29">
                              <property name="spacing">
-                              <number>8</number>
+                              <number>2</number>
                              </property>
                              <property name="topMargin">
                               <number>0</number>
                              </property>
                              <property name="bottomMargin">
-                              <number>110</number>
+                              <number>30</number>
                              </property>
+                             <item>
+                              <widget class="QLabel" name="label_receptor">
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>25</height>
+                                </size>
+                               </property>
+                               <property name="font">
+                                <font>
+                                 <family>Segoe UI Semibold</family>
+                                 <pointsize>10</pointsize>
+                                 <weight>75</weight>
+                                 <bold>true</bold>
+                                </font>
+                               </property>
+                               <property name="text">
+                                <string>Receptor:</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QComboBox" name="input_devices"/>
+                             </item>
                              <item>
                               <widget class="QPushButton" name="start_btn">
                                <property name="minimumSize">

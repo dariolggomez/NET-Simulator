@@ -30,6 +30,7 @@ class GraphicsController(QtCore.QObject):
         self.default_pen = pg.mkPen(width=1, color='y')
         self.default_pen.setStyle(Qt.PenStyle.SolidLine)
         self.createDefinitions()
+        self.add_input_devices()
         self.createWaveformPlot()
         self.createFftPlot()
         self.create_spectrogram_graphic()
@@ -67,13 +68,19 @@ class GraphicsController(QtCore.QObject):
         self.TIMEOUT = 21
         self.fps = None
         self.EPS = 1e-8
-        self.recorder = MicrophoneRecorder(sample_rate=self.SAMPLE_RATE, chunksize=self.CHUNKSIZE)
+        #identifying connected devices
+        self.audiosources,self.audiosourceIDs,self.PyAudioObject = MicrophoneRecorder.listaudiodevices()
+        self.recorder = MicrophoneRecorder(p=self.PyAudioObject, sample_rate=self.SAMPLE_RATE, chunksize=self.CHUNKSIZE)
         # self.recorder.stream.stop_stream()
         self.ptr = 0
         self.last_time = 0.0
         self.t_end = 0.0
         self.running = False
         self.first_run = True
+
+    def add_input_devices(self):
+        for device in self.audiosources:
+            self.__mainWindow.ui.input_devices.addItem(device)
     
     def startMicrophone(self):
         self.recorder.start()
@@ -81,6 +88,8 @@ class GraphicsController(QtCore.QObject):
     @Slot()
     def startAll(self):
         self.__mainWindow.ui.start_btn.setEnabled(False)
+        self.source_index = self.audiosourceIDs[self.__mainWindow.ui.input_devices.currentIndex()]
+        self.recorder.create_stream(self.source_index)
         self.startMicrophone()
         self.startDataRetrieving()
         self.startWaveformUpdate()
