@@ -23,7 +23,7 @@ class MainWindow(QMainWindow):
         self.port = 65432
         self.clientController = client.ClientController(self)
         print(f"Los nodos rt relacionados son: {self.__currentNetNode.rt_nodes}")
-        self.clientController.start_client("127.0.0.1", 65432, "add_node_in_use", self.__currentNetNode.id)
+        self.addNodeInUse()
         self.graphicsController = graphics.GraphicsController(self)
         #Remove Default Title Bar
         self.removeTitleBar()
@@ -455,3 +455,26 @@ class MainWindow(QMainWindow):
     def update_board_spectrogram(self, values):
         self.clientController.start_client(self.host, self.port, "update_spectrogram",
                                             values)
+
+    def addNodeInUse(self):
+        netId = self.__currentNetNode.id
+        netNodename = self.__currentNetNode.nodename
+        netCity = self.__currentNetNode.city
+        rtNodes = self.__currentNetNode.rt_nodes
+        rtNodesDictList = []
+        nodesDict = {"id": netId,
+                     "nodename": netNodename,
+                     "city": netCity}
+        for rtNode in rtNodes:
+            rtId = rtNode.id
+            rtNodename = rtNode.nodename
+            rtCity = rtNode.city
+            rtStatus = rtNode.status
+            rtDict = {"id": rtId,
+                      "nodename": rtNodename,
+                      "city": rtCity,
+                      "status": rtStatus}
+            rtNodesDictList.append(rtDict)
+        nodesDict["rtNodesList"] = rtNodesDictList
+        self.clientController.start_client("127.0.0.1", 65432, "add_node_in_use", nodesDict)
+        
