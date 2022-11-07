@@ -400,7 +400,14 @@ class MainWindow(QMainWindow):
         if(item is not None):
             rtNode = item.data(Qt.UserRole+1)
             rtNode.status = 1
+            rtNodeDict = {"id": rtNode.id,
+                          "nodename": rtNode.nodename,
+                          "city": rtNode.city,
+                          "status": rtNode.status,
+                          "net_relation_id": rtNode.net_node.id}
             try:
+                self.clientController.start_client(self.host, self.port, "update_rt_node",
+                                           rtNodeDict)
                 rt_service.update_RtNode(rtNode)
             except:
                 msgBox = QMessageBox()
@@ -420,7 +427,14 @@ class MainWindow(QMainWindow):
         if(item is not None):
             rtNode = item.data(Qt.UserRole+1)
             rtNode.status = 0
+            rtNodeDict = {"id": rtNode.id,
+                          "nodename": rtNode.nodename,
+                          "city": rtNode.city,
+                          "status": rtNode.status,
+                          "net_relation_id": rtNode.net_node.id}
             try:
+                self.clientController.start_client(self.host, self.port, "update_rt_node",
+                                           rtNodeDict)
                 rt_service.update_RtNode(rtNode)
             except:
                 msgBox = QMessageBox()
