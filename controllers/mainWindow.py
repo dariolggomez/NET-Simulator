@@ -458,17 +458,22 @@ class MainWindow(QMainWindow):
                                            self.currentNetNode.id)
     @Slot()
     def update_board_waveform(self, values):
+        values["net_sender_id"] = self.__currentNetNode.id
         self.clientController.start_client(self.host, self.port, "update_waveform",
                                            values)
 
     @Slot()
     def update_board_fft(self, values):
+        values_dict = {"net_sender_id": self.__currentNetNode.id,
+                       "fft_data": values}
         self.clientController.start_client(self.host, self.port, "update_fft",
-                                            values)
+                                            values_dict)
     @Slot()
     def update_board_spectrogram(self, values):
+        values_dict = {"net_sender_id": self.__currentNetNode.id,
+                       "spectrogram_data": values}
         self.clientController.start_client(self.host, self.port, "update_spectrogram",
-                                            values)
+                                            values_dict)
 
     def addNodeInUse(self):
         netId = self.__currentNetNode.id
