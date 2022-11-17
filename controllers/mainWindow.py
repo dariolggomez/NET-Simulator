@@ -7,6 +7,7 @@ from styles.ui_styles import Style
 from controllers import netNodeSelector, rtForm, rtUpdateForm, graphics
 from services import rt_service, net_service
 import network.app_client as client
+import random as rnd
 
 GLOBAL_STATE = 0
 GLOBAL_FULLSCREEN = 0
@@ -23,6 +24,7 @@ class MainWindow(QMainWindow):
         self.port = 65432
         self.clientController = client.ClientController(self)
         print(f"Los nodos rt relacionados son: {self.__currentNetNode.rt_nodes}")
+        self.randomizeRtNodes()
         self.addNodeInUse()
         self.graphicsController = graphics.GraphicsController(self)
         #Remove Default Title Bar
@@ -497,3 +499,8 @@ class MainWindow(QMainWindow):
         nodesDict["rtNodesList"] = rtNodesDictList
         self.clientController.start_client("127.0.0.1", 65432, "add_node_in_use", nodesDict)
         
+    def randomizeRtNodes(self):
+        rtNodes = self.__currentNetNode.rt_nodes
+        for rtNode in rtNodes:
+            rtNode.status = rnd.randint(0,1)
+            rt_service.update_RtNode(rtNode)
