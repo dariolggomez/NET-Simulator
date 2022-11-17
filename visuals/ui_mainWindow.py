@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowIPGAJS.ui'
+## Form generated from reading UI file 'mainWindowqwSGtb.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1260,13 +1260,13 @@ class Ui_MainWindow(object):
         self.spectrogram_frame.setObjectName(u"spectrogram_frame")
         self.spectrogram_frame.setFrameShape(QFrame.StyledPanel)
         self.spectrogram_frame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_35 = QVBoxLayout(self.spectrogram_frame)
-        self.verticalLayout_35.setObjectName(u"verticalLayout_35")
-        self.verticalLayout_35.setContentsMargins(0, 0, 0, 0)
-        self.spectrogram_layout = QVBoxLayout()
+        self.verticalLayout_30 = QVBoxLayout(self.spectrogram_frame)
+        self.verticalLayout_30.setObjectName(u"verticalLayout_30")
+        self.verticalLayout_30.setContentsMargins(0, 0, 0, 0)
+        self.spectrogram_layout = QHBoxLayout()
         self.spectrogram_layout.setObjectName(u"spectrogram_layout")
 
-        self.verticalLayout_35.addLayout(self.spectrogram_layout)
+        self.verticalLayout_30.addLayout(self.spectrogram_layout)
 
 
         self.horizontalLayout_19.addWidget(self.spectrogram_frame)
