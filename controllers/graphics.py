@@ -193,7 +193,8 @@ class GraphicsController(QtCore.QObject):
         self.fft_plot.setMouseEnabled(x=False, y=True)
         self.fft_plot.showGrid(x=True, y=True)
         self.fft_plot.setXRange(self.FREQ_VECTOR.min(), self.FREQ_VECTOR.max())
-        # self.fft_plot.setYRange(20 * np.log10(2 ** 11 * self.CHUNKSIZE) - 100, 20 * np.log10(2 ** 11 * self.CHUNKSIZE))
+        self.max_y_fft_range = 20 * np.log10(2 ** 11 * self.CHUNKSIZE)
+        self.fft_plot.setYRange(0, self.max_y_fft_range)
         self.fft_plot.setLabel('left', "Amplitud", units='A.U.')
         self.fft_plot.setLabel('bottom', "Frecuencia", units='Hz')
         self.__mainWindow.ui.fft_transform_layout.addWidget(self.fft_plot)
@@ -223,8 +224,12 @@ class GraphicsController(QtCore.QObject):
         self.timer_fft_processing.start()
 
     def set_fftCurve_data(self, values):
+        max_value = values[1].max()
+        if max_value > self.max_y_fft_range:
+            self.max_y_fft_range = max_value + 5
+            self.fft_plot.setYRange(0, self.max_y_fft_range)
         self.fft_curve.setData(x=values[0], y=values[1])
-        self.fft_plot.enableAutoRange('y', True)
+        # self.fft_plot.enableAutoRange('y', True)
 
     def update_fft_plot(self):
         self.set_fttCurve_data_signal.emit(self.values)
