@@ -152,9 +152,9 @@ class NetSelectorController(QMainWindow):
                 netNodesUnused.remove(netNode)
         #Show the filtered nodes on the table
         for netNode in netNodesUnused:
-            rows.append((netNode.id, netNode.nodename, netNode.city, netNode.date_created.date()))
-        self.ui.netNodeTableWidget.setColumnCount(4)
-        self.ui.netNodeTableWidget.setHorizontalHeaderLabels(("ID","Nodo","Ciudad","Fecha de Creación"))
+            rows.append((netNode.id, netNode.nodename, netNode.city, netNode.date_created.date(), len(netNode.rt_nodes)))
+        self.ui.netNodeTableWidget.setColumnCount(5)
+        self.ui.netNodeTableWidget.setHorizontalHeaderLabels(("ID","Nodo","Ciudad","Fecha de Creación", "Nodos RT"))
         self.ui.netNodeTableWidget.horizontalHeader().setVisible(True)
         self.ui.netNodeTableWidget.setRowCount(len(rows))
         for row, cols in enumerate(rows):
