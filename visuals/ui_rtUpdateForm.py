@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'rtUpdateFormuurlII.ui'
+## Form generated from reading UI file 'rtUpdateFormYmOOpg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -432,9 +432,9 @@ class Ui_rtUpdateForm(object):
         self.cityComboBox.setItemText(1, QCoreApplication.translate("rtUpdateForm", u"Playa", None))
         self.cityComboBox.setItemText(2, QCoreApplication.translate("rtUpdateForm", u"Plaza de la Revoluci\u00f3n", None))
         self.cityComboBox.setItemText(3, QCoreApplication.translate("rtUpdateForm", u"Centro Habana", None))
-        self.cityComboBox.setItemText(4, QCoreApplication.translate("rtUpdateForm", u"La Habana Vieja", None))
+        self.cityComboBox.setItemText(4, QCoreApplication.translate("rtUpdateForm", u"Habana Vieja", None))
         self.cityComboBox.setItemText(5, QCoreApplication.translate("rtUpdateForm", u"Regla", None))
-        self.cityComboBox.setItemText(6, QCoreApplication.translate("rtUpdateForm", u"La Habana del Este", None))
+        self.cityComboBox.setItemText(6, QCoreApplication.translate("rtUpdateForm", u"Habana del Este", None))
         self.cityComboBox.setItemText(7, QCoreApplication.translate("rtUpdateForm", u"Guanabacoa", None))
         self.cityComboBox.setItemText(8, QCoreApplication.translate("rtUpdateForm", u"San Miguel del Padr\u00f3n", None))
         self.cityComboBox.setItemText(9, QCoreApplication.translate("rtUpdateForm", u"Diez de Octubre", None))

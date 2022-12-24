@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'netFormdvxwJd.ui'
+## Form generated from reading UI file 'netFormTBtobB.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -421,9 +421,9 @@ class Ui_formNet(object):
         self.cityComboBox.setItemText(1, QCoreApplication.translate("formNet", u"Playa", None))
         self.cityComboBox.setItemText(2, QCoreApplication.translate("formNet", u"Plaza de la Revoluci\u00f3n", None))
         self.cityComboBox.setItemText(3, QCoreApplication.translate("formNet", u"Centro Habana", None))
-        self.cityComboBox.setItemText(4, QCoreApplication.translate("formNet", u"La Habana Vieja", None))
+        self.cityComboBox.setItemText(4, QCoreApplication.translate("formNet", u"Habana Vieja", None))
         self.cityComboBox.setItemText(5, QCoreApplication.translate("formNet", u"Regla", None))
-        self.cityComboBox.setItemText(6, QCoreApplication.translate("formNet", u"La Habana del Este", None))
+        self.cityComboBox.setItemText(6, QCoreApplication.translate("formNet", u"Habana del Este", None))
         self.cityComboBox.setItemText(7, QCoreApplication.translate("formNet", u"Guanabacoa", None))
         self.cityComboBox.setItemText(8, QCoreApplication.translate("formNet", u"San Miguel del Padr\u00f3n", None))
         self.cityComboBox.setItemText(9, QCoreApplication.translate("formNet", u"Diez de Octubre", None))
