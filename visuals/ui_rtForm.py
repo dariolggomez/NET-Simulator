@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'rtFormGEXVaX.ui'
+## Form generated from reading UI file 'rtFormvAQNKG.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -430,9 +430,9 @@ class Ui_rtForm(object):
         self.cityComboBox.setItemText(1, QCoreApplication.translate("rtForm", u"Playa", None))
         self.cityComboBox.setItemText(2, QCoreApplication.translate("rtForm", u"Plaza de la Revoluci\u00f3n", None))
         self.cityComboBox.setItemText(3, QCoreApplication.translate("rtForm", u"Centro Habana", None))
-        self.cityComboBox.setItemText(4, QCoreApplication.translate("rtForm", u"Habana Vieja", None))
+        self.cityComboBox.setItemText(4, QCoreApplication.translate("rtForm", u"La Habana Vieja", None))
         self.cityComboBox.setItemText(5, QCoreApplication.translate("rtForm", u"Regla", None))
-        self.cityComboBox.setItemText(6, QCoreApplication.translate("rtForm", u"Habana del Este", None))
+        self.cityComboBox.setItemText(6, QCoreApplication.translate("rtForm", u"La Habana del Este", None))
         self.cityComboBox.setItemText(7, QCoreApplication.translate("rtForm", u"Guanabacoa", None))
         self.cityComboBox.setItemText(8, QCoreApplication.translate("rtForm", u"San Miguel del Padr\u00f3n", None))
         self.cityComboBox.setItemText(9, QCoreApplication.translate("rtForm", u"Diez de Octubre", None))

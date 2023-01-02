@@ -403,7 +403,7 @@ border-radius: 5px;
               </item>
               <item>
                <property name="text">
-                <string>Habana Vieja</string>
+                <string>La Habana Vieja</string>
                </property>
               </item>
               <item>
@@ -413,7 +413,7 @@ border-radius: 5px;
               </item>
               <item>
                <property name="text">
-                <string>Habana del Este</string>
+                <string>La Habana del Este</string>
                </property>
               </item>
               <item>
