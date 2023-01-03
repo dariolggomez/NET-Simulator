@@ -29,6 +29,7 @@ class GraphicsController(QtCore.QObject):
         self.__mainWindow = parent
         self.default_pen = pg.mkPen(width=1, color='y')
         self.default_pen.setStyle(Qt.PenStyle.SolidLine)
+        self.fftProcessed = False
         self.createDefinitions()
         self.add_input_devices()
         self.createWaveformPlot()
@@ -215,6 +216,7 @@ class GraphicsController(QtCore.QObject):
             # self.fft_curve.setData(x=self.FREQ_VECTOR, y=magn)
             self.values = [self.FREQ_VECTOR, magn]
             self.valuesBoardFFt = [self.FREQ_VECTOR.tolist(), magn.tolist()]
+            self.fftProcessed = True
             # self.fft_plot.enableAutoRange('y', True)
             data = np.log10(X + 1e-12)
             self.waterfall_data.append(data)
@@ -232,8 +234,9 @@ class GraphicsController(QtCore.QObject):
         # self.fft_plot.enableAutoRange('y', True)
 
     def update_fft_plot(self):
-        self.set_fttCurve_data_signal.emit(self.values)
-        self.update_board_fft_signal.emit(self.valuesBoardFFt)
+        if self.fftProcessed:
+            self.set_fttCurve_data_signal.emit(self.values)
+            self.update_board_fft_signal.emit(self.valuesBoardFFt)
         self.update_fft_timer = Timer((self.TIMEOUT+200)/1000, function=self.update_fft_plot)
         self.update_fft_timer.daemon = True
         self.update_fft_timer.start()
