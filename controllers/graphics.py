@@ -187,7 +187,7 @@ class GraphicsController(QtCore.QObject):
         self.waveformDataTimer.cancel()
 
     def createFftPlot(self):
-        self.fft_plot = pg.PlotWidget(title='Transformada de Fourier')
+        self.fft_plot = pg.PlotWidget(title='Distribución de potencia')
         self.fft_curve = pg.PlotCurveItem(pen=self.default_pen, skipFiniteCheck=True)
         self.fft_plot.addItem(self.fft_curve)
         self.fft_plot.autoRange()
