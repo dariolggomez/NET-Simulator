@@ -24,6 +24,7 @@ class GraphicsController(QtCore.QObject):
     set_fttCurve_data_signal = Signal(list)
     set_waterfall_image_signal = Signal(list)
     set_waterfall_fps_signal = Signal(float)
+    consoleMessageSignal = Signal(str)
     def __init__(self, parent) -> None:
         super().__init__()
         self.__mainWindow = parent
@@ -47,6 +48,7 @@ class GraphicsController(QtCore.QObject):
         self.set_curve_pos_signal.connect(self.set_curve_pos)
         self.set_fttCurve_data_signal.connect(self.set_fftCurve_data)
         self.set_waterfall_image_signal.connect(self.setWaterfallImage)
+        self.consoleMessageSignal.connect(self.__mainWindow.showConsoleMessage)
         # self.set_waterfall_fps_signal.connect(self.setWaterfallPlotFps)
 
     def generatePgColormap(self, cm_name):
@@ -99,6 +101,7 @@ class GraphicsController(QtCore.QObject):
         self.start_fft_update()
         self.start_spectrogram()
         self.running = True
+        self.consoleMessageSignal.emit("Captura de señal iniciada.")
     
     @Slot()
     def stopAll(self):
@@ -112,6 +115,7 @@ class GraphicsController(QtCore.QObject):
             self.stop_spectrogram()
             self.recorder.stream.stop_stream()
             self.running = False
+            self.consoleMessageSignal.emit("Captura de señal detenida.")
 
     # win = pg.GraphicsLayoutWidget(show=True)
     # win.resize(1000, 600)
