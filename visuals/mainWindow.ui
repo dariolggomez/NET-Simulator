@@ -2764,42 +2764,6 @@ QPushButton:pressed {
                                </property>
                               </widget>
                              </item>
-                             <item>
-                              <widget class="QPushButton" name="reset_btn">
-                               <property name="minimumSize">
-                                <size>
-                                 <width>65</width>
-                                 <height>30</height>
-                                </size>
-                               </property>
-                               <property name="font">
-                                <font>
-                                 <family>Segoe UI Semibold</family>
-                                 <pointsize>10</pointsize>
-                                 <weight>75</weight>
-                                 <bold>true</bold>
-                                </font>
-                               </property>
-                               <property name="styleSheet">
-                                <string notr="true">QPushButton {
-	border: 2px solid rgb(50, 50, 51);
-	border-radius: 5px;	
-	background-color: rgb(50, 50, 51);
-}
-QPushButton:hover {
-	background-color: rgb(56, 56, 57);
-	border: 2px solid rgb(56, 56, 57);
-}
-QPushButton:pressed {	
-	background-color: rgb(56, 56, 57);
-	border: 1px solid rgb(0, 122, 204);
-}</string>
-                               </property>
-                               <property name="text">
-                                <string>Restablecer</string>
-                               </property>
-                              </widget>
-                             </item>
                             </layout>
                            </widget>
                           </item>

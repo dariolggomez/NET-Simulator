@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowqwSGtb.ui'
+## Form generated from reading UI file 'mainWindowiFnpax.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -1332,26 +1332,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_29.addWidget(self.stop_btn)
 
-        self.reset_btn = QPushButton(self.frame_interactions_btns)
-        self.reset_btn.setObjectName(u"reset_btn")
-        self.reset_btn.setMinimumSize(QSize(65, 30))
-        self.reset_btn.setFont(font4)
-        self.reset_btn.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(50, 50, 51);\n"
-"	border-radius: 5px;	\n"
-"	background-color: rgb(50, 50, 51);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(56, 56, 57);\n"
-"	border: 2px solid rgb(56, 56, 57);\n"
-"}\n"
-"QPushButton:pressed {	\n"
-"	background-color: rgb(56, 56, 57);\n"
-"	border: 1px solid rgb(0, 122, 204);\n"
-"}")
-
-        self.verticalLayout_29.addWidget(self.reset_btn)
-
 
         self.horizontalLayout_19.addWidget(self.frame_interactions_btns)
 
@@ -2057,7 +2037,6 @@ class Ui_MainWindow(object):
         self.label_receptor.setText(QCoreApplication.translate("MainWindow", u"Receptor:", None))
         self.start_btn.setText(QCoreApplication.translate("MainWindow", u"Iniciar", None))
         self.stop_btn.setText(QCoreApplication.translate("MainWindow", u"Detener", None))
-        self.reset_btn.setText(QCoreApplication.translate("MainWindow", u"Restablecer", None))
         self.labelHeaderUser.setText(QCoreApplication.translate("MainWindow", u"Usuarios", None))
         self.editBtn.setText(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.createBtn.setText(QCoreApplication.translate("MainWindow", u"Crear", None))
