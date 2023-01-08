@@ -51,6 +51,7 @@ class MainWindow(QMainWindow):
         #Load Ui Settings
         self.ui.net_node_in_use.setText(currentNetNode.nodename)
         self.ui.net_node_city.setText(currentNetNode.city)
+        self.ui.stop_btn.setEnabled(False)
 
         #Add custom menu buttons
         self.ui.stackedWidget.setMinimumWidth(20)

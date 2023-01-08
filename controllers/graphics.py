@@ -89,6 +89,7 @@ class GraphicsController(QtCore.QObject):
     @Slot()
     def startAll(self):
         self.__mainWindow.ui.start_btn.setEnabled(False)
+        self.__mainWindow.ui.stop_btn.setEnabled(True)
         self.source_index = self.audiosourceIDs[self.__mainWindow.ui.input_devices.currentIndex()]
         self.recorder.create_stream(self.source_index)
         self.startMicrophone()
@@ -103,6 +104,7 @@ class GraphicsController(QtCore.QObject):
     def stopAll(self):
         if self.running:
             self.__mainWindow.ui.start_btn.setEnabled(True)
+            self.__mainWindow.ui.stop_btn.setEnabled(False)
             self.stopWaveformDataRtv()
             self.stopWaveformUpdate()
             self.stop_fft_processing()
