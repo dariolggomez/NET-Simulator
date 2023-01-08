@@ -2,6 +2,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
+from datetime import datetime
 from visuals.ui_mainWindow import Ui_MainWindow
 from styles.ui_styles import Style
 from controllers import netNodeSelector, rtForm, rtUpdateForm, graphics
@@ -64,6 +65,9 @@ class MainWindow(QMainWindow):
 
         #Load RT Nodes Status Table
         self.loadRtStatusTable()
+
+        #Console messages
+        self.showConsoleMessage(f"{currentNetNode.nodename} inicializado.")
 
         #Events Connections
         self.ui.create_rtnode_btn.clicked.connect(self.showRtForm)
@@ -504,3 +508,7 @@ class MainWindow(QMainWindow):
         for rtNode in rtNodes:
             rtNode.status = rnd.randint(0,1)
             rt_service.update_RtNode(rtNode)
+
+    @Slot()
+    def showConsoleMessage(self, message):
+        self.ui.console.appendPlainText(f"{datetime.today().strftime('%Y-%m-%d %H:%M:%S')} >> {message}")
