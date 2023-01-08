@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainWindowiFnpax.ui'
+## Form generated from reading UI file 'mainWindowvaIHHt.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -2023,7 +2023,7 @@ class Ui_MainWindow(object):
         self.btn_close.setText("")
         self.label_top_info_1.setText("")
         self.label_top_info_2.setText(QCoreApplication.translate("MainWindow", u"| INICIO", None))
-        self.label_user_icon.setText(QCoreApplication.translate("MainWindow", u"AL", None))
+        self.label_user_icon.setText(QCoreApplication.translate("MainWindow", u"NET", None))
         self.net_node_in_use.setText(QCoreApplication.translate("MainWindow", u"Nodo en uso", None))
         self.city_label.setText(QCoreApplication.translate("MainWindow", u"Municipio:", None))
         self.net_node_city.setText(QCoreApplication.translate("MainWindow", u"Text", None))

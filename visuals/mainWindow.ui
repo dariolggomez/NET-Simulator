@@ -1031,7 +1031,7 @@ QPushButton:pressed {
 }</string>
                   </property>
                   <property name="text">
-                   <string>AL</string>
+                   <string>NET</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
